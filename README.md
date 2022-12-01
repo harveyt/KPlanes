@@ -7,7 +7,10 @@ very early stages, through X-plane style rocket planes, to SSTO (single-stage to
 
 ## License
 
-[MIT][url:MITLicense] licensed.
+All content is [MIT][url:MITLicense] licensed.
+
+* KASA logo derived from NASA svg downloaded from [Wikipedia](https://en.wikipedia.org/wiki/NASA_insignia#/media/File:NASA_logo.svg)
+* KACA logo dervied from NACA svg downloaded from [Wikipedia](https://commons.wikimedia.org/wiki/File:US_NACA_logo.svg)
 
 ## Source
 
