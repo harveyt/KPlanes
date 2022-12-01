@@ -24,8 +24,10 @@ and everything from GAP [on the KSP Forums][kspf:inigmaPermission].
 ## Purpose
 
 This pack is planet pack agnostic and tech tree agnostic, but the description assumes either Stock,
-semi-Stock (2.5 or 2.7 like JNSQ or KSRSS), or Earth-scale planets (RSS/RO/RP-1). The pack can also
-be used alongside [GAP][url:GAP] or deriviatives and does not need them for any shared assets.
+semi-Stock (2.5x or 2.7x scale like JNSQ or KSRSS), or Earth-scale planets (RSS/RO/RP-1). The pack
+can also be used alongside [GAP][url:GAP] or deriviatives and does not need them for any shared
+assets, though some of the early contracts are almost the same as the milestones from [GAP][url:GAP]
+(because they were copied and made planet agnostic).
 
 Initially you will find contracts to build your first powered aircraft, then several contracts which
 increase the speed, height and/or distance that plane can travel. Bonus points are usually awarded
