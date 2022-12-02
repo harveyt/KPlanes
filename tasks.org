@@ -17,7 +17,11 @@
 
 ** TODO Add all GAP milestone contracts
 - Including Heli and Seaplane too
+- Not yet converted to planet agnostic
 ** DONE Would it make sense to group all K-Planes groups into one?
+** TODO Generate milestone contracts from ContractTable.csv
+- Use python
+- Add to build system
 ** TODO Add reward scaling
 - Based on distance/speed/altitude  
 ** TODO Add atmosphere scaling
@@ -25,8 +29,6 @@
 - Troposphere, Stratosphere, Karman Line/Space
 ** TODO Ensure craft do not miuse parachutes
 - Parachutes can only be used after landing.
-** TODO Look at generated milestone contracts from shorter meta-data
-- Probably a lot of repetition, can this be done in ContractConfigurator?
 ** TODO How to do distance?
 - Use Waypoint Generator to create waypoint with suitable min/max distance from launch
   site.
