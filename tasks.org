@@ -23,16 +23,30 @@
 ** TODO Add atmosphere scaling
 - Based on Stock, 2.5/2.7 or RSS scaling
 - Troposphere, Stratosphere, Karman Line/Space
+** TODO Ensure craft do not miuse parachutes
+- Parachutes can only be used after landing.
 ** TODO Look at generated milestone contracts from shorter meta-data
 - Probably a lot of repetition, can this be done in ContractConfigurator?
-** TODO How to do distance? Somebody has probably done this?
-- Parameter X with ReachState Prelaunch
-- Behaviour B which is triggered when X is satisfied (plane about to launch)
-  - This because stores the LaunchSite location in data
-- Parameter C triggered when distance to location exceeded, not sure if this is
-  possible.
-- Alternative: Use Waypoint Generator to create waypoint with suitable min/max distance from launch
-  site. This might be better as it gives a target to aim for and return from.
+** TODO How to do distance?
+- Use Waypoint Generator to create waypoint with suitable min/max distance from launch
+  site.
+- For pole :: must reach pole waypoint and return to KSC
+- For around the world :: place waypoint 90 W, 270 W on equator then return to
+  KSC
+- Possibly calculate great circle with start point and 90 W?
+** TODO How to do air launch?
+- Allow one staging event
+- Before staging, whole craft is validated
+- Staging must occur:
+  - Above a certain height
+  - Remaining craft is then validated again
+- Player must also land other aircraft
+** TODO How to do payload delivery?
+- Allow one staging event
+- Must occur above a certain height
+- Primary craft is validated
+- Secondary craft can be made of anything, but must exceed payload mass
+- Player must land primary
 ** TODO Add automated GitHub release
 ** TODO Add CKAN information
 ** TODO Add automated SpaceDock release
@@ -106,7 +120,3 @@ Key:
 *equator at 90 degrees West (following sun)
 *5* :: Similar to Around The World but only electric engines. Allow RTG, Solar, Batteries
 and Nuclear.
-
-
-
-
