@@ -11,7 +11,8 @@ import re
 
 ROOT = os.getenv('ROOT')
 DEST = os.getenv('DEST')
-DEBUG = True
+DEBUG = False
+REPLACE_AUTOLOC = True
 
 # --------------------------------------------------------------------------------
 
@@ -42,6 +43,8 @@ def output(fmt, *a):
 class ContractType:
     def __init__(self, group, counter, name, data):
         self.group = group
+        self.table = self.group.table
+        self.localization = self.table.localization
         self.counter = counter
         self.suffix = re.sub(r'[- ]', '', name)
         self.data = data
@@ -57,6 +60,14 @@ class ContractType:
 
     def write(self, fmt, *a):
         self.out.write(fmt.format(*a))
+
+    def localize(self, field):
+        key = self.localization.make_key(self, field)
+        if REPLACE_AUTOLOC:
+            value = self.localization.get(key)
+        else:
+            value = key
+        return value
 
     def generate(self):
         if self.name != "Start-001-FirstFlight":
@@ -182,17 +193,17 @@ class ContractType:
         self.write('//CONTRACT DESCRIPTION\n')
         self.write('\n')
         self.write('	name = {}\n', self.name)
-        self.write('	title = {}\n', self.title)        
+        self.write('	title = {}\n', self.localize('title'))
         self.write('	group = {}\n', self.group.name)
         self.write('	agent = {}\n', self.agent)
         self.write('\n')
-        self.write('	description = {}\n', self.description)
+        self.write('	description = {}\n', self.localize('description'))
         self.write('	\n')
-        self.write('	synopsis = {}\n', self.synopsis)
+        self.write('	synopsis = {}\n', self.localize('synopsis'))
         self.write('\n')
-        self.write('	notes = {}\n', self.notes)
+        self.write('	notes = {}\n', self.localize('notes'))
         self.write('\n')
-        self.write('	completedMessage = {}\n', self.completedMessage)
+        self.write('	completedMessage = {}\n', self.localize('completedMessage'))
         self.write('	\n')
         
     def _gen_limits(self):
@@ -474,11 +485,42 @@ class ContractGroup:
     def generate(self):
         for ct in self.contract_types:
             ct.generate()
+
+class Localization:
+    def __init__(self):
+        self.entries = {}
+        self.read()
+
+    def make_key(self, ct, field):
+        prefix = ct.name.replace('-', '_')
+        return "#autoLOC_KPlanes_{}_{}".format(prefix, field)
+
+    def add(self, key, value):
+        self.entries[key] = value
         
+    def get(self, key):
+        if key not in self.entries:
+            error("No localization key {}", key)
+        return self.entries[key]
+    
+    def read(self):
+        with open("{}/Localization/en-us.cfg".format(DEST)) as locfile:
+            for line in locfile.readlines():
+                m = re.search(r'(#autoLOC_KPlanes_[a-zA-Z0-9_]*)\s*=\s*(.*)$', line)
+                if not m:
+                    continue
+                key = m.group(1)
+                value = m.group(2)
+                self.add(key, value)
+        for key in self.entries.keys():
+            debug('Loc: {} = {}', key, self.get(key))
+    
 class ContractTable:
     def __init__(self):
         self.contract_groups = {}
-        self._read()
+        self.localization = Localization()
+        self.read()
+        self.localization.read()
 
     def find_group(self, group_title):
         if group_title in self.contract_groups:
@@ -487,7 +529,7 @@ class ContractTable:
         self.contract_groups[group_title] = new_group
         return new_group
 
-    def _read(self):
+    def read(self):
         with open("{}/ContractTable.csv".format(ROOT), newline='') as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             skip = True
