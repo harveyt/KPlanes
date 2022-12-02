@@ -1,0 +1,49 @@
+Group,Name,Prestige,Reward Scale,Style,Altitude Min (m),Altitude Max (m),Speed (m/s),Distance (km),Mid State,Payload (t),Jet?,Rocket?,Staging?,Air Launch?,Land Near KSC?
+Wright,First Flight,,,Fly,,,,,Flying,,N,N,N,N,N
+Wright,2500m,,,Height,2500,,,,,,N,N,N,N,N
+Wright,Speed 100m/s,,,Speed,2500,5000,100,,,,N,N,N,N,N
+Wright,Seaplane,,,Land,,,,,Splashed,,N,N,N,N,Y
+Wright,Helicopter,,,Land,,,,,VAB,,N,N,N,N,Y
+Wright,10km,,,Distance,,,,10,,,N,N,N,N,N
+Wright,5000m,,,Height,5000,,,,,,N,N,N,N,N
+Wright,100km,,,Distance,,,,100,,,N,N,N,N,N
+Wright,Speed 200m/s,,,Speed,2500,5000,200,,,,Y,N,N,N,N
+Wright,1000km,,,Distance,,,,1000,,,Y,N,N,N,N
+Wright,Mountaineer,,,Land,,,,,Mountain >1000m,,Y,N,N,N,N
+Wright,Long Distance,,,Distance,,,,10000,,,Y,N,N,N,N
+KACA,10000m,,,Height,10000,,,,,,Y,Y,N,Y,N
+KACA,Mach 1,,,Speed,2500,20000,343,,,,Y,Y,N,Y,N
+KACA,Stratosphere Low *1*,,,Height,18000,,,,,,Y,Y,N,Y,N
+KACA,Mach 2,,,Speed,2500,20000,686,,,,Y,Y,N,Y,N
+KACA,Jet VTOL,,,Land,,,,,Hovering,,Y,N,N,N,N
+KACA,To The North Pole,,,Distance,,,,19000,,,Y,N,N,N,Y
+KACA,Stratosphere High *2*,,,Height,35000,,,,,,Y,Y,N,Y,N
+KACA,Mach 3,,,Speed,2500,25000,1029,,,,Y,Y,N,Y,N
+KACA,Around The World,,,Distance,,,,38000,,,Y,N,N,N,Y
+KACA,Stratospheric Jet,,,Height,35000,,,,,,Y,N,N,N,N
+KACA,Mach 3 Jet,,,Speed,2500,25000,1029,,,,Y,N,N,N,N
+KACA,Around The Poles,,,Distance,38000,,,,,,Y,N,N,N,Y
+KASA,Mesosphere *3*,,,Height,57000,,,,,,Y,Y,N,N,N
+KASA,Mach 4,,,Speed,2500,35000,1372,,,,Y,Y,N,N,N
+KASA,Rocket VTOL,,,Land,,,,,Hovering,,N,Y,N,N,N
+KASA,Sub-Orbital,,,Height,70000,,,,,,Y,Y,N,N,N
+KASA,Mach 5,,,Speed,2500,35000,1715,,,,Y,Y,N,N,N
+KASA,Going Electrical *5*,,,Distance,,,,38000,,,N,N,N,N,Y
+KASA,Orbital Shuttle,,,Distance,,,,,Orbit,,Y,Y,Y,N,N
+KASA,Orbital Shuttle 1T Payload,,,Payload,,,,,Orbit,1,Y,Y,Y,N,N
+KASA,Orbital Shuttle 10T Payload,,,Payload,,,,,Orbit,10,Y,Y,Y,N,N
+KASA,Orbital Shuttle 30T Payload,,,Distance,,,,,Orbit,30,Y,Y,Y,N,N
+KASA,Sub-Orbital SSTO,,,Height,70000,,,,,,Y,Y,N,N,N
+KASA,Orbital SSTO,,,Distance,,,,,Orbit,,Y,Y,N,N,N
+SSI,Orbital SSTO 1T Payload,,,Payload,80000,,,,Orbit,1,Y,Y,N,N,N
+SSI,Orbital SSTO 10T Payload,,,Payload,80000,,,,Orbit,10,Y,Y,N,N,N
+SSI,Orbital SSTO 30T Payload,,,Payload,80000,,,,Orbit,30,Y,Y,N,N,N
+SSI,Orbital GEO SSTO 15T Payload,,,Payload,2863334,,,,Orbit GEO,15,Y,Y,N,N,N
+SSI,Lunar Orbit SSTO,,,Distance,,,,,Orbit Mun,,Y,Y,N,N,N
+SSI,Lunar Orbit SSTO 1T Payload,,,Payload,,,,,Orbit Mun,1,Y,Y,N,N,N
+SSI,Lunar Orbit SSTO 10T Payload,,,Payload,,,,,Orbit Mun,10,Y,Y,N,N,N
+SSI,Lunar Land SSTO,,,Distance,,,,,Landed Mun,,Y,Y,N,N,N
+SSI,Lunar Land SSTO 1T Payload,,,Payload,1,,,,Landed Mun,1,Y,Y,N,N,N
+SSI,Lunar Land SSTO 10T Payload,,,Payload,10,,,,Landed Mun,10,Y,Y,N,N,N
+SSI,Lunar Land SSTO 30T Payload,,,Payload,30,,,,Landed Mun,30,Y,Y,N,N,N
+SSI,Lunar Land SSTO 50T Payload,,,Payload,50,,,,Landed Mun,50,Y,Y,N,N,N
