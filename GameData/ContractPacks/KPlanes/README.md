@@ -92,7 +92,7 @@ Recommended IVA Dependencies, to fly inside the plane:
 [url:KPlanes]: https://github.com/harveyt/KPlanes
 [url:MITLicense]: https://github.com/harveyt/KPlanes/blob/main/LICENSE
 [url:GAP]: https://forum.kerbalspaceprogram.com/index.php?/topic/129208-contract-pack-giving-aircraft-a-purpose-gap-161-milestones-air-flights-coast-guard/
-[url:CKAN]: https://forum.kerbalspaceprogram.com/index.php?/topic/90246-the-comprehensive-kerbal-archive-network-ckan-package-manager-v1180-19-june-2016/
+[url:CKAN]: https://forum.kerbalspaceprogram.com/index.php?/topic/154922-ckan-the-comprehensive-kerbal-archive-network-v1280-dyson/
 [url:ModuleManager]: https://forum.kerbalspaceprogram.com/index.php?/topic/50533-18x-112x-module-manager-421-august-1st-2021-locked-inside-edition/
 [url:ContractConfigurator]: https://forum.kerbalspaceprogram.com/index.php?/topic/91625-1101-contract-configurator-v1305-2020-10-05/
 [url:ContractConfiguratorGitHub]: https://github.com/KSP-RO/ContractConfigurator/releases

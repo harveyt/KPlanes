@@ -21,7 +21,7 @@ KASA_SCALED_PNG	= $(DEST)/Assets/Flags/KASA_scaled.png
 README		= $(DEST)/README.md
 LICENSE		= $(DEST)/LICENSE
 
-BUILDABLES	= $(KACA_PNG) $(KACA_SCALED_PNG) $(KASA_PNG) $(KASA_SCALED_PNG) $(README) $(LICENSE)
+BUILDABLES	= $(KACA_PNG) $(KACA_SCALED_PNG) $(KASA_PNG) $(KASA_SCALED_PNG) $(README) $(LICENSE) contracts
 
 test: build
 	@if [[ ! -d $(TEST_GAME) ]]; then \
@@ -34,6 +34,9 @@ test: build
 	@cp -a $(DEST) $(TEST_GAME)/`dirname $(RELPATH)`
 
 build: $(BUILDABLES)
+
+contracts:
+	ROOT=$(ROOT) DEST=$(DEST) ./ContractGen.py
 
 clobber:
 	rm -f $(BUILDABLES)

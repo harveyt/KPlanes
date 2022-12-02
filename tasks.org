@@ -13,9 +13,9 @@
 ** DONE Add Makefile build and test system
 ** DONE Add first contract type and fix bugs
 
-* TODO [1/12] Version 0.2.0
+* TODO [2/12] Version 0.2.0
 
-** TODO Add all GAP milestone contracts
+** DONE Add all GAP milestone contracts
 - Including Heli and Seaplane too
 - Not yet converted to planet agnostic
 ** DONE Would it make sense to group all K-Planes groups into one?
