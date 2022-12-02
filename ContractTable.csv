@@ -7,7 +7,7 @@ Wright,Helicopter,*,4,Land,,,,,VAB,,N,N,N,N,Y
 Wright,10km,*,2,Distance,,,,10,,,N,N,N,N,N
 Wright,5000m,*,2,Height,5000,,,,,,N,N,N,N,N
 Wright,100km,*,3,Distance,,,,100,,,N,N,N,N,N
-Wright,Speed 200m/s,*,3,Speed,2500,5000,200,,,,Y,N,N,N,N
+Wright,Speed 220m/s,*,3,Speed,2500,5000,220,,,,Y,N,N,N,N
 Wright,1000km,*,4,Distance,,,,1000,,,Y,N,N,N,N
 Wright,Mountaineer,**,5,Land,,,,,Mountain >1000m,,Y,N,N,N,N
 Wright,Long Distance,***,6,Distance,,,,10000,,,Y,N,N,N,N
