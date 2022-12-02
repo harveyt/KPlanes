@@ -13,3 +13,18 @@
 ** DONE Add Makefile build and test system
 ** DONE Add first contract type and fix bugs
 
+* TODO [0/4] Version 0.2.0
+
+** TODO Add all GAP milestone contracts
+- Including Heli and Seaplane too
+** TODO Add reward scaling
+- Based on distance/speed/altitude  
+** TODO Add atmosphere scaling
+- Based on Stock, 2.5/2.7 or RSS scaling
+- Troposphere, Stratosphere, Karman Line/Space
+** TODO Look at generated milestone contracts from shorter meta-data
+- Probably a lot of repetition, can this be done in ContractConfigurator?
+** TODO Add automated GitHub release
+** TODO Add CKAN information
+** TODO Add automated SpaceDock release
+
