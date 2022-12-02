@@ -1,0 +1,15 @@
+-*- mode: org; mode: auto-fill; fill-column: 80; -*-
+#+TITLE: K-Planes Tasks
+#+STARTUP: indent overview
+#+TODO: TODO DEFER | DONE
+
+* DONE [5/5] Version 0.1.0
+- Just one contract, enough to check how to do the basics.
+- Some details copied and modified from GAP.
+  
+** DONE Add Agencies, Contract Groups, basic mod structure
+** DONE Add KACA agency logo from NACA
+** DONE Add KASA agency logo from NASA
+** DONE Add Makefile build and test system
+** DONE Add first contract type and fix bugs
+
