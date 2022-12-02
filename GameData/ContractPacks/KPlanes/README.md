@@ -83,6 +83,12 @@ Recommended Helper Dependencies:
 * [Contracts Window][url:ContractsWindow] for viewing contracts outside of Mission Control
 * [CapCom][url:CapCom] for accepting contracts outside of Mission Control
 
+Recommended IVA Dependencies, to fly inside the plane:
+
+* [RasterPropMonitor][url:RasterPropMonitor] (or RPM) allows IVA to be interactive.
+* [MOARdV's Avionics System][url:AvionicsSystems] (or MAS) the successor to RPM.
+* [Reviva][url:Reviva] which is one of my other mods, allows much easier installing/switch IVA mods.
+
 [url:KPlanes]: https://github.com/harveyt/KPlanes
 [url:MITLicense]: https://github.com/harveyt/KPlanes/blob/main/LICENSE
 [url:GAP]: https://forum.kerbalspaceprogram.com/index.php?/topic/129208-contract-pack-giving-aircraft-a-purpose-gap-161-milestones-air-flights-coast-guard/
@@ -110,4 +116,6 @@ Recommended Helper Dependencies:
 [url:CapCom]: https://forum.kerbalspaceprogram.com/index.php?/topic/107789-18x-capcom-mission-control-on-the-go-v211-11-1-2019/
 [kspf:inigma]: https://forum.kerbalspaceprogram.com/index.php?/profile/69310-inigma/
 [kspf:inigmaPermission]: https://forum.kerbalspaceprogram.com/index.php?/topic/199185-112x-planes-with-purposes-pwp/&do=findComment&comment=3908846
-
+[url:RasterPropMonitor]: https://forum.kerbalspaceprogram.com/index.php?/topic/190737-18x-112x-rasterpropmonitor-adopted/
+[url:AvionicsSystems]: https://forum.kerbalspaceprogram.com/index.php?/topic/160856-wip-111x-moardvs-avionics-systems-mas-interactive-iva-v123-21-may-2021/
+[url:Reviva]: https://forum.kerbalspaceprogram.com/index.php?/topic/206744-wip112x-reviva-the-iva-revival-and-editorflight-switcher-070-pre-release-3rd-feb-2022/
