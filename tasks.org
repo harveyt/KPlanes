@@ -55,7 +55,7 @@
 
 Values are for Stock Kerbin, but are dynamically scaled according to home world planet's dimensions/atmosphere.
 
-| Group  | Name                         | Style        |       Value | Rocket? | Staging? | Air Launch? |
+| Agent  | Name                         | Style        |       Value | Rocket? | Staging? | Air Launch? |
 |--------+------------------------------+--------------+-------------+---------+----------+-------------|
 | Wright | First Flight                 | Fly          |           - | N       | N        | N           |
 | Wright | 2500m                        | Height       |        2500 | N       | N        | N           |
