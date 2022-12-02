@@ -17,6 +17,7 @@
 
 ** TODO Add all GAP milestone contracts
 - Including Heli and Seaplane too
+** TODO Would it make sense to group all K-Planes groups into one?
 ** TODO Add reward scaling
 - Based on distance/speed/altitude  
 ** TODO Add atmosphere scaling
@@ -24,6 +25,14 @@
 - Troposphere, Stratosphere, Karman Line/Space
 ** TODO Look at generated milestone contracts from shorter meta-data
 - Probably a lot of repetition, can this be done in ContractConfigurator?
+** TODO How to do distance? Somebody has probably done this?
+- Parameter X with ReachState Prelaunch
+- Behaviour B which is triggered when X is satisfied (plane about to launch)
+  - This because stores the LaunchSite location in data
+- Parameter C triggered when distance to location exceeded, not sure if this is
+  possible.
+- Alternative: Use Waypoint Generator to create waypoint with suitable min/max distance from launch
+  site. This might be better as it gives a target to aim for and return from.
 ** TODO Add automated GitHub release
 ** TODO Add CKAN information
 ** TODO Add automated SpaceDock release
