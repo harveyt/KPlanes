@@ -68,8 +68,8 @@ class ContractType:
         self.style = data[6]
         self.altMin = data[7]
         self.altMax = data[8]
-        self.speed = data[9]
-        self.distance = data[10]
+        self.speedMach = data[9]
+        self.distanceKM = data[10]
         self.midState = data[11]
         self.payload = data[12]
         self.jet = data[13]
@@ -89,6 +89,22 @@ class ContractType:
             value = key
         return value
 
+    def from_number(self, value, scale):
+        if not value.replace('.','',1): # not float or int, must be keyword
+            value = "@KPlanes:{}".format(value)
+        return "Round({} * {})".format(value, scale)
+
+    # Speed is in Mach
+    def speed(self, value):
+        self.from_number(value, "@KPlanes:Mach")
+
+    # Altitude is in km
+    def altitude(self, value):
+        self.from_number(value, "1000.0")
+
+    # Distance is in km
+    def distance(self, value):
+        self.from_number(value, "1000.0")
     
     def generate(self):
         allowed = [
