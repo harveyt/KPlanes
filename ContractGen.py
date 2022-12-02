@@ -181,40 +181,40 @@ class ContractType:
     def _gen_description(self):
         self.write('//CONTRACT DESCRIPTION\n')
         self.write('\n')
-        self.write('\tname = {}\n', self.name)
-        self.write('\ttitle = {}\n', self.title)        
-        self.write('\tgroup = {}\n', self.group.name)
-        self.write('\tagent = {}\n', self.agent)
+        self.write('	name = {}\n', self.name)
+        self.write('	title = {}\n', self.title)        
+        self.write('	group = {}\n', self.group.name)
+        self.write('	agent = {}\n', self.agent)
         self.write('\n')
         self.write('	description = {}\n', self.description)
-        self.write('\n')
+        self.write('	\n')
         self.write('	synopsis = {}\n', self.synopsis)
         self.write('\n')
         self.write('	notes = {}\n', self.notes)
         self.write('\n')
         self.write('	completedMessage = {}\n', self.completedMessage)
-        self.write('\n')
+        self.write('	\n')
         
     def _gen_limits(self):
         self.write('//Contract Limits\n')
-        self.write('	maxCompletions = 1\n')
-        self.write('	maxSimultaneous = 1\n')
+        self.write('   	maxCompletions = 1\n')
+        self.write('   	maxSimultaneous = 1\n')
         self.write('//	weight = 100.0\n')
-        self.write('\n')
+        self.write('	\n')
         self.write('	autoAccept = false\n')
         self.write('	declinable = true\n')
         self.write('	cancellable = true\n')
-        self.write('\n')
+        self.write('	\n')
         self.write('	minExpiry = 7.0\n')
         self.write('	maxExpiry = 7.0\n')
         self.write('	deadline = 0\n')
-        self.write('\n')
+        self.write('	\n')
         
     def _gen_rewards(self):
         self.write('//Contract Reward Modifiers\n')
         self.write('	prestige = Trivial\n')
         self.write('   	targetBody = HomeWorld()\n')
-        self.write('\n')
+        self.write('	\n')
         self.write('//Contract Rewards\n')
         self.write('  	advanceFunds = 2000.0\n')
         self.write('  	rewardFunds = 10000.0\n')
@@ -227,7 +227,7 @@ class ContractType:
         self.write('\n')
 
     def _gen_behaviours(self):
-        self.write('\n')
+        self.write('	\n')
         self.write('//BEHAVIOURS TO DO WHEN CREATING CONTRACT\n')
         self.write('	BEHAVIOUR\n')
         self.write('	{{\n')
@@ -458,7 +458,7 @@ class ContractType:
         self.write('	\n')
         
     def _gen_end(self):
-        self.write('}}\n')
+        self.write('}}') # TODO: \n
         
 class ContractGroup:
     def __init__(self, table, title):
