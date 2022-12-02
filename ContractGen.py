@@ -53,10 +53,30 @@ class ContractType:
         self.output_path = "{}/{}/{}-{}.cfg".format(DEST, self.group.title, self.counter, self.suffix)
         self.out = sys.stdout
         self.agent = "KPlanes_{}".format(data[1])
+        self.craft = "KPlanesCraft_{}_{}".format(self.group.title, self.counter)
         self.description = ""
         self.synopsis = ""
         self.notes = ""
         self.completedMessage = ""
+        self.prestige = "Trivial"
+        prestige_stars = data[4]
+        if prestige_stars == "**":
+            self.prestige = "Significant"
+        elif prestige_stars == "***":
+            self.prestige = "Exceptional"
+        self.rewardScale = data[5]
+        self.style = data[6]
+        self.altMin = data[7]
+        self.altMax = data[8]
+        self.speed = data[9]
+        self.distance = data[10]
+        self.midState = data[11]
+        self.payload = data[12]
+        self.jet = data[13]
+        self.rocket = data[14]
+        self.staging = data[15]
+        self.airLaunch = data[16]
+        self.landNearKSC = data[17]
 
     def write(self, fmt, *a):
         self.out.write(fmt.format(*a))
@@ -69,12 +89,13 @@ class ContractType:
             value = key
         return value
 
+    
     def generate(self):
-        # if     self.name != "Start-001-FirstFlight" \
-        #    and self.name != "Start-002-FlyingHigher" \
-        #        :
-        #     return
-        if     self.name != "Start-001-FirstFlight":
+        allowed = [
+              "Start-001-FirstFlight"
+            # , "Start-002-FlyingHigher"
+        ]
+        if self.name not in allowed:
             return
         
         with open(self.output_path, "w") as self.out:
@@ -188,7 +209,7 @@ class ContractType:
         self.write('	{{\n')
         self.write('		type = string\n')
         self.write('		\n')
-        self.write('		craft = KPlanesCraftWrightFirstFlight\n')
+        self.write('		craft = {}\n', self.craft)
         self.write('		\n')
         self.write('	}}\n')
         self.write('\n')
@@ -227,18 +248,18 @@ class ContractType:
         
     def _gen_rewards(self):
         self.write('//Contract Reward Modifiers\n')
-        self.write('	prestige = Trivial\n')
+        self.write('	prestige = {}\n', self.prestige)
         self.write('   	targetBody = HomeWorld()\n')
         self.write('	\n')
         self.write('//Contract Rewards\n')
-        self.write('  	advanceFunds = 2000.0\n')
-        self.write('  	rewardFunds = 10000.0\n')
-        self.write('  	rewardReputation = 50.0\n')
-        self.write(' 	rewardScience = 10.0\n')
+        self.write('  	advanceFunds = {} * @KPlanes:RewardAdvanceFunds\n', self.rewardScale)
+        self.write('  	rewardFunds = {} * @KPlanes:RewardFunds\n', self.rewardScale)
+        self.write('  	rewardReputation = {} * @KPlanes:RewardReputation\n', self.rewardScale)
+        self.write(' 	rewardScience = {} * @KPlanes:RewardScience\n', self.rewardScale)
         self.write('\n')
         self.write('//Contract Penalties\n')
-        self.write('  	failureFunds = 4000.0\n')
-        self.write(' 	failureReputation = 5.0\n')
+        self.write('  	failureFunds = {} * @KPlanes:FailureFunds\n', self.rewardScale)
+        self.write(' 	failureReputation = {} * @KPlanes:FailureReputation\n', self.rewardScale)
         self.write('\n')
 
     def _gen_behaviours(self):

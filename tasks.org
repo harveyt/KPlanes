@@ -13,16 +13,16 @@
 ** DONE Add Makefile build and test system
 ** DONE Add first contract type and fix bugs
 
-* TODO [2/12] Version 0.2.0
+* TODO [4/12] Version 0.2.0
 
 ** DONE Add all GAP milestone contracts
 - Including Heli and Seaplane too
 - Not yet converted to planet agnostic
 ** DONE Would it make sense to group all K-Planes groups into one?
-** TODO Generate milestone contracts from ContractTable.csv
+** DONE Generate milestone contracts from ContractTable.csv
 - Use python
 - Add to build system
-** TODO Add reward scaling
+** DONE Add reward scaling
 - Based on distance/speed/altitude  
 ** TODO Add atmosphere scaling
 - Based on Stock, 2.5/2.7 or RSS scaling

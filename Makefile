@@ -38,6 +38,9 @@ build: $(BUILDABLES)
 contracts:
 	ROOT=$(ROOT) DEST=$(DEST) ./ContractGen.py
 
+diffs:
+	git --no-pager diff --exit-code --no-color -b -- $(DEST)/{Start,Early,Modern,Future}
+
 clobber:
 	rm -f $(BUILDABLES)
 
