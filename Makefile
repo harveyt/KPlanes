@@ -30,7 +30,7 @@ test: build
 		exit 1; \
 	fi
 	@echo "Updating $(TEST_GAME) with KPlanes..."
-	@rm -f $(TEST_GAME)/$(RELPATH)
+	@rm -rf $(TEST_GAME)/$(RELPATH)
 	@cp -a $(DEST) $(TEST_GAME)/`dirname $(RELPATH)`
 
 build: $(BUILDABLES)
