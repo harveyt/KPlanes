@@ -70,9 +70,13 @@ class ContractType:
         return value
 
     def generate(self):
-        if self.name != "Start-001-FirstFlight":
+        # if     self.name != "Start-001-FirstFlight" \
+        #    and self.name != "Start-002-FlyingHigher" \
+        #        :
+        #     return
+        if     self.name != "Start-001-FirstFlight":
             return
-
+        
         with open(self.output_path, "w") as self.out:
             self._gen_header()
             self._gen_begin()
@@ -97,7 +101,7 @@ class ContractType:
         self.write('CONTRACT_TYPE\n')
         self.write('{{\n')
         self.write('\n')
-        self.write('	sortKey = aa{:02d}\n', int(self.counter))
+        self.write('	sortKey = a{}\n', self.counter)
         self.write('\n')
 
     def _gen_requirements(self):
@@ -469,7 +473,7 @@ class ContractType:
         self.write('	\n')
         
     def _gen_end(self):
-        self.write('}}') # TODO: \n
+        self.write('}}\n')
         
 class ContractGroup:
     def __init__(self, table, title):
