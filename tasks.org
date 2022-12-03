@@ -24,6 +24,58 @@
 - Add to build system
 ** DONE Add reward scaling
 - Based on distance/speed/altitude  
+** TODO Bugs, bugs, bugs
+*** TODO Agent names have to be real names, not ids.
+*** TODO Only add Agent if one with same name does not exist.
+- &AGENT[KASA]:LAST[KPlanes]
+*** TODO Why is second contract not acceptable?
+*** TODO Better format for altitude
+- AltMin = 1000 (double)
+- PrettyAltMin = "1,000m" or "10km"  or 10km (if > 10000) (String)
+- AltMax/PrettyAltMax same
+- PrettyAltReq =
+  - AltMin only :: "above 10km"
+  - AltMax only :: "below 10km"
+  - AltMin & AltMax :: "between 10km and 20km"
+- Use similar for SpeedMin/SpeedMax, DistMin, DistMax  
+*** TODO Better height definitions:
+
+| Squad      | KPlanes          | Stock Alt | Equation                     | Stock Value | RSS Value | Actual |
+|------------+------------------+-----------+------------------------------+-------------+-----------+--------|
+| FlyingLow  | TroposphereLow   |           | Floor(FH * 0.1000)           |           1 |         5 |        |
+| FlyingLow  | TroposphereHigh  |           | Ceil(FH * 0.1700)            |           3 |         8 |        |
+| FlyingLow  | StratosphereLow  |           | Ceil(FH * 0.2400)            |           5 |        12 |     12 |
+| FlyingLow  | StratosphereHigh |           | Floor(FH * 0.5000)           |           9 |        25 |        |
+|------------+------------------+-----------+------------------------------+-------------+-----------+--------|
+| FlyingHigh | MesosphereLow    |        18 | FH                           |          18 |        50 |     50 |
+| FlyingHigh | MesosphereHigh   |           | Floor((SL-FH) * 0.3500) + FH |          36 |        67 |        |
+| FlyingHigh | ThermosphereLow  |           | Floor((SL-FH) * 0.7000) + FH |          54 |        85 |     85 |
+| FlyingHigh | ThermosphereHigh |           | Floor((SL-FH) * 0.8500) + FH |          62 |        92 |        |
+|------------+------------------+-----------+------------------------------+-------------+-----------+--------|
+| SpaceLow   | KarmanLine       |        70 | SL                           |          70 |       100 |    100 |
+| SpaceLow   | SpaceLEO         |           | Floor((SH-SL) * 0.1265) + SL |          92 |           |    340 |
+|------------+------------------+-----------+------------------------------+-------------+-----------+--------|
+| SpaceHigh  | SpaceMEO         |       250 | SH                           |         250 |           |   2000 |
+| SpaceHigh  | SpaceGEO         |      2868 | SGEO                         |        2868 |     35786 |  35786 |
+|------------+------------------+-----------+------------------------------+-------------+-----------+--------|
+| SOI        | SpaceSOI         |     84159 | SOI                          |       84159 |           |    N/A |
+
+- SpaceLEO :: Uses the ISS height, since LEO is actually 140 to 2000 in real world.
+
+*** TODO Change requirements in table to be just contract name (so more can be added)
+*** TODO Better science and reputation computation
+- Early contract prestige must be Trivial tho as these are limited?
+- Prestige drives science awards:
+  - Prestige1Sci :: 1
+  - Prestige2Sci :: 5
+  - Prestige3Sci :: 10
+- Prestige drives reputation awards also:
+  - Prestige1Rep : 5
+  - Prestige2Rep : 25
+  - Prestige2Rep : 50
+- Scale is used however
+
+
 ** TODO Add atmosphere scaling
 - Based on Stock, 2.5/2.7 or RSS scaling
 - Troposphere, Stratosphere, Karman Line/Space
