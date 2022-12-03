@@ -340,14 +340,17 @@ class ContractType:
     def _gen_description(self):
         self.write('//CONTRACT DESCRIPTION\n')
         self.write('\n')
+        locFormatArgs = ''
+        if self.style == 'Altitude':
+            locFormatArgs = '@/PrettyAltRange'
         self.write('	name = {}\n', self.name)
-        self.write('	title = {}\n', self.localize('title'))
+        self.write('	title = "{}".Format({})\n', self.localize('title'), locFormatArgs)
         self.write('	group = {}\n', self.group.name)
         self.write('	agent = {}\n', self.agent)
         self.write('\n')
-        self.write('	description = {}\n', self.localize('description'))
+        self.write('	description = "{}".Format({})\n', self.localize('description'), locFormatArgs)
         self.write('\n')
-        self.write('	synopsis = {}\n', self.localize('synopsis'))
+        self.write('	synopsis = "{}".Format({})\n', self.localize('synopsis'), locFormatArgs)
         self.write('\n')
         self.write('	notes = {}\n', self.localize('notes'))
         self.write('\n')
