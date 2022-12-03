@@ -32,6 +32,11 @@ test: build
 	@echo "Updating $(TEST_GAME) with KPlanes..."
 	@rm -rf $(TEST_GAME)/$(RELPATH)
 	@cp -a $(DEST) $(TEST_GAME)/`dirname $(RELPATH)`
+	@rm $(TEST_GAME)/$(RELPATH)/Start/00[3-9]-*
+	@rm $(TEST_GAME)/$(RELPATH)/Start/01*-
+	@rm -rf $(TEST_GAME)/$(RELPATH)/Early
+	@rm -rf $(TEST_GAME)/$(RELPATH)/Modern
+	@rm -rf $(TEST_GAME)/$(RELPATH)/Future
 
 build: $(BUILDABLES)
 
