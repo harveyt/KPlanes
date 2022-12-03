@@ -11,8 +11,8 @@ import re
 
 ROOT = os.getenv('ROOT')
 DEST = os.getenv('DEST')
-DEBUG = True
-REPLACE_AUTOLOC = True
+DEBUG = False
+REPLACE_AUTOLOC = False
 
 # --------------------------------------------------------------------------------
 
