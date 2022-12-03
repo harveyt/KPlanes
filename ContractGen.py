@@ -52,32 +52,14 @@ class ContractType:
         self.title = name
         self.output_path = "{}/Groups/{}/{}-{}.cfg".format(DEST, self.group.title, self.counter, self.suffix)
         self.out = sys.stdout
-        self.agent = "KPlanes_{}".format(data[1])
+        self.agent = self.agent_name_from_data(data[1])
         self.craft = "KPlanesCraft_{}_{}".format(self.group.title, self.counter)
         self.description = ""
         self.synopsis = ""
         self.notes = ""
         self.completedMessage = ""
-        # Requires
-        if data[3] != "":
-            requires_parts = data[3].split('_')
-            if len(requires_parts) == 1:
-                requires_group = self.group
-                requires_counter = requires_parts[0]
-            else:
-                requires_group = self.table.find_group(requires_parts[0])
-                requires_counter = requires_parts[1]
-            self.requires = requires_group.find_type(requires_counter)
-        else:
-            self.requires = None
-        # Prestige
-        self.prestige = "Trivial"
-        prestige_stars = data[5]
-        if prestige_stars == "**":
-            self.prestige = "Significant"
-        elif prestige_stars == "***":
-            self.prestige = "Exceptional"
-        # Other data
+        self.requires = self.requires_from_data(data[3])
+        self.prestige = self.prestige_from_data(data[5])
         self.rewardScale = data[6]
         self.style = data[7]
         self.altMin = data[8]
@@ -91,6 +73,34 @@ class ContractType:
         self.staging = data[16]
         self.airLaunch = data[17]
         self.landNearKSC = data[18]
+
+    def agent_name_from_data(self, data):
+        if data == "Wright":
+            return "Wright Aeronautical"
+        elif data == "SSI":
+            return "SSI Aerospace"
+        return data
+
+    def requires_from_data(self, data):
+        if data == "":
+            return None
+        requires_parts = data.split('_')
+        if len(requires_parts) == 1:
+            requires_group = self.group
+            requires_counter = requires_parts[0]
+        else:
+            requires_group = self.table.find_group(requires_parts[0])
+            requires_counter = requires_parts[1]
+        return requires_group.find_type(requires_counter)
+
+    def prestige_from_data(self, data):
+        prestige = "Trivial"
+        prestige_stars = data
+        if prestige_stars == "**":
+            prestige = "Significant"
+        elif prestige_stars == "***":
+            prestige = "Exceptional"
+        return prestige
 
     def write(self, fmt, *a):
         self.out.write(fmt.format(*a))
