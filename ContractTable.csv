@@ -1,34 +1,34 @@
 Group,Agent,Counter,Requires,Name,Prestige,Reward Scale,Style,Altitude Min (km),Altitude Max (km),Speed (Mach),Distance (km),Mid State,Payload (t),Jet?,Rocket?,Staging?,Air Launch?,Land Near KSC?
 Start,Wright,001,,First Flight,*,2,Fly,,,,,Flying,,N,N,N,N,N
-Start,Wright,002,001,Flying Higher,*,1,Altitude,2.5,,,,,,N,N,N,N,N
-Start,Wright,003,001,Flying Faster,*,1,Speed,2.5,5,0.3333,,,,N,N,N,N,N
+Start,Wright,002,001,Flying Higher,*,1,Altitude,TroposphereLow,,,,,,N,N,N,N,N
+Start,Wright,003,001,Flying Faster,*,1,Speed,TroposphereLow,TroposphereHigh,0.3333,,,,N,N,N,N,N
 Start,Wright,004,001,Seaplane,*,2,Land,,,,,Splashed,,N,N,N,N,Y
 Start,Wright,005,001,Helicopter,*,3,Land,,,,,VAB,,N,N,N,N,Y
-Start,Wright,006,001,Short Hop,*,2,Distance,,,,100,,,N,N,N,N,N
+Start,Wright,006,001,Short Hop,*,2,Distance,,,,ShortHop,,,N,N,N,N,N
 Start,Wright,007,002,Troposphere Low,*,3,Altitude,TroposphereLow,,,,,,N,N,N,N,N
-Start,Wright,008,006,Domestic Distance,*,3,Distance,,,,500,,,N,N,N,N,N
-Start,Wright,009,003,Airspeed Record,*,4,Speed,2.5,5,0.6666,,,,Y,N,N,N,N
-Start,Wright,010,008,Continental Distance,*,4,Distance,,,,1000,,,Y,N,N,N,N
+Start,Wright,008,006,Domestic Distance,*,3,Distance,,,,Domestic,,,N,N,N,N,N
+Start,Wright,009,003,Airspeed Record,*,4,Speed,TroposphereLow,TroposphereHigh,0.6666,,,,Y,N,N,N,N
+Start,Wright,010,008,Continental Distance,*,4,Distance,,,,Continental,,,Y,N,N,N,N
 Start,Wright,011,010,Mountaineer,**,5,Land,,,,,Mountain >1000m,,Y,N,N,N,N
-Start,Wright,012,010,Intercontinental Distance,***,5,Distance,,,,10000,,,Y,N,N,N,N
+Start,Wright,012,010,Intercontinental Distance,***,5,Distance,,,,Intercontinental,,,Y,N,N,N,N
 Early,KACA,001,Start_007,Troposphere High,**,5,Altitude,TroposphereHigh,,,,,,Y,Y,N,Y,N
-Early,KACA,002,Start_009,Mach 1,***,6,Speed,2.5,TroposphereHigh,1,,,,Y,Y,N,Y,N
+Early,KACA,002,Start_009,Mach 1,***,6,Speed,TroposphereLow,TroposphereHigh,Mach1,,,,Y,Y,N,Y,N
 Early,KACA,003,001,Stratosphere Low,**,6,Altitude,StratosphereLow,,,,,,Y,Y,N,Y,N
-Early,KACA,004,002,Mach 2,**,7,Speed,2.5,StratosphereLow,2,,,,Y,Y,N,Y,N
+Early,KACA,004,002,Mach 2,**,7,Speed,TroposphereLow,StratosphereLow,Mach2,,,,Y,Y,N,Y,N
 Early,KACA,005,001,Jet VTOL,**,8,Land,,,,,Hovering,,Y,N,N,N,N
-Early,KACA,006,002,To The North Pole,***,8,Distance,,,,19000,,,Y,N,N,N,Y
+Early,KACA,006,002,To The North Pole,***,8,Distance,,,,Polar,,,Y,N,N,N,Y
 Early,KACA,007,003,Stratosphere High,**,8,Altitude,StratosphereHigh,,,,,,Y,Y,N,Y,N
-Early,KACA,008,004,Mach 3,**,8,Speed,2.5,StratosphereHigh,3,,,,Y,Y,N,Y,N
-Early,KACA,009,006,Around The World,***,9,Distance,,,,38000,,,Y,N,N,N,Y
+Early,KACA,008,004,Mach 3,**,8,Speed,TroposphereLow,StratosphereHigh,Mach3,,,,Y,Y,N,Y,N
+Early,KACA,009,006,Around The World,***,9,Distance,,,,GreatCircle,,,Y,N,N,N,Y
 Early,KACA,010,007,Stratospheric Jet,***,10,Altitude,StratosphereLow,,,,,,Y,N,N,N,N
-Early,KACA,011,008,Mach 3 Jet,***,10,Speed,2.5,StratosphereHigh,3,,,,Y,N,N,N,N
-Early,KACA,012,006,Around The Poles,***,11,Distance,,,,,,,Y,N,N,N,Y
+Early,KACA,011,008,Mach 3 Jet,***,10,Speed,TroposphereLow,StratosphereHigh,Mach3,,,,Y,N,N,N,N
+Early,KACA,012,006,Around The Poles,***,11,Distance,,,,Circumference,,,Y,N,N,N,Y
 Modern,KASA,001,Start_010,Mesosphere,**,12,Altitude,MesosphereLow,,,,,,Y,Y,N,N,N
-Modern,KASA,002,Start_011,Mach 4,**,12,Speed,2.5,MesosphereLow,4,,,,Y,Y,N,N,N
+Modern,KASA,002,Start_011,Mach 4,**,12,Speed,TroposphereLow,MesosphereLow,Mach4,,,,Y,Y,N,N,N
 Modern,KASA,003,001,Rocket VTOL,***,12,Land,,,,,Hovering,,N,Y,N,N,N
 Modern,KASA,004,001,Sub-Orbital,**,13,Altitude,SpaceLow,,,,,,Y,Y,N,N,N
-Modern,KASA,005,002,Mach 5,***,14,Speed,2.5,MesosphereLow,5,,,,Y,Y,N,N,N
-Modern,KASA,006,001,Going Electrical,***,15,Distance,,,,38000,,,N,N,N,N,Y
+Modern,KASA,005,002,Mach 5,***,14,Speed,TroposphereLow,MesosphereLow,Mach5,,,,Y,Y,N,N,N
+Modern,KASA,006,001,Going Electrical,***,15,Distance,,,,Circumference,,,N,N,N,N,Y
 Modern,KASA,007,004,Orbital Shuttle,***,16,Distance,SpaceLow,,,,Orbit,,Y,Y,Y,N,N
 Modern,KASA,008,007,Orbital Shuttle 1T Payload,**,18,Payload,SpaceLEO,,,,Orbit,1,Y,Y,Y,N,N
 Modern,KASA,009,008,Orbital Shuttle 10T Payload,**,20,Payload,SpaceLEO,,,,Orbit,10,Y,Y,Y,N,N

@@ -65,7 +65,7 @@ class ContractType:
         self.altMin = data[8]
         self.altMax = data[9]
         self.speedMach = data[10]
-        self.distanceKM = data[11]
+        self.distance = data[11]
         self.midState = data[12]
         self.payload = data[13]
         self.jet = data[14]
@@ -113,22 +113,44 @@ class ContractType:
             value = key
         return value
 
-    def from_number(self, value, scale):
-        if not value.replace('.','',1).isdigit(): # not float or int, must be keyword
-            value = "@KPlanes:{}".format(value)
+    def value_from_ident(self, ident, scale):
+        if ident == '':
+            return ''
+        if ident.replace('.','',1).isdigit():
+            value = ident
+        else:
+            value = "@KPlanes:{}".format(ident)
         return "Round({} * {})".format(value, scale)
 
+    def desc_from_ident(self, ident):
+        if ident == '':
+            return ''
+        if ident.replace('.','',1).isdigit():
+            return ''
+        # Alpha1Charlie -> ['Alpha', '1', 'Charlie'] -> 'Alpha 1 Charlie'
+        desc = " ".join(re.findall(r'[A-Z0-9][a-z0-9]*', ident))
+        return "({})".format(desc)
+        
     # Speed is in Mach
-    def speed(self, value):
-        return self.from_number(value, "@KPlanes:Mach")
+    def speed_value(self, ident):
+        return self.value_from_ident(ident, "@KPlanes:Mach")
 
+    def speed_desc(self, ident):
+        return self.desc_from_ident(ident)
+    
     # Altitude is in km
-    def altitude(self, value):
-        return self.from_number(value, "1000.0")
+    def altitude_value(self, ident):
+        return self.value_from_ident(ident, "1000.0")
 
+    def altitude_desc(self, ident):
+        return self.desc_from_ident(ident)
+    
     # Distance is in km
-    def distance(self, value):
-        return self.from_number(value, "1000.0")
+    def distance_value(self, ident):
+        return self.value_from_ident(ident, "1000.0")
+
+    def distance_desc(self, ident):
+        return self.desc_from_ident(ident)
     
     def generate(self):
         if self.group.title != "Start":
@@ -270,29 +292,50 @@ class ContractType:
         self.write('\n')
         self.write('	}}\n')
         self.write('\n')
-        self._gen_data_alt('AltMin', self.altMin, 'Minimum Altitude')
-        self._gen_data_alt('AltMax', self.altMax, 'Maximum Altitude')
-
-    def _gen_data_alt(self, prefix, altValue, title):
-        if altValue == '':
+        self._gen_data_value('AltMin', self.altitude_desc(self.altMin), self.altitude_value(self.altMin), "1000.0", "km", 'Minimum altitude')
+        self._gen_data_value('AltMax', self.altitude_desc(self.altMax), self.altitude_value(self.altMax), "1000.0", "km", 'Maximum altitude')
+        self._gen_data_range('Alt', 'altitude', 'AltMin', self.altMin, 'AltMax', self.altMax)
+        
+    def _gen_data_value(self, name, desc, value, scale, units, title):
+        if value == '':
             return
         self.write('	DATA\n')
         self.write('	{{\n')
         self.write('		type = double\n')
-        expr = self.altitude(altValue)
-        self.write('		{} = {}\n', prefix, expr)
+        self.write('		{} = {}\n', name, value)
         self.write('		title = {}\n', title)
         self.write('	}}\n')
         self.write('\n')
         self.write('	DATA\n')
         self.write('	{{\n')
         self.write('		type = string\n')
-        expr = self.altitude(altValue)
-        self.write('		Pretty{} = "@/{}.Print() m"\n', prefix, prefix, self.altitude(altValue))
-        self.write('            title = {}\n', title)        
+        self.write('		Desc{} = {}\n', name, desc)
+        self.write('		title = {}\n', title)
         self.write('	}}\n')
         self.write('\n')
-        
+        self.write('	DATA\n')
+        self.write('	{{\n')
+        self.write('		type = string\n')
+        self.write('		Pretty{} = "Round(@/{} / {}).Print() {}"\n', name, name, scale, units)
+        self.write('		title = {}\n', title)        
+        self.write('	}}\n')
+        self.write('\n')
+
+    def _gen_data_range(self, name, style, minName, minIdent, maxName, maxIdent):
+        if minIdent == '' and maxIdent == '':
+            return
+        if minIdent == '' and maxIdent != '':
+            error("{} and {} ranges must either be min, or min..max", minName, maxName)
+        self.write('	DATA\n')
+        self.write('	{{\n')
+        self.write('		type = string\n')
+        if maxIdent != '':
+            self.write('		Pretty{}Range = "{} between @/Pretty{}@/Desc{} and @/Pretty{}@/Desc{}"\n', name, style, minName, minName, maxName, maxName)
+        else:
+            self.write('		Pretty{}Range = "{} of at least @/Pretty{}@/Desc{}"\n', name, style, minName, minName)
+        self.write('		title = Range for {} \n', style)        
+        self.write('	}}\n')
+        self.write('\n')
         
     def _gen_description(self):
         self.write('//CONTRACT DESCRIPTION\n')
@@ -440,8 +483,6 @@ class ContractType:
              self.write('		title = fly between @/PrettyAltMin and @/PrettyAltMax\n')
         elif self.altMin != '':
              self.write('		title = fly up to @/PrettyAltMin\n')
-        else:
-             self.write('		title = fly no higher than @/PrettyAltMax\n')
         self.write('\n')
         self.write('		vessel = @/craft\n')
         self.write('\n')

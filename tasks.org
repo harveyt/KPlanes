@@ -13,7 +13,7 @@
 ** DONE Add Makefile build and test system
 ** DONE Add first contract type and fix bugs
 
-* TODO [5/21] Version 0.2.0
+* TODO [10/21] Version 0.2.0
 
 ** DONE Add all GAP milestone contracts
 - Including Heli and Seaplane too
@@ -25,11 +25,11 @@
 ** DONE Add reward scaling
 - Based on distance/speed/altitude  
 ** DONE Move data into Groups sub-dir
-** TODO Agent names have to be real names, not ids.
-** TODO Only add Agent if one with same name does not exist.
+** DONE Agent names have to be real names, not ids.
+** DONE Only add Agent if one with same name does not exist.
 - &AGENT[KASA]:LAST[KPlanes]
-** TODO Why is second contract not acceptable?
-** TODO Better format for altitude
+** DONE Why is second contract not acceptable?
+** DONE Better format for altitude
 - AltMin = 1000 (double)
 - NameAltMin = Troposhere Low
 - PrettyAltMin = "10km (Troposphere Low)"
@@ -43,7 +43,7 @@
   - Use names for speeds: Mach1
   - Use names for distance: ShortHop, Domestic, Continental, Intercontinental,
     Polar, CircumnavigatePolar, Circumnavigate
-** TODO Ensure localized strings use Pretty versions
+** DONE Ensure localized strings use Pretty versions
 "asdasd".Format(...)
 - How to do this?
 ** TODO Better height definitions:
