@@ -50,7 +50,7 @@ class ContractType:
         self.data = data
         self.name = "{}-{}-{}".format(self.group.title, self.counter, self.suffix)
         self.title = name
-        self.output_path = "{}/{}/{}-{}.cfg".format(DEST, self.group.title, self.counter, self.suffix)
+        self.output_path = "{}/Groups/{}/{}-{}.cfg".format(DEST, self.group.title, self.counter, self.suffix)
         self.out = sys.stdout
         self.agent = "KPlanes_{}".format(data[1])
         self.craft = "KPlanesCraft_{}_{}".format(self.group.title, self.counter)

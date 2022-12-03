@@ -33,11 +33,11 @@ test: build
 	rm -rf $(TEST_GAME)/$(RELPATH)
 	cp -a $(DEST) $(TEST_GAME)/`dirname $(RELPATH)`
 	find $(TEST_GAME)/$(RELPATH) -name '*~' -print | xargs rm -f
-	rm -f $(TEST_GAME)/$(RELPATH)/Start/00[3-9]-*
-	rm -f $(TEST_GAME)/$(RELPATH)/Start/01*-*
-	rm -rf $(TEST_GAME)/$(RELPATH)/Early
-	rm -rf $(TEST_GAME)/$(RELPATH)/Modern
-	rm -rf $(TEST_GAME)/$(RELPATH)/Future
+	rm -f $(TEST_GAME)/$(RELPATH)/Groups/Start/00[3-9]-*
+	rm -f $(TEST_GAME)/$(RELPATH)/Groups/Start/01*-*
+	rm -rf $(TEST_GAME)/$(RELPATH)/Groups/Early
+	rm -rf $(TEST_GAME)/$(RELPATH)/Groups/Modern
+	rm -rf $(TEST_GAME)/$(RELPATH)/Groups/Future
 
 build: $(BUILDABLES) contracts
 
@@ -45,7 +45,7 @@ contracts:
 	ROOT=$(ROOT) DEST=$(DEST) ./ContractGen.py
 
 diffs:
-	git --no-pager diff --exit-code --no-color -b -- $(DEST)/{Start,Early,Modern,Future}
+	git --no-pager diff --exit-code --no-color -b -- $(DEST)/Groups
 
 clean:
 	find GameData -name '*~' -print | xargs rm -f

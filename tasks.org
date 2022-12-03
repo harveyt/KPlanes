@@ -24,6 +24,7 @@
 - Add to build system
 ** DONE Add reward scaling
 - Based on distance/speed/altitude  
+** TODO Move data into Groups sub-dir
 ** TODO Agent names have to be real names, not ids.
 ** TODO Only add Agent if one with same name does not exist.
 - &AGENT[KASA]:LAST[KPlanes]
