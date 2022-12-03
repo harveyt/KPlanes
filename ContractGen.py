@@ -129,7 +129,7 @@ class ContractType:
             return ''
         # Alpha1Charlie -> ['Alpha', '1', 'Charlie'] -> 'Alpha 1 Charlie'
         desc = " ".join(re.findall(r'[A-Z0-9][a-z0-9]*', ident))
-        return "({})".format(desc)
+        return " ({})".format(desc)
         
     # Speed is in Mach
     def speed_value(self, ident):
@@ -330,7 +330,7 @@ class ContractType:
         self.write('	{{\n')
         self.write('		type = string\n')
         if maxIdent != '':
-            self.write('		Pretty{}Range = "{} between @/Pretty{}@/Desc{} and @/Pretty{}@/Desc{}"\n', name, style, minName, minName, maxName, maxName)
+            self.write('		Pretty{}Range = "{} between @/Pretty{}@/Desc{} and @/Pretty{}{} @/Desc{}"\n', name, style, minName, minName, maxName, maxName)
         else:
             self.write('		Pretty{}Range = "{} of at least @/Pretty{}@/Desc{}"\n', name, style, minName, minName)
         self.write('		title = Range for {} \n', style)        
@@ -342,15 +342,15 @@ class ContractType:
         self.write('\n')
         locFormatArgs = ''
         if self.style == 'Altitude':
-            locFormatArgs = '@/PrettyAltRange'
+            locFormatArgs = ', "@/PrettyAltRange"'
         self.write('	name = {}\n', self.name)
-        self.write('	title = "{}".Format({})\n', self.localize('title'), locFormatArgs)
+        self.write('	title = string.Format("{}"{})\n', self.localize('title'), locFormatArgs)
         self.write('	group = {}\n', self.group.name)
         self.write('	agent = {}\n', self.agent)
         self.write('\n')
-        self.write('	description = "{}".Format({})\n', self.localize('description'), locFormatArgs)
+        self.write('	description = string.Format("{}"{})\n', self.localize('description'), locFormatArgs)
         self.write('\n')
-        self.write('	synopsis = "{}".Format({})\n', self.localize('synopsis'), locFormatArgs)
+        self.write('	synopsis = string.Format("{}"{})\n', self.localize('synopsis'), locFormatArgs)
         self.write('\n')
         self.write('	notes = {}\n', self.localize('notes'))
         self.write('\n')
