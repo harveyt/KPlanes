@@ -260,21 +260,29 @@ class ContractType:
         self.write('\n')
         self.write('	}}\n')
         self.write('\n')
-        self._gen_data_alt('AltMin', self.altMin)
-        self._gen_data_alt('AltMax', self.altMax)
+        self._gen_data_alt('AltMin', self.altMin, 'Minimum Altitude')
+        self._gen_data_alt('AltMax', self.altMax, 'Maximum Altitude')
 
-    def _gen_data_alt(self, prefix, altValue):
+    def _gen_data_alt(self, prefix, altValue, title):
         if altValue == '':
             return
         self.write('	DATA\n')
         self.write('	{{\n')
-        self.write('		type = string\n')
+        self.write('		type = double\n')
         expr = self.altitude(altValue)
-        debug('prefix={} altValue={} expr={}', prefix, altValue, expr)
         self.write('		{} = {}\n', prefix, expr)
-        self.write('		Pretty{} = @{}.Print()m\n', prefix, prefix, self.altitude(altValue))
+        self.write('            title = {}\n', title)
         self.write('	}}\n')
         self.write('\n')
+        self.write('	DATA\n')
+        self.write('	{{\n')
+        self.write('		type = string\n')
+        expr = self.altitude(altValue)
+        self.write('		Pretty{} = "@/{}.Print() m"\n', prefix, prefix, self.altitude(altValue))
+        self.write('            title = {}\n', title)        
+        self.write('	}}\n')
+        self.write('\n')
+        
         
     def _gen_description(self):
         self.write('//CONTRACT DESCRIPTION\n')
