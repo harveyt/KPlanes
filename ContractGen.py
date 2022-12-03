@@ -11,7 +11,7 @@ import re
 
 ROOT = os.getenv('ROOT')
 DEST = os.getenv('DEST')
-DEBUG = False
+DEBUG = True
 REPLACE_AUTOLOC = True
 
 # --------------------------------------------------------------------------------
@@ -110,15 +110,15 @@ class ContractType:
 
     # Speed is in Mach
     def speed(self, value):
-        self.from_number(value, "@KPlanes:Mach")
+        return self.from_number(value, "@KPlanes:Mach")
 
     # Altitude is in km
     def altitude(self, value):
-        self.from_number(value, "1000.0")
+        return self.from_number(value, "1000.0")
 
     # Distance is in km
     def distance(self, value):
-        self.from_number(value, "1000.0")
+        return self.from_number(value, "1000.0")
     
     def generate(self):
         if self.group.title != "Start":
@@ -260,7 +260,22 @@ class ContractType:
         self.write('\n')
         self.write('	}}\n')
         self.write('\n')
+        self._gen_data_alt('AltMin', self.altMin)
+        self._gen_data_alt('AltMax', self.altMax)
 
+    def _gen_data_alt(self, prefix, altValue):
+        if altValue == '':
+            return
+        self.write('	DATA\n')
+        self.write('	{{\n')
+        self.write('		type = string\n')
+        expr = self.altitude(altValue)
+        debug('prefix={} altValue={} expr={}', prefix, altValue, expr)
+        self.write('		{} = {}\n', prefix, expr)
+        self.write('		Pretty{} = @{}.Print()m\n', prefix, prefix, self.altitude(altValue))
+        self.write('	}}\n')
+        self.write('\n')
+        
     def _gen_description(self):
         self.write('//CONTRACT DESCRIPTION\n')
         self.write('\n')
@@ -403,11 +418,11 @@ class ContractType:
         self.write('		name = VesselParameterGroup\n')
         self.write('		type = VesselParameterGroup\n')
         if self.altMin != '' and self.altMax != '':
-             self.write('		title = fly between 2,500m and 5,000m\n')
+             self.write('		title = fly between @/PrettyAltMin and @/PrettyAltMax\n')
         elif self.altMin != '':
-             self.write('		title = fly up to 2,500m\n')
+             self.write('		title = fly up to @/PrettyAltMin\n')
         else:
-             self.write('		title = fly no higher than 5,000m\n')
+             self.write('		title = fly no higher than @/PrettyAltMax\n')
         self.write('\n')
         self.write('		vessel = @/craft\n')
         self.write('\n')
@@ -419,9 +434,9 @@ class ContractType:
         self.write('			targetBody = Kerbin\n')
         self.write('			situation = FLYING\n')
         if self.altMin != '':
-            self.write('			minAltitude = 2500\n')
+            self.write('			minAltitude = @/AltMin\n')
         if self.altMax != '':
-            self.write('			maxAltitude = 5000\n')
+            self.write('			maxAltitude = @/AltMax\n')
         self.write('\n')
         self.write('			disableOnStateChange = true\n')
         self.write('			hideChildren = true\n')
