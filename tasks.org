@@ -39,6 +39,9 @@
   - AltMin & AltMax :: "between 10km and 20km (Troposphere Low)"
     - Latter name is taken from min
 - Use similar for SpeedMin/SpeedMax, DistMin, DistMax
+  - Use names for speeds: Mach1
+  - Use names for distance: ShortHop, Domestic, Continental, Intercontinental,
+    Polar, CircumnavigatePolar, Circumnavigate
 ** TODO Ensure localized strings use Pretty versions
 "asdasd".Format(...)
 - How to do this?
