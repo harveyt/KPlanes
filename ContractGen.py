@@ -271,7 +271,7 @@ class ContractType:
         self.write('		type = double\n')
         expr = self.altitude(altValue)
         self.write('		{} = {}\n', prefix, expr)
-        self.write('            title = {}\n', title)
+        self.write('		title = {}\n', title)
         self.write('	}}\n')
         self.write('\n')
         self.write('	DATA\n')
@@ -311,8 +311,9 @@ class ContractType:
         self.write('	declinable = true\n')
         self.write('	cancellable = true\n')
         self.write('\n')
-        self.write('	minExpiry = 7.0\n')
-        self.write('	maxExpiry = 7.0\n')
+        # Never expire, and no deadline. What is the point of expiration and deadlines anyway?
+        self.write('	minExpiry = 0.0\n')
+        self.write('	maxExpiry = 0.0\n')
         self.write('	deadline = 0\n')
         self.write('\n')
         

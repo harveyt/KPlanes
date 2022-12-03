@@ -13,7 +13,7 @@
 ** DONE Add Makefile build and test system
 ** DONE Add first contract type and fix bugs
 
-* TODO [4/12] Version 0.2.0
+* TODO [5/21] Version 0.2.0
 
 ** DONE Add all GAP milestone contracts
 - Including Heli and Seaplane too
@@ -24,7 +24,7 @@
 - Add to build system
 ** DONE Add reward scaling
 - Based on distance/speed/altitude  
-** TODO Move data into Groups sub-dir
+** DONE Move data into Groups sub-dir
 ** TODO Agent names have to be real names, not ids.
 ** TODO Only add Agent if one with same name does not exist.
 - &AGENT[KASA]:LAST[KPlanes]
