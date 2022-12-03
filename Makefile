@@ -21,7 +21,7 @@ KASA_SCALED_PNG	= $(DEST)/Assets/Flags/KASA_scaled.png
 README		= $(DEST)/README.md
 LICENSE		= $(DEST)/LICENSE
 
-BUILDABLES	= $(KACA_PNG) $(KACA_SCALED_PNG) $(KASA_PNG) $(KASA_SCALED_PNG) $(README) $(LICENSE) contracts
+BUILDABLES	= $(KACA_PNG) $(KACA_SCALED_PNG) $(KASA_PNG) $(KASA_SCALED_PNG) $(README) $(LICENSE)
 
 test: build
 	@if [[ ! -d $(TEST_GAME) ]]; then \
@@ -30,15 +30,16 @@ test: build
 		exit 1; \
 	fi
 	@echo "Updating $(TEST_GAME) with KPlanes..."
-	@rm -rf $(TEST_GAME)/$(RELPATH)
-	@cp -a $(DEST) $(TEST_GAME)/`dirname $(RELPATH)`
-	@rm $(TEST_GAME)/$(RELPATH)/Start/00[3-9]-*
-	@rm $(TEST_GAME)/$(RELPATH)/Start/01*-
-	@rm -rf $(TEST_GAME)/$(RELPATH)/Early
-	@rm -rf $(TEST_GAME)/$(RELPATH)/Modern
-	@rm -rf $(TEST_GAME)/$(RELPATH)/Future
+	rm -rf $(TEST_GAME)/$(RELPATH)
+	cp -a $(DEST) $(TEST_GAME)/`dirname $(RELPATH)`
+	find $(TEST_GAME)/$(RELPATH) -name '*~' -print | xargs rm -f
+	rm -f $(TEST_GAME)/$(RELPATH)/Start/00[3-9]-*
+	rm -f $(TEST_GAME)/$(RELPATH)/Start/01*-*
+	rm -rf $(TEST_GAME)/$(RELPATH)/Early
+	rm -rf $(TEST_GAME)/$(RELPATH)/Modern
+	rm -rf $(TEST_GAME)/$(RELPATH)/Future
 
-build: $(BUILDABLES)
+build: $(BUILDABLES) contracts
 
 contracts:
 	ROOT=$(ROOT) DEST=$(DEST) ./ContractGen.py
@@ -46,7 +47,10 @@ contracts:
 diffs:
 	git --no-pager diff --exit-code --no-color -b -- $(DEST)/{Start,Early,Modern,Future}
 
-clobber:
+clean:
+	find GameData -name '*~' -print | xargs rm -f
+
+clobber: clean
 	rm -f $(BUILDABLES)
 
 $(README): $(ROOT)/README.md
