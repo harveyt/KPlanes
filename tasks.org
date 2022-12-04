@@ -46,6 +46,8 @@
 ** DONE Ensure localized strings use Pretty versions
 "asdasd".Format(...)
 - How to do this?
+** TODO Move "Mid Stage" to right of Style, as "Style Param"
+- For Land - is a Biome, "Mountain" or "Hovering" are special
 ** TODO Better height definitions:
 
 | Squad      | KPlanes          | Stock Alt | Equation                     | Stock Value | RSS Value | Actual |
