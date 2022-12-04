@@ -317,7 +317,7 @@ class ContractType:
         self.write('	DATA\n')
         self.write('	{{\n')
         self.write('		type = string\n')
-        self.write('		Pretty{} = @/Scaled{}.Print() {}\n', name, name, units)
+        self.write('		Pretty{} = "@/Scaled{}.Print() {}"\n', name, name, units)
         self.write('		title = {}\n', title)        
         self.write('	}}\n')
         self.write('\n')
@@ -341,9 +341,10 @@ class ContractType:
     def _gen_description(self):
         self.write('//CONTRACT DESCRIPTION\n')
         self.write('\n')
-        locFormatArgs = ''
+        locFormatArgs = ', [ "" ] '
         if self.style == 'Altitude':
-            locFormatArgs = ', "@/PrettyAltRange"'
+            locFormatArgs = ', [ "@/PrettyAltRange" ] '
+            
         self.write('	name = {}\n', self.name)
         self.write('	title = Format("{}"{})\n', self.localize('title'), locFormatArgs)
         self.write('	group = {}\n', self.group.name)
@@ -360,8 +361,8 @@ class ContractType:
         
     def _gen_limits(self):
         self.write('//Contract Limits\n')
-        self.write('   	maxCompletions = 1\n')
-        self.write('   	maxSimultaneous = 1\n')
+        self.write('	maxCompletions = 1\n')
+        self.write('	maxSimultaneous = 1\n')
         self.write('//	weight = 100.0\n')
         self.write('\n')
         self.write('	autoAccept = false\n')
@@ -377,17 +378,17 @@ class ContractType:
     def _gen_rewards(self):
         self.write('//Contract Reward Modifiers\n')
         self.write('	prestige = {}\n', self.prestige)
-        self.write('   	targetBody = HomeWorld()\n')
+        self.write('	targetBody = HomeWorld()\n')
         self.write('\n')
         self.write('//Contract Rewards\n')
-        self.write('  	advanceFunds = {} * @KPlanes:RewardAdvanceFunds\n', self.rewardScale)
-        self.write('  	rewardFunds = {} * @KPlanes:RewardFunds\n', self.rewardScale)
-        self.write('  	rewardReputation = {} * @KPlanes:RewardReputation\n', self.rewardScale)
-        self.write(' 	rewardScience = {} * @KPlanes:RewardScience\n', self.rewardScale)
+        self.write('	advanceFunds = {} * @KPlanes:RewardAdvanceFunds\n', self.rewardScale)
+        self.write('	rewardFunds = {} * @KPlanes:RewardFunds\n', self.rewardScale)
+        self.write('	rewardReputation = {} * @KPlanes:RewardReputation\n', self.rewardScale)
+        self.write('	rewardScience = {} * @KPlanes:RewardScience\n', self.rewardScale)
         self.write('\n')
         self.write('//Contract Penalties\n')
-        self.write('  	failureFunds = {} * @KPlanes:FailureFunds\n', self.rewardScale)
-        self.write(' 	failureReputation = {} * @KPlanes:FailureReputation\n', self.rewardScale)
+        self.write('	failureFunds = {} * @KPlanes:FailureFunds\n', self.rewardScale)
+        self.write('	failureReputation = {} * @KPlanes:FailureReputation\n', self.rewardScale)
         self.write('\n')
 
     def _gen_behaviours(self):
