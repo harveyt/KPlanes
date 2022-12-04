@@ -70,4 +70,3 @@ $(KASA_PNG): $(ART)/KASA_logo.svg
 
 $(KASA_SCALED_PNG): $(ART)/KASA_logo.svg
 	$(SVGPNG_SCALED) -o $@ $<
-

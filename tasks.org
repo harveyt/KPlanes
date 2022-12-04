@@ -46,24 +46,22 @@
 ** DONE Ensure localized strings use Pretty versions
 "asdasd".Format(...)
 - How to do this?
-** TODO Move "Mid Stage" to right of Style, as "Style Param"
-- For Land - is a Biome, "Mountain" or "Hovering" are special
 ** TODO Better height definitions:
 
 | Squad      | KPlanes          | Stock Alt | Equation                     | Stock Value | RSS Value | Actual |
 |------------+------------------+-----------+------------------------------+-------------+-----------+--------|
-| FlyingLow  | TroposphereLow   |           | Floor(FH * 0.1000)           |           1 |         5 |        |
-| FlyingLow  | TroposphereHigh  |           | Ceil(FH * 0.1700)            |           3 |         8 |        |
-| FlyingLow  | StratosphereLow  |           | Ceil(FH * 0.2400)            |           5 |        12 |     12 |
-| FlyingLow  | StratosphereHigh |           | Floor(FH * 0.5000)           |           9 |        25 |        |
+| FlyingLow  | TroposphereLow   |           | Round(FH * 0.1000)           |           1 |         5 |        |
+| FlyingLow  | TroposphereHigh  |           | Round(FH * 0.1700)           |           3 |         8 |        |
+| FlyingLow  | StratosphereLow  |           | Round(FH * 0.2400)           |           5 |        12 |     12 |
+| FlyingLow  | StratosphereHigh |           | Round(FH * 0.5000)           |           9 |        25 |        |
 |------------+------------------+-----------+------------------------------+-------------+-----------+--------|
 | FlyingHigh | MesosphereLow    |        18 | FH                           |          18 |        50 |     50 |
-| FlyingHigh | MesosphereHigh   |           | Floor((SL-FH) * 0.3500) + FH |          36 |        67 |        |
-| FlyingHigh | ThermosphereLow  |           | Floor((SL-FH) * 0.7000) + FH |          54 |        85 |     85 |
-| FlyingHigh | ThermosphereHigh |           | Floor((SL-FH) * 0.8500) + FH |          62 |        92 |        |
+| FlyingHigh | MesosphereHigh   |           | Round((SL-FH) * 0.3500) + FH |          36 |        67 |        |
+| FlyingHigh | ThermosphereLow  |           | Round((SL-FH) * 0.7000) + FH |          54 |        85 |     85 |
+| FlyingHigh | ThermosphereHigh |           | Round((SL-FH) * 0.8500) + FH |          62 |        92 |        |
 |------------+------------------+-----------+------------------------------+-------------+-----------+--------|
 | SpaceLow   | KarmanLine       |        70 | SL                           |          70 |       100 |    100 |
-| SpaceLow   | SpaceLEO         |           | Floor((SH-SL) * 0.1265) + SL |          92 |           |    340 |
+| SpaceLow   | SpaceLEO         |           | Round((SH-SL) * 0.1265) + SL |          92 |           |    340 |
 |------------+------------------+-----------+------------------------------+-------------+-----------+--------|
 | SpaceHigh  | SpaceMEO         |       250 | SH                           |         250 |           |   2000 |
 | SpaceHigh  | SpaceGEO         |      2868 | SGEO                         |        2868 |     35786 |  35786 |
@@ -72,6 +70,8 @@
 
 - SpaceLEO :: Uses the ISS height, since LEO is actually 140 to 2000 in real world.
 
+** TODO Move "Mid Stage" to right of Style, as "Style Param"
+- For Land - is a Biome, "Mountain" or "Hovering" are special
 ** TODO Change requirements in table to be just contract name (so more can be added)
 ** TODO Change reward scale to seperate coloumns: Funds, Science and Reputation
 - These are values assuming scale = 1, so easy to balance

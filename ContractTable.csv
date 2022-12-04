@@ -1,6 +1,6 @@
 Group,Agent,Counter,Requires,Name,Prestige,Reward Scale,Style,Altitude Min (km),Altitude Max (km),Speed (Mach),Distance (km),Mid State,Payload (t),Jet?,Rocket?,Staging?,Air Launch?,Land Near KSC?
-Start,Wright,001,,First Flight,*,2,Fly,,,,,Flying,,N,N,N,N,N
-Start,Wright,002,001,Flying Higher,*,1,Altitude,TroposphereLow,,,,,,N,N,N,N,N
+Start,Wright,001,,First Flight,*,10,Fly,,,,,Flying,,N,N,N,N,N
+Start,Wright,002,001,Flying Higher,*,8,Altitude,TroposphereLow,,,,,,N,N,N,N,N
 Start,Wright,003,001,Flying Faster,*,1,Speed,TroposphereLow,TroposphereHigh,0.3333,,,,N,N,N,N,N
 Start,Wright,004,001,Seaplane,*,2,Land,,,,,Splashed,,N,N,N,N,Y
 Start,Wright,005,001,Helicopter,*,3,Land,,,,,VAB,,N,N,N,N,Y
@@ -19,7 +19,7 @@ Early,KACA,005,001,Jet VTOL,**,8,Land,,,,,Hovering,,Y,N,N,N,N
 Early,KACA,006,002,To The North Pole,***,8,Distance,,,,Polar,,,Y,N,N,N,Y
 Early,KACA,007,003,Stratosphere High,**,8,Altitude,StratosphereHigh,,,,,,Y,Y,N,Y,N
 Early,KACA,008,004,Mach 3,**,8,Speed,TroposphereLow,StratosphereHigh,Mach3,,,,Y,Y,N,Y,N
-Early,KACA,009,006,Around The World,***,9,Distance,,,,GreatCircle,,,Y,N,N,N,Y
+Early,KACA,009,006,Around The World,***,9,Distance,,,,Circumference,,,Y,N,N,N,Y
 Early,KACA,010,007,Stratospheric Jet,***,10,Altitude,StratosphereLow,,,,,,Y,N,N,N,N
 Early,KACA,011,008,Mach 3 Jet,***,10,Speed,TroposphereLow,StratosphereHigh,Mach3,,,,Y,N,N,N,N
 Early,KACA,012,006,Around The Poles,***,11,Distance,,,,Circumference,,,Y,N,N,N,Y
