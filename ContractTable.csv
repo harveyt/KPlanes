@@ -1,7 +1,7 @@
-Group,Agent,Counter,Name,GAP Name,Requires,Prestige,Funds,Rep,Science,Style,Style Param,Altitude Min (km),Altitude Max (km),Speed (Mach),Distance (km),Payload (t),Jet?,Rocket?,Staging?,Air Launch?,Land Near KSC?
-Start,Wright,001,First Flight,Wright-FirstFlight,,*,,,,Fly,Flying,,,,,,N,N,N,N,N
-Start,Wright,002,Flying Higher,Wright-2500m,First Flight,*,,,,Altitude,,TroposphereLow,,,,,N,N,N,N,N
-Start,Wright,003,Flying Faster,Wright-Speed100,First Flight,*,,,,Speed,,TroposphereLow,TroposphereHigh,0.3333,,,N,N,N,N,N
+Group,Agent,Counter,Name,GAP Name,Requires,Prestige,Funds (1000),Rep,Science,Style,Style Param,Altitude Min (km),Altitude Max (km),Speed (Mach),Distance (km),Payload (t),Jet?,Rocket?,Staging?,Air Launch?,Land Near KSC?
+Start,Wright,001,First Flight,Wright-FirstFlight,,*,10,50,10,Fly,Flying,,,,,,N,N,N,N,N
+Start,Wright,002,Flying Higher,Wright-2500m,First Flight,*,8,5,3,Altitude,,TroposphereLow,,,,,N,N,N,N,N
+Start,Wright,003,Flying Faster,Wright-Speed100,First Flight,*,30,10,10,Speed,,TroposphereLow,TroposphereHigh,0.3333,,,N,N,N,N,N
 Start,Wright,004,Seaplane,GAP-Seaplane,"Flying Higher,Flying Faster",*,,,,Land,Splashed,,,,,,N,N,N,N,Y
 Start,Wright,005,Helicopter,GAP-Helicopter,"Flying Higher,Flying Faster",*,,,,Land,VAB,,,,,,N,N,N,N,Y
 Start,Wright,006,Short Hop,,"Flying Higher,Flying Faster",*,,,,Distance,,,,,ShortHop,,N,N,N,N,N
@@ -15,7 +15,7 @@ Early,KACA,001,Troposphere High,SSI-10000m,Troposphere Low,*,,,,Altitude,,Tropos
 Early,KACA,002,Mach 1,SSI-Mach1,Airspeed Record,*,,,,Speed,,TroposphereLow,TroposphereHigh,Mach1,,,Y,Y,N,Y,N
 Early,KACA,003,Stratosphere Low,SSI-20000m,Troposphere High,*,,,,Altitude,,StratosphereLow,,,,,Y,Y,N,Y,N
 Early,KACA,004,Mach 2,SSI-Mach2,Mach 1,**,,,,Speed,,TroposphereLow,StratosphereLow,Mach2,,,Y,Y,N,Y,N
-Early,KACA,005,Jet VTOL,,"Helicopter,TroposphereHigh",*,,,,Land,Hovering,,,,,,Y,N,N,N,N
+Early,KACA,005,Jet VTOL,,"Helicopter,Troposphere High",*,,,,Land,Hovering,,,,,,Y,N,N,N,N
 Early,KACA,006,To The North Pole,,Intercontinental Distance,*,,,,Distance,,,,,Polar,,Y,N,N,N,Y
 Early,KACA,007,Stratosphere High,SSI-35000m,Stratosphere Low,*,,,,Altitude,,StratosphereHigh,,,,,Y,Y,N,Y,N
 Early,KACA,008,Mach 3,SSI-Mach3,Mach 2,*,,,,Speed,,TroposphereLow,StratosphereHigh,Mach3,,,Y,Y,N,Y,N
@@ -26,14 +26,14 @@ Early,KACA,012,Around The Poles,,Around The World,**,,,,Distance,,,,,Circumferen
 Modern,KASA,001,Mesosphere,SSI-60000m,"Stratospheric Jet,Mach 3 Jet",**,,,,Altitude,,MesosphereLow,,,,,Y,Y,N,N,N
 Modern,KASA,002,Mach 4,SSI-Mach4,Mach 3 Jet,**,,,,Speed,,TroposphereLow,MesosphereLow,Mach4,,,Y,Y,N,N,N
 Modern,KASA,003,Rocket VTOL,,"Jet VTOL,Mesosphere",**,,,,Land,Hovering,,,,,,N,Y,N,N,N
-Modern,KASA,004,Sub-Orbital,,"Mesosphere,Mach4",**,,,,Altitude,,SpaceLow,,,,,Y,Y,N,N,N
+Modern,KASA,004,Sub-Orbital,,"Mesosphere,Mach 4",**,,,,Altitude,,SpaceLow,,,,,Y,Y,N,N,N
 Modern,KASA,005,Mach 5,,Mach 4,***,,,,Speed,,TroposphereLow,MesosphereLow,Mach5,,,Y,Y,N,N,N
 Modern,KASA,006,Going Electrical,,"Around The World,Mesosphere",***,,,,Distance,,,,,Circumference,,N,N,N,N,Y
-Modern,KASA,007,Orbital Shuttle,,"Sub-Orbital,Mach5",**,,,,Distance,Orbit,SpaceLow,,,,,Y,Y,Y,N,N
+Modern,KASA,007,Orbital Shuttle,,"Sub-Orbital,Mach 5",**,,,,Distance,Orbit,SpaceLow,,,,,Y,Y,Y,N,N
 Modern,KASA,008,Orbital Shuttle 1T Payload,,Orbital Shuttle,***,,,,Payload,Orbit,SpaceLEO,,,,1,Y,Y,Y,N,N
 Modern,KASA,009,Orbital Shuttle 10T Payload,,Orbital Shuttle 1T Payload,*,,,,Payload,Orbit,SpaceLEO,,,,10,Y,Y,Y,N,N
-Modern,KASA,010,Orbital Shuttle 30T Payload,,Orbital Shuttle 5T Payload,**,,,,Distance,Orbit,SpaceLEO,,,,30,Y,Y,Y,N,N
-Modern,SSI,011,Sub-Orbital SSTO,,Orbital Shuttle 10T Payload,***,,,,Altitude,,SpaceLow,,,,,Y,Y,N,N,N
+Modern,KASA,010,Orbital Shuttle 30T Payload,,Orbital Shuttle 10T Payload,**,,,,Distance,Orbit,SpaceLEO,,,,30,Y,Y,Y,N,N
+Modern,SSI,011,Sub-Orbital SSTO,,Orbital Shuttle 30T Payload,***,,,,Altitude,,SpaceLow,,,,,Y,Y,N,N,N
 Modern,SSI,012,Orbital SSTO,,Sub-Orbital SSTO,**,,,,Distance,Orbit,SpaceLow,,,,,Y,Y,N,N,N
 Future,KASA,001,Orbital SSTO 1T Payload,,Orbital SSTO,***,,,,Payload,Orbit,SpaceLEO,,,,1,Y,Y,N,N,N
 Future,KASA,002,Orbital SSTO 10T Payload,,Orbital SSTO 1T Payload,*,,,,Payload,Orbit,SpaceLEO,,,,10,Y,Y,N,N,N

@@ -58,21 +58,23 @@ class ContractType:
         self.synopsis = ""
         self.notes = ""
         self.completedMessage = ""
-        self.requires = self.requires_from_data(data[3])
-        self.prestige = self.prestige_from_data(data[5])
-        self.rewardScale = data[6]
-        self.style = data[7]
-        self.altMin = data[8]
-        self.altMax = data[9]
-        self.speedMach = data[10]
-        self.distance = data[11]
-        self.midState = data[12]
-        self.payload = data[13]
-        self.jet = data[14]
-        self.rocket = data[15]
-        self.staging = data[16]
-        self.airLaunch = data[17]
-        self.landNearKSC = data[18]
+        self.requires = self.requires_from_data(data[5])
+        self.prestige = self.prestige_from_data(data[6])
+        self.funds = data[7]
+        self.rep = data[8]
+        self.science = data[9]
+        self.style = data[10]
+        self.style_param = data[11]
+        self.altMin = data[12]
+        self.altMax = data[13]
+        self.speedMach = data[14]
+        self.distance = data[15]
+        self.payload = data[16]
+        self.jet = data[17]
+        self.rocket = data[18]
+        self.staging = data[19]
+        self.airLaunch = data[20]
+        self.landNearKSC = data[21]
 
     def agent_name_from_data(self, data):
         if data == "Wright":
@@ -82,16 +84,15 @@ class ContractType:
         return data
 
     def requires_from_data(self, data):
-        if data == "":
-            return None
-        requires_parts = data.split('_')
-        if len(requires_parts) == 1:
-            requires_group = self.group
-            requires_counter = requires_parts[0]
-        else:
-            requires_group = self.table.find_group(requires_parts[0])
-            requires_counter = requires_parts[1]
-        return requires_group.find_type(requires_counter)
+        if data == '':
+            return []
+        requires_list = []
+        requires_parts = data.split(',')
+        debug("requires: data={} parts={}", data, requires_parts)
+        for requires in requires_parts:
+            requires_type = self.table.find_type(requires)
+            requires_list.append(requires_type)
+        return requires_list
 
     def prestige_from_data(self, data):
         prestige = "Trivial"
@@ -194,14 +195,16 @@ class ContractType:
         self.write('\n')
 
     def _gen_requirements_previous(self):
-        if self.requires is None:
+        if len(self.requires) == 0:
             return
         self.write('	REQUIREMENT\n')
         self.write('	{{\n')
         self.write('		name = CompleteContract\n')
         self.write('		type = CompleteContract\n')
         self.write('\n')
-        self.write('		contractType = {}\n', self.requires.name)
+        if len(self.requires) == 1:
+            self.write('		contractType = {}\n', self.requires[0].name)
+        # TODO: Support multiple requirements
         self.write('		minCount = 1\n')
         self.write('\n')
         self.write('	}}\n')
@@ -381,14 +384,14 @@ class ContractType:
         self.write('	targetBody = HomeWorld()\n')
         self.write('\n')
         self.write('//Contract Rewards\n')
-        self.write('	advanceFunds = {} * @KPlanes:RewardAdvanceFunds\n', self.rewardScale)
-        self.write('	rewardFunds = {} * @KPlanes:RewardFunds\n', self.rewardScale)
-        self.write('	rewardReputation = {} * @KPlanes:RewardReputation\n', self.rewardScale)
-        self.write('	rewardScience = {} * @KPlanes:RewardScience\n', self.rewardScale)
+        self.write('	advanceFunds = {} * @KPlanes:RewardAdvanceFunds\n', self.funds)
+        self.write('	rewardFunds = {} * @KPlanes:RewardFunds\n', self.funds)
+        self.write('	rewardReputation = {} * @KPlanes:RewardReputation\n', self.rep)
+        self.write('	rewardScience = {} * @KPlanes:RewardScience\n', self.science)
         self.write('\n')
         self.write('//Contract Penalties\n')
-        self.write('	failureFunds = {} * @KPlanes:FailureFunds\n', self.rewardScale)
-        self.write('	failureReputation = {} * @KPlanes:FailureReputation\n', self.rewardScale)
+        self.write('	failureFunds = {} * @KPlanes:FailureFunds\n', self.funds)
+        self.write('	failureReputation = {} * @KPlanes:FailureReputation\n', self.rep)
         self.write('\n')
 
     def _gen_behaviours(self):
@@ -797,10 +800,12 @@ class ContractGroup:
         new_type = ContractType(self, counter, name, data)
         self.contract_types.append(new_type)
 
-    def find_type(self, counter):
+    def find_type(self, title, allow_none=False):
         for ct in self.contract_types:
-            if int(ct.counter) == int(counter):
+            if ct.title == title:
                 return ct
+        if allow_none:
+            return None
         error("Cannot find contract {} in group {}", counter, self.title)
 
     def generate(self):
@@ -847,6 +852,14 @@ class ContractTable:
         if not group_title in self.contract_groups:
             error("Cannot find group {}", group_title)
         return self.contract_groups[group_title]
+
+    def find_type(self, type_title):
+        for group_title in self.contract_groups:
+            group = self.find_group(group_title)
+            ct = group.find_type(type_title, True)
+            if ct is not None:
+                return ct
+        error("Cannot find contract {} in any groups", type_title)
         
     def make_group(self, group_title):
         if group_title in self.contract_groups:
@@ -865,7 +878,7 @@ class ContractTable:
                     continue
                 group_title = row[0]
                 counter = row[2]
-                name = row[4]
+                name = row[3]
                 group = self.make_group(group_title)
                 group.add_type(counter, name, row)
 
