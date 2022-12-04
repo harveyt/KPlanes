@@ -1,0 +1,42 @@
+#!/bin/bash
+
+from="Wright-FirstFlight
+Wright-2500m
+Wright-Speed100
+GAP-Seaplane
+GAP-Helicopter
+-
+Wright-5000m
+-
+Wright-Speed220
+-
+-
+-
+SSI-10000m
+SSI-Mach1
+SSI-20000m
+SSI-Mach2
+-
+-
+SSI-35000m
+SSI-Mach3
+-
+-
+-
+-
+SSI-60000m
+SSI-Mach4"
+
+for file in $from
+do
+    if [[ "$file" == "-" ]]; then
+	echo ",,"
+	continue
+    fi
+    path=$HOME/src/GAP/Milestones/$file.cfg
+    eval $(sed -n -e 's/^[ 	]*rewardFunds[ 	]*=[ 	]*\(.*\)000[. 	].*$/funds=\1/p' \
+	-e 's/^[ 	]*rewardReputation[ 	]*=[ 	]*\(.*\)[. 	].*$/rep=\1/p' \
+	-e 's/^[ 	]*rewardScience[ 	]*=[ 	]*\(.*\)[. 	].*$/science=\1/p' < $path)
+    echo $funds,$rep,$science
+done
+    
