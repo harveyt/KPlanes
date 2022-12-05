@@ -79,13 +79,26 @@
 - Take them from existing contracts
 ** DONE Move "Mid Stage" to right of Style, as "Style Param"
 - For Land - is a Biome, "Mountain" or "Hovering" are special
-** TODO Change most speed records to absolute values
+** TODO Initial distance values may be too big for non-stock
+- Check real scale makes sense in real life, see if stock works (1/10th)
+** TODO Check real scale rewards are not scaled too high
+- First contract would be 100 science
+- Perhaps science and rep are not scaled, or sqrt(scale) for scaling?
+** TODO Change initial height and speed records to absolute (?)
+- Speed in table is m/s, Mach1 etc. are computed (or hard coded)
+** TODO Add basic GAP contracts
+- Script to extra description/title/notes/synopsis into loc file and fix br.
+- Ensure requirements are valid GAP contracts:
+  - Set "enabled" to true if generated
+  - Must have enabled requirement contract types.
+** TODO Change speed records to computed Mach values
 - Rather than Mach 1 which is height dependant
 - Possibly have Mach 1, Mach 3 and Mach 5 as targets but very fixed for altitude
   (where they make sense) with equivalent surface speed
 - To emulate X-1, X-15, SR-71 style records
-** TODO Add basic GAP contracts
-- Script to extra description/title/notes/synopsis into loc file and fix br.
+- Vessel.mach and CelestialBody can compute this based on pressure,temp,density
+  - Might have to have code to do this properly?
+  - Until then fixed number?
 ** TODO Ensure craft do not misuse parachutes
 - Parachutes can only be used after landing.
 ** TODO How to do distance?
@@ -108,6 +121,15 @@
 - Primary craft is validated
 - Secondary craft can be made of anything, but must exceed payload mass
 - Player must land primary
+** TODO Add support for "realistic" agents and naming
+- NACA and NASA
+- Changes to descriptions
+- Change K-Planes to X-Planes (mod name does not change)
+** TODO Provide stock example craft for some records
+** TODO Provide modded example craft for some records
+** TODO Add more localization
+- between/above/below loc
+- etc.
 ** TODO Add automated GitHub release
 ** TODO Add CKAN information
 ** TODO Add automated SpaceDock release
