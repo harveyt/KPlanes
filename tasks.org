@@ -13,7 +13,7 @@
 ** DONE Add Makefile build and test system
 ** DONE Add first contract type and fix bugs
 
-* TODO [17/31] Version 0.2.0
+* TODO [18/31] Version 0.2.0
 
 ** DONE Add all GAP milestone contracts
 - Including Heli and Seaplane too
@@ -83,7 +83,7 @@
 - Check real scale makes sense in real life, see if stock works (1/10th)
 ** DONE Check real scale rewards are not scaled too high
 - Scale only reward funds by sqrt(scale).
-** TODO Change initial height and speed records to absolute (?)
+** DONE Change initial height and speed records to absolute (?)
 - Speed in table is m/s, Mach1 etc. are computed (or hard coded)
 ** TODO Add basic GAP contracts
 - Script to extra description/title/notes/synopsis into loc file and fix br.
