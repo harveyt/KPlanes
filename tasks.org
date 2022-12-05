@@ -13,7 +13,7 @@
 ** DONE Add Makefile build and test system
 ** DONE Add first contract type and fix bugs
 
-* TODO [11/22] Version 0.2.0
+* TODO [15/23] Version 0.2.0
 
 ** DONE Add all GAP milestone contracts
 - Including Heli and Seaplane too
@@ -46,6 +46,9 @@
 ** DONE Ensure localized strings use Pretty versions
 "asdasd".Format(...)
 - How to do this?
+** DONE Add atmosphere scaling
+- Based on Stock, 2.5/2.7 or RSS scaling
+- Troposphere, Stratosphere, Karman Line/Space
 ** DONE Better height definitions:
 
 | Squad      | KPlanes          | Stock Alt | Equation                     | Stock Value | RSS Value | Actual |
@@ -70,16 +73,20 @@
 
 - SpaceLEO :: Uses the ISS height, since LEO is actually 140 to 2000 in real world.
 
-** TODO Change reward scale to seperate coloumns: Funds, Science and Reputation
+** DONE Change requirements in table to be just contract name (so more can be added)
+** DONE Change reward scale to seperate coloumns: Funds, Science and Reputation
 - These are values assuming scale = 1, so easy to balance
 - Take them from existing contracts
-** TODO Move "Mid Stage" to right of Style, as "Style Param"
+** DONE Move "Mid Stage" to right of Style, as "Style Param"
 - For Land - is a Biome, "Mountain" or "Hovering" are special
-** TODO Change requirements in table to be just contract name (so more can be added)
-** TODO Add atmosphere scaling
-- Based on Stock, 2.5/2.7 or RSS scaling
-- Troposphere, Stratosphere, Karman Line/Space
-** TODO Ensure craft do not miuse parachutes
+** TODO Change most speed records to absolute values
+- Rather than Mach 1 which is height dependant
+- Possibly have Mach 1, Mach 3 and Mach 5 as targets but very fixed for altitude
+  (where they make sense) with equivalent surface speed
+- To emulate X-1, X-15, SR-71 style records
+** TODO Add basic GAP contracts
+- Script to extra description/title/notes/synopsis into loc file and fix br.
+** TODO Ensure craft do not misuse parachutes
 - Parachutes can only be used after landing.
 ** TODO How to do distance?
 - Use Waypoint Generator to create waypoint with suitable min/max distance from launch
