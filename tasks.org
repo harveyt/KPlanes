@@ -83,7 +83,10 @@
 - Check real scale makes sense in real life, see if stock works (1/10th)
 ** TODO Check real scale rewards are not scaled too high
 - First contract would be 100 science
-- Perhaps science and rep are not scaled, or sqrt(scale) for scaling?
+- Perhaps science and rep are not scaled, probably as contracts are for money
+- Possibly some or all are sqrt(scale), ie.
+  - KSRSS would be 1.6x (16)
+  - RSS would be 3x (30)
 ** TODO Change initial height and speed records to absolute (?)
 - Speed in table is m/s, Mach1 etc. are computed (or hard coded)
 ** TODO Add basic GAP contracts
