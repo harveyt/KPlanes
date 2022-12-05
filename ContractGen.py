@@ -67,7 +67,7 @@ class ContractType:
         self.style_param = data[11]
         self.altMin = data[12]
         self.altMax = data[13]
-        self.speedMach = data[14]
+        self.speed = data[14]
         self.distance = data[15]
         self.payload = data[16]
         self.jet = data[17]
@@ -132,9 +132,9 @@ class ContractType:
         desc = " ".join(re.findall(r'[A-Z0-9][a-z0-9]*', ident))
         return " ({})".format(desc)
         
-    # Speed is in Mach
+    # Speed is in m/s
     def speed_value(self, ident):
-        return self.value_from_ident(ident, "@KPlanes:Mach")
+        return self.value_from_ident(ident, "1.0")
 
     def speed_desc(self, ident):
         return self.desc_from_ident(ident)
