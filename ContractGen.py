@@ -45,15 +45,15 @@ class ContractType:
         self.group = group
         self.table = self.group.table
         self.localization = self.table.localization
-        self.counter = counter
+        self.counter = int(counter)
         self.suffix = re.sub(r'[- ]', '', name)
         self.data = data
-        self.name = "{}-{}-{}".format(self.group.title, self.counter, self.suffix)
+        self.name = "{}-{:03d}-{}".format(self.group.title, self.counter, self.suffix)
         self.title = name
-        self.output_path = "{}/Groups/{}/{}-{}.cfg".format(DEST, self.group.title, self.counter, self.suffix)
+        self.output_path = "{}/Groups/{}/{:03d}-{}.cfg".format(DEST, self.group.title, self.counter, self.suffix)
         self.out = sys.stdout
         self.agent = self.agent_name_from_data(data[1])
-        self.craft = "KPlanesCraft_{}_{}".format(self.group.title, self.counter)
+        self.craft = "KPlanesCraft_{}_{:03d}".format(self.group.title, self.counter)
         self.description = ""
         self.synopsis = ""
         self.notes = ""
@@ -156,7 +156,7 @@ class ContractType:
     def generate(self):
         if self.group.title != "Start":
             return
-        if int(self.counter) > 2:
+        if self.counter > 2:
             return
         
         with open(self.output_path, "w") as self.out:
@@ -183,7 +183,7 @@ class ContractType:
         self.write('CONTRACT_TYPE\n')
         self.write('{{\n')
         self.write('\n')
-        self.write('	sortKey = a{}\n', self.counter)
+        self.write('	sortKey = a{:03d}\n', self.counter)
         self.write('\n')
 
     def _gen_requirements(self):

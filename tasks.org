@@ -85,8 +85,12 @@
 - Scale only reward funds by sqrt(scale).
 ** DONE Change initial height and speed records to absolute (?)
 - Speed in table is m/s, Mach1 etc. are computed (or hard coded)
+** TODO Extract localized data from GAP into loc file
+** TODO Enable speed style contract
+- Update FlyingFaster
+** TODO Enable land style contract
+- Update Heli and Seaplane equivalent
 ** TODO Add basic GAP contracts
-- Script to extra description/title/notes/synopsis into loc file and fix br.
 - Ensure requirements are valid GAP contracts:
   - Set "enabled" to true if generated
   - Must have enabled requirement contract types.
