@@ -52,6 +52,7 @@ class ContractType:
         self.title = name
         self.output_path = "{}/Groups/{}/{:03d}-{}.cfg".format(DEST, self.group.title, self.counter, self.suffix)
         self.out = sys.stdout
+        self.indent = ''
         self.agent = self.agent_name_from_data(data[1])
         self.craft = "KPlanesCraft_{}_{:03d}".format(self.group.title, self.counter)
         self.description = ""
@@ -103,7 +104,11 @@ class ContractType:
             prestige = "Exceptional"
         return prestige
 
+    def write_indent(self, indent):
+        self.indent = indent
+        
     def write(self, fmt, *a):
+        self.out.write(self.indent)
         self.out.write(fmt.format(*a))
 
     def localize(self, field):
@@ -156,7 +161,7 @@ class ContractType:
     def generate(self):
         if self.group.title != "Start":
             return
-        if self.counter > 2:
+        if self.counter > 3:
             return
         
         with open(self.output_path, "w") as self.out:
@@ -295,9 +300,12 @@ class ContractType:
         self.write('\n')
         self.write('	}}\n')
         self.write('\n')
-        self._gen_data_value('AltMin', self.altitude_desc(self.altMin), self.altitude_value(self.altMin), "1000.0", "km", 'Minimum altitude')
-        self._gen_data_value('AltMax', self.altitude_desc(self.altMax), self.altitude_value(self.altMax), "1000.0", "km", 'Maximum altitude')
-        self._gen_data_range('Alt', 'altitude', 'AltMin', self.altMin, 'AltMax', self.altMax)
+        if self.style == 'Altitude' or self.style == 'Speed':
+            self._gen_data_value('AltMin', self.altitude_desc(self.altMin), self.altitude_value(self.altMin), "1000.0", "km", 'Minimum altitude')
+            self._gen_data_value('AltMax', self.altitude_desc(self.altMax), self.altitude_value(self.altMax), "1000.0", "km", 'Maximum altitude')
+            self._gen_data_range('Alt', 'altitude', 'AltMin', self.altMin, 'AltMax', self.altMax)
+        if self.style == 'Speed':
+            self._gen_data_value('Speed', self.speed_desc(self.speed), self.speed_value(self.speed), "1.0", "m/s", 'Speed')
         
     def _gen_data_value(self, name, desc, value, scale, units, title):
         if value == '':
@@ -334,7 +342,7 @@ class ContractType:
         self.write('	{{\n')
         self.write('		type = string\n')
         if maxIdent != '':
-            self.write('		Pretty{}Range = {} between @/Pretty{}@/Desc{} and @/Pretty{}{} @/Desc{}\n', name, style, minName, minName, maxName, maxName)
+            self.write('		Pretty{}Range = {} between @/Pretty{}@/Desc{} and @/Pretty{}@/Desc{}\n', name, style, minName, minName, maxName, maxName)
         else:
             self.write('		Pretty{}Range = {} of at least @/Pretty{}@/Desc{}\n', name, style, minName, minName)
         self.write('		title = Range for {} \n', style)        
@@ -347,6 +355,8 @@ class ContractType:
         locFormatArgs = ', [ "" ] '
         if self.style == 'Altitude':
             locFormatArgs = ', [ "@/PrettyAltRange" ] '
+        elif self.style == 'Speed':
+            locFormatArgs = ', [ "@/PrettyAltRange", "@/PrettySpeed" ] '
             
         self.write('	name = {}\n', self.name)
         self.write('	title = Format("{}"{})\n', self.localize('title'), locFormatArgs)
@@ -442,6 +452,9 @@ class ContractType:
         elif self.style == "Altitude":
             self._gen_parameters_style_altitude()
             self._gen_parameters_land_at_ksc()
+        elif self.style == "Speed":
+            self._gen_parameters_style_speed()
+            self._gen_parameters_land_at_ksc()
         self._gen_parameters_safety_check()
 
     def _gen_parameters_style_fly(self):
@@ -477,18 +490,38 @@ class ContractType:
 
     def _gen_parameters_style_altitude(self):
         self.write('//Contract Goals\n')
-        self._gen_parameters_altitude_limits()
+        self._gen_parameters_altitude_limits('true')
         pass
 
-    def _gen_parameters_altitude_limits(self):
+    def _gen_parameters_style_speed(self):
+        self.write('//Contract Goals\n')
+        self.write('	PARAMETER\n')
+        self.write('	{{\n')
+        self.write('		name = All\n')
+        self.write('		type = All\n')
+        self.write('		title = achieve a maximum airspeed of @/PrettySpeed\n')
+        self.write('\n')
+        self._gen_parameters_altitude_limits('false', '	')
+        self._gen_parameters_speed_limits('	')
+        self._gen_parameters_vert_speed_limits('	')
+        self._gen_parameters_hold_duration('	')
+        self.write('	\n')
+        self.write('		completeInSequence = true\n')
+        self.write('		disableOnStateChange = true\n')
+        self.write('	\n')
+        self.write('	}}\n')
+        self.write('\n')
+
+    def _gen_parameters_altitude_limits(self, in_seq='true', indent=''):
         if self.altMin == '' and self.altMax == '':
             return
+        self.write_indent(indent)
         self.write('	PARAMETER\n')
         self.write('	{{\n')
         self.write('		name = VesselParameterGroup\n')
         self.write('		type = VesselParameterGroup\n')
         if self.altMin != '' and self.altMax != '':
-             self.write('		title = fly between @/PrettyAltMin and @/PrettyAltMax\n')
+             self.write('		title = fly @/PrettyAltRange\n')
         elif self.altMin != '':
              self.write('		title = fly up to @/PrettyAltMin\n')
         self.write('\n')
@@ -499,25 +532,114 @@ class ContractType:
         self.write('			name = ReachState\n')
         self.write('			type = ReachState\n')
         self.write('\n')
-        self.write('			targetBody = Kerbin\n')
+        self.write('			targetBody = HomeWorld()\n')
         self.write('			situation = FLYING\n')
         if self.altMin != '':
             self.write('			minAltitude = @/AltMin\n')
         if self.altMax != '':
             self.write('			maxAltitude = @/AltMax\n')
         self.write('\n')
-        self.write('			disableOnStateChange = true\n')
+        self.write('			disableOnStateChange = {}\n', in_seq)
+        self.write('			hideChildren = true\n')
+        self.write('			hidden = true\n')
+        self.write('\n')
+        self.write('		}}\n')
+        self.write('\n')
+        self.write('		completeInSequence = {}\n', in_seq)
+        self.write('		disableOnStateChange = {}\n', in_seq)
+        self.write('		hideChildren = true\n')
+        self.write('\n')
+        self.write('	}}\n')
+        self.write('\n')
+        self.write_indent('')
+
+    def _gen_parameters_speed_limits(self, indent=''):
+        if self.speed == '':
+            return
+        self.write_indent(indent)
+        self.write('	PARAMETER\n')
+        self.write('	{{\n')
+        self.write('		name = VesselParameterGroup\n')
+        self.write('		type = VesselParameterGroup\n')
+        self.write('		title = fly faster than @/PrettySpeed\n')
+        self.write('\n')
+        self.write('		vessel = @/craft\n')
+        self.write('\n')
+        self.write('		PARAMETER\n')
+        self.write('		{{\n')
+        self.write('			name = ReachState\n')
+        self.write('			type = ReachState\n')
+        self.write('\n')
+        self.write('			targetBody = HomeWorld()\n')
+        self.write('			situation = FLYING\n')
+        self.write('			minSpeed = @/Speed\n')
+        self.write('\n')
+        self.write('			disableOnStateChange = false\n')
+        self.write('			hideChildren = true\n')
+        self.write('			hidden = true\n')
+        self.write('\n')
+        self.write('		}}\n')
+        self.write('\n')
+        self.write('		completeInSequence = false\n')
+        self.write('		disableOnStateChange = false\n')
+        self.write('		hideChildren = true\n')
+        self.write('\n')
+        self.write('	}}\n')
+        self.write('\n')
+        self.write_indent('')
+        
+    def _gen_parameters_vert_speed_limits(self, indent=''):
+        self.write_indent(indent)
+        self.write('	PARAMETER\n')
+        self.write('	{{\n')
+        self.write('		name = VesselParameterGroup\n')
+        self.write('		type = VesselParameterGroup\n')
+        self.write('		title = with less than 10 m/s of vertical speed\n')
+        self.write('\n')
+        self.write('		vessel = @/craft\n')
+        self.write('\n')
+        self.write('		PARAMETER\n')
+        self.write('		{{\n')
+        self.write('			name = ReachState\n')
+        self.write('			type = ReachState\n')
+        self.write('\n')
+        self.write('			targetBody = HomeWorld()\n')
+        self.write('			situation = FLYING\n')
+        self.write('			minRateOfClimb = -10\n')
+        self.write('			maxRateOfClimb = 10\n')
+        self.write('\n')
+        self.write('			disableOnStateChange = false\n')
         self.write('			hideChildren = true\n')
         self.write('			hidden = true\n')
         self.write('\n')
         self.write('		}}\n')
         self.write('\n')
         self.write('		completeInSequence = true\n')
-        self.write('		disableOnStateChange = true\n')
+        self.write('		disableOnStateChange = false\n')
         self.write('		hideChildren = true	\n')
         self.write('\n')
         self.write('	}}\n')
         self.write('\n')
+        self.write_indent('')
+
+    def _gen_parameters_hold_duration(self, indent=''):
+        self.write_indent(indent)
+        self.write('	PARAMETER\n')
+        self.write('	{{\n')
+        self.write('		name = Duration\n')
+        self.write('		type = Duration\n')
+        self.write('\n')
+        self.write('		duration = 5s\n')
+        self.write('		preWaitText = and hold for:\n')
+        self.write('		waitingText = and hold for: \n')
+        self.write('		completionText = You did it!\n')
+        self.write('\n')
+        self.write('		completeInSequence = true\n')
+        self.write('		disableOnStateChange = false\n')
+        self.write('\n')
+        self.write('	}}\n')
+        self.write('\n')
+        self.write_indent('')
 
     def _gen_parameters_have_crew(self):
         self.write('		PARAMETER\n')
@@ -696,7 +818,7 @@ class ContractType:
         self.write('					name = ReachState\n')
         self.write('					type = ReachState\n')
         self.write('\n')
-        self.write('					targetBody = Kerbin\n')
+        self.write('					targetBody = HomeWorld()\n')
         self.write('					biome = Runway\n')
         self.write('					situation = LANDED\n')
         self.write('					maxSpeed = 0.0\n')
@@ -724,7 +846,7 @@ class ContractType:
         self.write('					name = ReachState\n')
         self.write('					type = ReachState\n')
         self.write('\n')
-        self.write('					targetBody = Kerbin\n')
+        self.write('					targetBody = HomeWorld()\n')
         self.write('					biome = SPH\n')
         self.write('					situation = LANDED\n')
         self.write('					maxSpeed = 0.0\n')
