@@ -13,7 +13,7 @@
 ** DONE Add Makefile build and test system
 ** DONE Add first contract type and fix bugs
 
-* TODO [15/23] Version 0.2.0
+* TODO [16/31] Version 0.2.0
 
 ** DONE Add all GAP milestone contracts
 - Including Heli and Seaplane too
@@ -79,7 +79,7 @@
 - Take them from existing contracts
 ** DONE Move "Mid Stage" to right of Style, as "Style Param"
 - For Land - is a Biome, "Mountain" or "Hovering" are special
-** TODO Initial distance values may be too big for non-stock
+** DONE Initial distance values may be too big for non-stock
 - Check real scale makes sense in real life, see if stock works (1/10th)
 ** TODO Check real scale rewards are not scaled too high
 - First contract would be 100 science
