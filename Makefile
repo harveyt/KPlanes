@@ -33,7 +33,7 @@ test: build
 	rm -rf $(TEST_GAME)/$(RELPATH)
 	cp -a $(DEST) $(TEST_GAME)/`dirname $(RELPATH)`
 	find $(TEST_GAME)/$(RELPATH) -name '*~' -print | xargs rm -f
-	rm -f $(TEST_GAME)/$(RELPATH)/Groups/Start/00[3-9]-*
+	rm -f $(TEST_GAME)/$(RELPATH)/Groups/Start/00[4-9]-*
 	rm -f $(TEST_GAME)/$(RELPATH)/Groups/Start/01*-*
 	rm -rf $(TEST_GAME)/$(RELPATH)/Groups/Early
 	rm -rf $(TEST_GAME)/$(RELPATH)/Groups/Modern
