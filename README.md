@@ -16,6 +16,8 @@ All content is [MIT][url:MITLicense] licensed.
 
 [Source][url:KPlanes] is available on GitHub.
 
+[KSP Forum][url:KPlanesKSPF] is the home page for discussions.
+
 ## Origins
 
 This mod is inspired by and indeed uses some assets, configuration from the original [GAP][url:GAP]
@@ -90,6 +92,7 @@ Recommended IVA Dependencies, to fly inside the plane:
 * [Reviva][url:Reviva] which is one of my other mods, allows much easier installing/switch IVA mods.
 
 [url:KPlanes]: https://github.com/harveyt/KPlanes
+[url:KPlanesKSPF]: https://forum.kerbalspaceprogram.com/index.php?/topic/210897-112/
 [url:MITLicense]: https://github.com/harveyt/KPlanes/blob/main/LICENSE
 [url:GAP]: https://forum.kerbalspaceprogram.com/index.php?/topic/129208-contract-pack-giving-aircraft-a-purpose-gap-161-milestones-air-flights-coast-guard/
 [url:CKAN]: https://forum.kerbalspaceprogram.com/index.php?/topic/154922-ckan-the-comprehensive-kerbal-archive-network-v1280-dyson/
