@@ -1,6 +1,6 @@
 # Contract Pack: K-Planes
 
-By: 610yeslovely
+By: [610yeslovely][kspf:610yesnolovely]
 
 The K-Planes contract pack adds various contracts to encourage and reward building of planes from
 very early stages, through X-plane style rocket planes, to SSTO (single-stage to orbit) planes.
@@ -91,6 +91,7 @@ Recommended IVA Dependencies, to fly inside the plane:
 * [MOARdV's Avionics System][url:AvionicsSystems] (or MAS) the successor to RPM.
 * [Reviva][url:Reviva] which is one of my other mods, allows much easier installing/switch IVA mods.
 
+[kspf:610yeslovely]: https://forum.kerbalspaceprogram.com/index.php?/profile/211485-610yesnolovely/
 [url:KPlanes]: https://github.com/harveyt/KPlanes
 [url:KPlanesKSPF]: https://forum.kerbalspaceprogram.com/index.php?/topic/210897-112/
 [url:MITLicense]: https://github.com/harveyt/KPlanes/blob/main/LICENSE
