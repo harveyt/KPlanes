@@ -91,7 +91,7 @@ Recommended IVA Dependencies, to fly inside the plane:
 * [MOARdV's Avionics System][url:AvionicsSystems] (or MAS) the successor to RPM.
 * [Reviva][url:Reviva] which is one of my other mods, allows much easier installing/switch IVA mods.
 
-[kspf:610yeslovely]: https://forum.kerbalspaceprogram.com/index.php?/profile/211485-610yesnolovely/
+[kspf:610yesnolovely]: https://forum.kerbalspaceprogram.com/index.php?/profile/211485-610yesnolovely/
 [url:KPlanes]: https://github.com/harveyt/KPlanes
 [url:KPlanesKSPF]: https://forum.kerbalspaceprogram.com/index.php?/topic/210897-112/
 [url:MITLicense]: https://github.com/harveyt/KPlanes/blob/main/LICENSE
