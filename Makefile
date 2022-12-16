@@ -9,7 +9,7 @@ ROOT		= .
 ART		= $(ROOT)/Artwork
 RELPATH		= GameData/ContractPacks/KPlanes
 DEST		= $(ROOT)/$(RELPATH)
-TEST_GAME	= /mnt/c/Games/KSP-Test
+TEST_GAME	= /mnt/c/Games/KSP-Dev
 
 SVGPNG		= rsvg-convert --format=png --width=256 --height=160 --keep-aspect-ratio
 SVGPNG_SCALED	= rsvg-convert --format=png --width=64 --height=40 --keep-aspect-ratio
@@ -30,6 +30,9 @@ test: build
 		exit 1; \
 	fi
 	@echo "Updating $(TEST_GAME) with KPlanes..."
+	@if [[ ! -d $(TEST_GAME)/$(RELPATH) ]]; then \
+		mkdir -p $(TEST_GAME)/$(RELPATH); \
+	fi
 	rm -rf $(TEST_GAME)/$(RELPATH)
 	cp -a $(DEST) $(TEST_GAME)/`dirname $(RELPATH)`
 	find $(TEST_GAME)/$(RELPATH) -name '*~' -print | xargs rm -f
