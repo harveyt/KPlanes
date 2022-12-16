@@ -161,7 +161,7 @@ class ContractType:
     def generate(self):
         if self.group.title != "Start":
             return
-        if self.counter > 3:
+        if self.counter > 4:
             return
         
         with open(self.output_path, "w") as self.out:
@@ -200,20 +200,17 @@ class ContractType:
         self.write('\n')
 
     def _gen_requirements_previous(self):
-        if len(self.requires) == 0:
-            return
-        self.write('	REQUIREMENT\n')
-        self.write('	{{\n')
-        self.write('		name = CompleteContract\n')
-        self.write('		type = CompleteContract\n')
-        self.write('\n')
-        if len(self.requires) == 1:
-            self.write('		contractType = {}\n', self.requires[0].name)
-        # TODO: Support multiple requirements
-        self.write('		minCount = 1\n')
-        self.write('\n')
-        self.write('	}}\n')
-        self.write('\n')
+        for req in self.requires:
+            self.write('	REQUIREMENT\n')
+            self.write('	{{\n')
+            self.write('		name = CompleteContract\n')
+            self.write('		type = CompleteContract\n')
+            self.write('\n')
+            self.write('		contractType = {}\n', req.name)
+            self.write('		minCount = 1\n')
+            self.write('\n')
+            self.write('	}}\n')
+            self.write('\n')
 
     def _gen_requirements_style_fly(self):
         self.write('	REQUIREMENT\n')

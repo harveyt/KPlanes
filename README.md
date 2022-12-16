@@ -5,19 +5,6 @@ By: [610yeslovely][kspf:610yesnolovely]
 The K-Planes contract pack adds various contracts to encourage and reward building of planes from
 very early stages, through X-plane style rocket planes, to SSTO (single-stage to orbit) planes.
 
-## License
-
-All content is [MIT][url:MITLicense] licensed.
-
-* KASA logo derived from NASA svg downloaded from [Wikipedia](https://en.wikipedia.org/wiki/NASA_insignia#/media/File:NASA_logo.svg)
-* KACA logo dervied from NACA svg downloaded from [Wikipedia](https://commons.wikimedia.org/wiki/File:US_NACA_logo.svg)
-
-## Source
-
-[Source][url:KPlanes] is available on GitHub.
-
-[KSP Forum][url:KPlanesKSPF] is the home page for discussions.
-
 ## Origins
 
 This mod is inspired by and indeed uses some assets, configuration from the original [GAP][url:GAP]
@@ -90,6 +77,25 @@ Recommended IVA Dependencies, to fly inside the plane:
 * [RasterPropMonitor][url:RasterPropMonitor] (or RPM) allows IVA to be interactive.
 * [MOARdV's Avionics System][url:AvionicsSystems] (or MAS) the successor to RPM.
 * [Reviva][url:Reviva] which is one of my other mods, allows much easier installing/switch IVA mods.
+
+## Changes
+
+### 0.1.0 Release - Basic contracts (1st Dec 2022)
+
+- Not really functional, but general idea started.
+
+## License
+
+All content is [MIT][url:MITLicense] licensed.
+
+* KASA logo derived from NASA svg downloaded from [Wikipedia](https://en.wikipedia.org/wiki/NASA_insignia#/media/File:NASA_logo.svg)
+* KACA logo dervied from NACA svg downloaded from [Wikipedia](https://commons.wikimedia.org/wiki/File:US_NACA_logo.svg)
+
+## Source
+
+[Source][url:KPlanes] is available on GitHub.
+
+[KSP Forum][url:KPlanesKSPF] is the home page for discussions.
 
 [kspf:610yesnolovely]: https://forum.kerbalspaceprogram.com/index.php?/profile/211485-610yesnolovely/
 [url:KPlanes]: https://github.com/harveyt/KPlanes
