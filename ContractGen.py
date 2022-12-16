@@ -306,6 +306,8 @@ class ContractType:
             self._gen_data_range('Alt', 'altitude', 'AltMin', self.altMin, 'AltMax', self.altMax)
         if self.style == 'Speed':
             self._gen_data_value('Speed', self.speed_desc(self.speed), self.speed_value(self.speed), "1.0", "m/s", 'Speed')
+        if self.style == 'Distance':
+            self._gen_data_value('Distance', self.distance_desc(self.distance), self.distance_value(self.distance), "1000.0", "km", 'Distance')
         
     def _gen_data_value(self, name, desc, value, scale, units, title):
         if value == '':
@@ -357,7 +359,8 @@ class ContractType:
             locFormatArgs = ', [ "@/PrettyAltRange" ] '
         elif self.style == 'Speed':
             locFormatArgs = ', [ "@/PrettyAltRange", "@/PrettySpeed" ] '
-            
+        elif self.style == 'Distance':
+            locFormatArgs = ', [ "@/PrettyDistance" ] '
         self.write('	name = {}\n', self.name)
         self.write('	title = Format("{}"{})\n', self.localize('title'), locFormatArgs)
         self.write('	group = {}\n', self.group.name)
