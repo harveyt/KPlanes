@@ -13,6 +13,7 @@ ROOT = os.getenv('ROOT')
 DEST = os.getenv('DEST')
 DEBUG = False
 REPLACE_AUTOLOC = False
+DIST_TOLERANCE = 500.0 # 500m tolerance for distances, need to be at least X plus this distance for waypoint 
 
 # --------------------------------------------------------------------------------
 
@@ -360,7 +361,7 @@ class ContractType:
         elif self.style == 'Speed':
             locFormatArgs = ', [ "@/PrettyAltRange", "@/PrettySpeed" ] '
         elif self.style == 'Distance':
-            locFormatArgs = ', [ "@/PrettyDistance" ] '
+            locFormatArgs = ', [ "@/PrettyDistance", "@/DescDistance" ] '
         self.write('	name = {}\n', self.name)
         self.write('	title = Format("{}"{})\n', self.localize('title'), locFormatArgs)
         self.write('	group = {}\n', self.group.name)
@@ -467,6 +468,9 @@ class ContractType:
                 self._gen_parameters_land_at_ksc_helipads()
             else:
                 self._gen_parameters_land_at_ksc()
+        elif self.style == "Distance":
+            self._gen_parameters_style_distance()
+            self._gen_parameters_land_at_ksc()
         self._gen_parameters_safety_check()
 
     def _gen_parameters_style_fly(self):
@@ -638,6 +642,71 @@ class ContractType:
             self.write('		hideChildren = true\n')
             self.write('\n')
             self.write('	}}\n')
+
+    def _gen_parameters_style_distance(self):
+        self.write('//Contract Behaviour (Distance Marker)\n')
+        self.write('BEHAVIOUR\n')
+        self.write('{{\n')
+        self.write('    name = WaypointGenerator\n')
+        self.write('    type = WaypointGenerator\n')
+        self.write('\n')
+        self.write('    PQS_CITY\n')
+        self.write('    {{\n')
+        self.write('        name = KSC\n')
+        self.write('\n')
+        self.write('        targetBody = HomeWorld()\n')
+        self.write('        hidden = false\n')
+        self.write('        count = 1\n')
+        self.write('        icon = ksc\n')
+        self.write('        pqsCity = KSC\n')
+        self.write('    }}\n')
+        self.write('\n')
+        self.write('    RANDOM_WAYPOINT_NEAR\n')
+        self.write('    {{\n')
+        self.write('        name = Distance Marker\n')
+        self.write('\n')
+        self.write('        targetBody = HomeWorld()\n')
+        self.write('        count = 1\n')
+        self.write('        icon = custom\n')
+        self.write('        altitude = 0.0\n')
+        self.write('        waterAllowed = true\n')
+        self.write('	    nearIndex = 0\n')
+        self.write('        minDistance = {}\n', self.distance)
+        self.write('        maxDistance = {}\n', self.distance)
+        self.write('    }}\n')
+        self.write('}}\n')
+        self.write('\n')
+        self.write('//Contract Goals\n')
+        self.write('	PARAMETER\n')
+        self.write('	{{\n')
+        self.write('		name = VesselParameterGroup\n')
+        self.write('		type = VesselParameterGroup\n')
+        self.write('		title = fly to waypoint "Distance Marker" which is @/PrettyDistance@/DescDistance from KSC\n')
+        self.write('\n')
+        self.write('		vessel = @/craft\n')
+        self.write('\n')
+        self.write('		PARAMETER\n')
+        self.write('		{{\n')
+        self.write('			name = VisitWaypoint\n')
+        self.write('			type = VisitWaypoint\n')
+        self.write('\n')
+        self.write('			index = 0\n')
+        self.write('			horizontalDistance = {}\n', DIST_TOLERANCE)
+        self.write('			hideOnCompletion = true\n')
+        self.write('			showMessages = true\n')
+        self.write('\n')
+        self.write('			disableOnStateChange = true\n')
+        self.write('			hideChildren = true\n')
+        self.write('			hidden = true\n')
+        self.write('\n')
+        self.write('		}}\n')
+        self.write('\n')
+        self.write('		completeInSequence = true\n')
+        self.write('		disableOnStateChange = true\n')
+        self.write('		hideChildren = true\n')
+        self.write('\n')
+        self.write('	}}\n')
+        self.write('\n')
 
     def _gen_parameters_altitude_limits(self, in_seq='true', indent=''):
         if self.altMin == '' and self.altMax == '':
