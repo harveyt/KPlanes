@@ -14,6 +14,7 @@ DEST = os.getenv('DEST')
 DEBUG = False
 REPLACE_AUTOLOC = False
 DIST_TOLERANCE = 500.0 # 500m tolerance for distances, need to be at least X plus this distance for waypoint 
+MOUNTAIN_HEIGHT = 1000.0 # 1000m is considered a mountain
 
 # --------------------------------------------------------------------------------
 
@@ -648,7 +649,7 @@ class ContractType:
         self.write('    name = WaypointGenerator\n')
         self.write('    type = WaypointGenerator\n')
         self.write('\n')
-        self.write('    PQS_CITY\n')
+        self.write('    LAUNCH_SITE\n')
         self.write('    {{\n')
         self.write('        name = KSC\n')
         self.write('\n')
@@ -656,7 +657,7 @@ class ContractType:
         self.write('        hidden = false\n')
         self.write('        count = 1\n')
         self.write('        icon = ksc\n')
-        self.write('        pqsCity = KSC\n')
+        self.write('        launchSite = KSC\n')
         self.write('    }}\n')
         self.write('\n')
         self.write('    RANDOM_WAYPOINT_NEAR\n')
