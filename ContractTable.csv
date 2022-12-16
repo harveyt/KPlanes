@@ -3,7 +3,7 @@ Start,Wright,1,First Flight,Wright-FirstFlight,,*,10,50,10,Fly,Flying,,,,,,N,N,N
 Start,Wright,2,Flying Higher,Wright-2500m,First Flight,*,8,5,3,Altitude,,TroposphereLow,,,,,N,N,N,N,N
 Start,Wright,3,Flying Faster,Wright-Speed100,First Flight,*,8,5,3,Speed,,TroposphereLow,TroposphereHigh,100,,,N,N,N,N,N
 Start,Wright,4,Seaplane,GAP-Seaplane,"Flying Higher,Flying Faster",*,30,5,5,Land,Splashed,,,,,,N,N,N,N,Y
-Start,Wright,5,Helicopter,GAP-Helicopter,"Flying Higher,Flying Faster",*,30,10,10,Land,VAB,,,,,,N,N,N,N,Y
+Start,Wright,5,Helicopter,GAP-Helicopter,"Flying Higher,Flying Faster",*,30,10,10,Land,Helipads,,,,,,N,N,N,N,Y
 Start,Wright,6,Short Hop,,"Flying Higher,Flying Faster",*,8,5,3,Distance,,,,,ShortHop,,N,N,N,N,N
 Start,Wright,7,Troposphere Low,Wright-5000m,Flying Higher,*,30,5,3,Altitude,,TroposphereLow,,,,,N,N,N,N,N
 Start,Wright,8,Domestic Distance,,Short Hop,*,10,5,3,Distance,,,,,Domestic,,N,N,N,N,N
