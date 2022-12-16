@@ -14,7 +14,8 @@ DEST = os.getenv('DEST')
 DEBUG = False
 REPLACE_AUTOLOC = False
 DIST_TOLERANCE = 500.0 # 500m tolerance for distances, need to be at least X plus this distance for waypoint 
-MOUNTAIN_HEIGHT = 1000.0 # 1000m is considered a mountain
+MOUNTAIN_ALTITUDE = '1000.0' # 1000m is considered a mountain
+MOUNTAIN_BIOME = 'Mountains' # Blank if mountain biome not required
 
 # --------------------------------------------------------------------------------
 
@@ -308,6 +309,8 @@ class ContractType:
             self._gen_data_value('Speed', self.speed_desc(self.speed), self.speed_value(self.speed), "1.0", "m/s", 'Speed')
         if self.style == 'Distance':
             self._gen_data_value('Distance', self.distance_desc(self.distance), self.distance_value(self.distance), "1000.0", "km", 'Distance')
+        if self.style == 'Land' and self.style_param == 'Mountain':
+            self._gen_data_value('AltMin', self.altitude_desc(MOUNTAIN_ALTITUDE), self.altitude_value(MOUNTAIN_ALTITUDE), "1000.0", "km", 'Minimum altitude')
         
     def _gen_data_value(self, name, desc, value, scale, units, title):
         if value == '':
@@ -361,6 +364,8 @@ class ContractType:
             locFormatArgs = ', [ "@/PrettyAltRange", "@/PrettySpeed" ] '
         elif self.style == 'Distance':
             locFormatArgs = ', [ "@/PrettyDistance", "@/DescDistance" ] '
+        elif self.style == 'Land' and self.style == 'Mountain':
+            locFormatArgs = ', [ "@/PrettyAltMin" ] '
         self.write('	name = {}\n', self.name)
         self.write('	title = Format("{}"{})\n', self.localize('title'), locFormatArgs)
         self.write('	group = {}\n', self.group.name)
@@ -881,6 +886,25 @@ class ContractType:
             self.write('			type = ReachState\n')
             self.write('\n')
             self.write('			situation = SPLASHED\n')
+            self.write('\n')
+            self.write('			disableOnStateChange = true\n')
+            self.write('			hideChildren = true\n')
+            self.write('			hidden = true\n')
+            self.write('\n')
+            self.write('		}}\n')
+            self.write('\n')
+        elif self.style_param == "Mountain":
+            self.write('		PARAMETER\n')
+            self.write('		{{\n')
+            self.write('			name = ReachState\n')
+            self.write('			type = ReachState\n')
+            self.write('\n')
+            self.write('			targetBody = HomeWorld()\n')
+            if MOUNTAIN_BIOME != '':
+                self.write('			biome = {}\n', MOUNTAIN_BIOME)
+            self.write('			minAltitude = {}\n', MOUNTAIN_ALTITUDE)
+            self.write('			situation = LANDED\n')
+            self.write('			maxSpeed = 0.0\n')
             self.write('\n')
             self.write('			disableOnStateChange = true\n')
             self.write('			hideChildren = true\n')
