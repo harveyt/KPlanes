@@ -162,7 +162,8 @@ class ContractType:
         if self.group.title != "Start":
             return
         if self.counter > 5:
-            return
+            if self.counter != 7:
+                return
         
         with open(self.output_path, "w") as self.out:
             self._gen_header()
