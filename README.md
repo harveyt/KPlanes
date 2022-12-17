@@ -87,13 +87,13 @@ multiples of 343 m/s, though this will vary depending on pressure, temperature a
 
 Altitudes are scaled by the planets FlyingHigh, SpaceLow and SpaceHigh altitudes:
 
-- TroposphereLow : ~14% from sea level to FlyingHigh.
-- TroposphereHigh : ~28% from sea level to FlyingHigh.
+- TroposphereLow : ~15% from sea level to FlyingHigh.
+- TroposphereHigh : ~30% from sea level to FlyingHigh.
 - StratosphereLow : ~40% from sea level to FlyingHigh.
 - StratosphereHigh : ~70% from sea level to FlyingHigh.
 - MesosphereLow : always equals FlyingHigh.
-- MesosphereHigh : ~19% from FlyingHigh to SpaceLow.
-- ThermosphereLow : ~39% from FlyingHigh to SpaceLow.
+- MesosphereHigh : ~20% from FlyingHigh to SpaceLow.
+- ThermosphereLow : ~40% from FlyingHigh to SpaceLow.
 - SpaceLow : is where space starts in KSP.
 - SpaceLEO : is roughly how high ISS travels, or about 12% from SpaceLow to SpaceHigh.
 - SpaceHigh : is taken to mean MKO / MEO (Mid-Kerbin or Mid-Earth Orbit).
@@ -136,7 +136,7 @@ For RSS (Earth):
 
 ## Distances
 
-Distance contracts are scaled by the planets circumference:
+Distance contracts are scaled by the planets circumference, again using algorithms that work for any scale.
 
 For Stock (1x):
 
