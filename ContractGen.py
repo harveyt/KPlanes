@@ -300,7 +300,7 @@ class ContractType:
         self.write('\n')
         self.write('	}}\n')
         self.write('\n')
-        if self.style == 'Altitude' or self.style == 'Speed':
+        if self.style == 'Altitude' or self.style == 'Speed' or self.style == 'Distance':
             self._gen_data_value('AltMin', self.altitude_desc(self.altMin), self.altitude_value(self.altMin), "#,#", 1000, "km", 'Minimum altitude')
             self._gen_data_value('AltMax', self.altitude_desc(self.altMax), self.altitude_value(self.altMax), "#,#", 1000, "km", 'Maximum altitude')
             self._gen_data_range('Alt', 'altitude', 'AltMin', self.altMin, 'AltMax', self.altMax)
@@ -345,15 +345,15 @@ class ContractType:
     def _gen_data_range(self, name, style, minName, minIdent, maxName, maxIdent):
         if minIdent == '' and maxIdent == '':
             return
-        if minIdent == '' and maxIdent != '':
-            error("{} and {} ranges must either be min, or min..max", minName, maxName)
         self.write('	DATA\n')
         self.write('	{{\n')
         self.write('		type = string\n')
-        if maxIdent != '':
+        if minIdent != '' and maxIdent != '':
             self.write('		Pretty{}Range = {} between @/Pretty{}@/Desc{} and @/Pretty{}@/Desc{}\n', name, style, minName, minName, maxName, maxName)
-        else:
+        elif  minIdent != '' and maxIdent == '':
             self.write('		Pretty{}Range = {} of at least @/Pretty{}@/Desc{}\n', name, style, minName, minName)
+        else:
+            self.write('		Pretty{}Range = {} of at most @/Pretty{}@/Desc{}\n', name, style, maxName, maxName)
         self.write('		title = Range for {} \n', style)        
         self.write('	}}\n')
         self.write('\n')
@@ -675,6 +675,7 @@ class ContractType:
         self.write('}}\n')
         self.write('\n')
         self.write('//Contract Goals\n')
+        self._gen_parameters_altitude_limits('false', '	')
         self.write('	PARAMETER\n')
         self.write('	{{\n')
         self.write('		name = VesselParameterGroup\n')
@@ -714,10 +715,7 @@ class ContractType:
         self.write('	{{\n')
         self.write('		name = VesselParameterGroup\n')
         self.write('		type = VesselParameterGroup\n')
-        if self.altMin != '' and self.altMax != '':
-             self.write('		title = fly @/PrettyAltRange\n')
-        elif self.altMin != '':
-             self.write('		title = fly up to @/PrettyAltMin\n')
+        self.write('		title = fly at an @/PrettyAltRange\n')
         self.write('\n')
         self.write('		vessel = @/craft\n')
         self.write('\n')

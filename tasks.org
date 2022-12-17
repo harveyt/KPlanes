@@ -102,6 +102,7 @@
 ** DONE Ensure alts are always rounded to 1km
 ** DONE Ensure distances are always rounded 1km
 ** DONE Change PrettyXXX to use ToString
+** TODO Add maximum alt for distance contracts
 ** TODO Change return style to field "Return"
 - Runway :: Must land at the KSC runway
 - Helipad :: Must land at the KSC helipads

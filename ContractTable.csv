@@ -1,32 +1,32 @@
 Group,Agent,Counter,Name,GAP Name,Requires,Prestige,Funds (1000),Rep,Science,Style,Style Param,Altitude Min (km),Altitude Max (km),Speed (m/s),Distance (km),Payload (t),Jet?,Rocket?,Staging?,Air Launch?,Land Near KSC?
 Start,Wright,1,First Flight,Wright-FirstFlight,,*,10,50,10,Fly,Flying,,,,,,Y,N,N,N,N
 Start,Wright,2,Flying Higher,Wright-2500m,First Flight,*,8,5,3,Altitude,,TroposphereLow,,,,,Y,N,N,N,N
-Start,Wright,3,Flying Faster,Wright-Speed100,First Flight,*,8,5,3,Speed,,TroposphereLow,TroposphereHigh,100,,,Y,N,N,N,N
+Start,Wright,3,Flying Faster,Wright-Speed100,First Flight,*,8,5,3,Speed,,,TroposphereHigh,100,,,Y,N,N,N,N
 Start,Wright,4,Seaplane,GAP-Seaplane,"Flying Higher,Flying Faster",*,30,5,5,Land,Splashed,,,,,,Y,N,N,N,Y
 Start,Wright,5,Helicopter,GAP-Helicopter,"Flying Higher,Flying Faster",*,30,10,10,Land,Helipads,,,,,,Y,N,N,N,Y
-Start,Wright,6,Short Hop,,"Flying Higher,Flying Faster",*,8,5,3,Distance,,,,,ShortHop,,Y,N,N,N,N
+Start,Wright,6,Short Hop,,"Flying Higher,Flying Faster",*,8,5,3,Distance,,,TroposphereHigh,,ShortHop,,Y,N,N,N,N
 Start,Wright,7,Troposphere High,Wright-5000m,Flying Higher,*,30,5,3,Altitude,,TroposphereHigh,,,,,Y,N,N,N,N
-Start,Wright,8,Domestic Distance,,Short Hop,*,10,5,3,Distance,,,,,Domestic,,Y,N,N,N,N
-Start,Wright,9,Airspeed Record,Wright-Speed220,Flying Faster,*,12,10,3,Speed,,TroposphereLow,TroposphereHigh,220,,,Y,N,N,N,N
-Start,Wright,10,Continental Distance,,Domestic Distance,*,12,5,3,Distance,,,,,Continental,,Y,N,N,N,N
+Start,Wright,8,Domestic Distance,,Short Hop,*,10,5,3,Distance,,,StratosphereLow,,Domestic,,Y,N,N,N,N
+Start,Wright,9,Airspeed Record,Wright-Speed220,Flying Faster,*,12,10,3,Speed,,TroposphereLow,StratosphereLow,220,,,Y,N,N,N,N
+Start,Wright,10,Continental Distance,,Domestic Distance,*,12,5,3,Distance,,,StratosphereLow,,Continental,,Y,N,N,N,N
 Start,Wright,11,Mountaineer,,Domestic Distance,*,15,10,3,Land,Mountain,1,,,,,Y,N,N,N,N
-Start,Wright,12,Intercontinental Distance,,Continental Distance,*,15,5,3,Distance,,,,,Intercontinental,,Y,N,N,N,N
+Start,Wright,12,Intercontinental Distance,,Continental Distance,*,15,5,3,Distance,,,StratosphereLow,,Intercontinental,,Y,N,N,N,N
 Early,KACA,1,Stratosphere Low,SSI-10000m,Troposphere High,*,12,5,3,Altitude,,StratosphereLow,,,,,Y,Y,N,Y,N
-Early,KACA,2,Mach 1,SSI-Mach1,Airspeed Record,*,36,50,10,Speed,,TroposphereLow,TroposphereHigh,Mach1,,,Y,Y,N,Y,N
+Early,KACA,2,Mach 1,SSI-Mach1,Airspeed Record,*,36,50,10,Speed,,TroposphereLow,StratosphereHigh,Mach1,,,Y,Y,N,Y,N
 Early,KACA,3,Stratosphere High,SSI-20000m,Stratosphere Low,*,36,5,5,Altitude,,StratosphereHigh,,,,,Y,Y,N,Y,N
-Early,KACA,4,Mach 2,SSI-Mach2,Mach 1,**,47,25,10,Speed,,TroposphereLow,StratosphereLow,Mach2,,,Y,Y,N,Y,N
+Early,KACA,4,Mach 2,SSI-Mach2,Mach 1,**,47,25,10,Speed,,TroposphereLow,StratosphereHigh,Mach2,,,Y,Y,N,Y,N
 Early,KACA,5,Stratospheric Jet,,"Stratosphere High,Mach 1",**,50,20,12,Speed,,StratosphereLow,StratosphereHigh,Mach1,,,Y,N,N,N,N
-Early,KACA,6,To The North Pole,,Intercontinental Distance,*,60,25,12,Distance,,,,,Polar,,Y,N,N,N,Y
+Early,KACA,6,To The North Pole,,Intercontinental Distance,*,60,25,12,Distance,,,StratosphereHigh,,Polar,,Y,N,N,N,Y
 Early,KACA,7,Mesosphere Low,,Stratosphere High,*,47,10,15,Altitude,,StratosphereHigh,,,,,Y,Y,N,Y,N
 Early,KACA,8,Mach 3,SSI-Mach3,Mach 2,*,70,25,15,Speed,,TroposphereLow,StratosphereHigh,Mach3,,,Y,Y,N,Y,N
-Early,KACA,9,Around The Poles,,To The North Pole,**,80,25,20,Distance,,,,,Circumference,,Y,N,N,N,Y
-Early,KACA,10,Around The World,,To The North Pole,**,80,30,5,Distance,,,,,Circumference,,Y,N,N,N,Y
-Early,KACA,11,Mesosphere High,SSI-35000m,Mesosphere Low,**,70,25,25,Altitude,,MesosphereLow,,,,,Y,Y,N,N,N
+Early,KACA,9,Around The Poles,,To The North Pole,**,80,25,20,Distance,,,StratosphereHigh,,Circumference,,Y,N,N,N,Y
+Early,KACA,10,Around The World,,To The North Pole,**,80,30,5,Distance,,,StratosphereHigh,,Circumference,,Y,N,N,N,Y
+Early,KACA,11,Mesosphere High,SSI-35000m,Mesosphere Low,**,70,25,25,Altitude,,MesosphereLow,StratosphereHigh,,,,Y,Y,N,N,N
 Early,KACA,12,Mach 4,SSI-Mach4,Mach 3,**,100,25,25,Speed,,StratosphereLow,MesosphereLow,Mach4,,,Y,Y,N,Y,N
-Modern,KASA,1,Thermosphere Low,SSI-60000m,Mesosphere High,**,80,25,15,Land,Hovering,,,,,,Y,Y,N,Y,N
+Modern,KASA,1,Thermosphere Low,SSI-60000m,Mesosphere High,**,80,25,15,Altitude,,ThermosphereLow,,,,,Y,Y,N,Y,N
 Modern,KASA,2,Sub-Orbital,,"Mesosphere High,Mach 4",**,90,30,20,Altitude,,SpaceLow,,,,,Y,Y,N,N,N
-Modern,KASA,3,Mach 5,,Mach 4,***,120,35,25,Speed,,StratosphereLow,MesosphereLow,Mach5,,,Y,Y,N,Y,N
-Modern,KASA,4,Going Electrical,,"Around The World,Stratosphere High",***,150,40,25,Distance,,,,,Circumference,,Y,N,N,N,Y
+Modern,KASA,3,Mach 5,,Mach 4,***,120,35,25,Speed,,StratosphereLow,ThermosphereLow,Mach5,,,Y,Y,N,Y,N
+Modern,KASA,4,Going Electrical,,"Around The World,Stratosphere High",***,150,40,25,Distance,,,StratosphereHigh,,Circumference,,Y,N,N,N,Y
 Modern,KASA,5,Mesosphere Jet,,"Mesosphere Low,Mach 5",**,150,30,25,Speed,,MesosphereLow,MesosphereHigh,Mach5,,,Y,N,N,N,N
 Modern,KASA,6,Mach 10,,Mach 5,**,150,30,25,Speed,,StratosphereHigh,ThermosphereLow,Mach10,,,Y,Y,N,Y,N
 Modern,KASA,7,Orbital Shuttle,,"Sub-Orbital,Mach 5",**,200,50,30,Distance,Orbit,SpaceLow,,,,,Y,Y,Y,N,N
