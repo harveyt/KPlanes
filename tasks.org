@@ -13,7 +13,7 @@
 ** DONE Add Makefile build and test system
 ** DONE Add first contract type and fix bugs
 
-* TODO [18/31] Version 0.2.0
+* TODO [22/43] Version 0.2.0
 
 ** DONE Add all GAP milestone contracts
 - Including Heli and Seaplane too
@@ -85,15 +85,25 @@
 - Scale only reward funds by sqrt(scale).
 ** DONE Change initial height and speed records to absolute (?)
 - Speed in table is m/s, Mach1 etc. are computed (or hard coded)
-** TODO Extract localized data from GAP into loc file
-** TODO Enable speed style contract
+** DONE Enable speed style contract
 - Update FlyingFaster
-** TODO Enable land style contract
+** DONE Enable land style contract
 - Update Heli and Seaplane equivalent
-** TODO Add basic GAP contracts
+** DONE Add basic GAP contracts
 - Ensure requirements are valid GAP contracts:
   - Set "enabled" to true if generated
   - Must have enabled requirement contract types.
+** DONE How to do distance?
+- Use Waypoint Generator to create waypoint with suitable min/max distance from launch
+  site.
+** TODO Change distance markers to half distance
+** TODO Change loc entries to use @vars not Format
+** TODO Ensure distances are always rounded 1000m (ie. pretty 10km)
+** TODO Ensure speeds are always rounded 1m/s (ie. pretty 10m/s)
+** TODO Ensure alts are always rounded 500m min if less than 10000, 1km greater
+** TODO Change PrettyXXX to use ToString
+- eg. for alt:: d >= 10000 ? ToString("#,#,,.#") + "km" : ToString("#,#") + "m"
+** TODO Extract localized data from GAP into loc file
 ** TODO Change speed records to computed Mach values
 - Rather than Mach 1 which is height dependant
 - Possibly have Mach 1, Mach 3 and Mach 5 as targets but very fixed for altitude
@@ -102,15 +112,24 @@
 - Vessel.mach and CelestialBody can compute this based on pressure,temp,density
   - Might have to have code to do this properly?
   - Until then fixed number?
-** TODO Ensure craft do not misuse parachutes
-- Parachutes can only be used after landing.
-** TODO How to do distance?
-- Use Waypoint Generator to create waypoint with suitable min/max distance from launch
-  site.
+** TODO Ensure craft do not misuse rockets
+- Jets are always allowed, change field to "Rockets?"
+- Some contracts allow for rockets
+  - Rockets can only be used above a min altitude (specific to contract)
+  - Check by ensuring resource usage of oxidizer is zero (?)
+** TODO Pole / Equatorial distance
 - For pole :: must reach pole waypoint and return to KSC
 - For around the world :: place waypoint 90 W, 270 W on equator then return to
   KSC
 - Possibly calculate great circle with start point and 90 W?
+** TODO Ensure craft do not misuse staging
+- Allow staging for some contracts.
+** TODO Ensure craft do not misuse parachutes
+- Parachutes can only be used after landing.
+** TODO Add description/notes for limitations:
+- No rockets (unless allowed)
+- No staging (unless allowed, or for payload)
+- No parachute usage until landed
 ** TODO How to do air launch?
 - Allow one staging event
 - Before staging, whole craft is validated
@@ -124,6 +143,11 @@
 - Primary craft is validated
 - Secondary craft can be made of anything, but must exceed payload mass
 - Player must land primary
+- Must create a new vessel with only parts from launcher
+  - Behaviour and expressions with parameter completion to record on launch
+  - Behaviour and expressions to check after orbit, when no staging fails (allowed)
+- New vessel remains in orbit
+- Launcher returns
 ** TODO Add support for "realistic" agents and naming
 - NACA and NASA
 - Changes to descriptions
