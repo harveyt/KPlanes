@@ -310,8 +310,9 @@ class ContractType:
         if self.style == 'Distance':
             self._gen_data_value('Distance', self.distance_desc(self.distance), self.distance_value(self.distance), "#,#", 1000, "km", 'Distance')
             self._gen_data_range('Distance', 'distance', 'Distance', self.distance, '', '')
-            half_distance = '{} / 2.0'.format(self.distance_value(self.distance))
-            self._gen_data_value('MarkerDistance', '', half_distance, "#,#", 1000, "km", 'Distance')
+            if self.is_distance_marker():
+                half_distance = '{} / 2.0'.format(self.distance_value(self.distance))
+                self._gen_data_value('MarkerDistance', '', half_distance, "#,#", 1000, "km", 'Distance')
         if self.style == 'Land' and self.style_param == 'Mountain':
             self._gen_data_value('AltMin', self.altitude_desc(self.altMin), self.altitude_value(self.altMin), "#,#", 1000, "km", 'Minimum altitude')
             self._gen_data_range('Alt', 'altitude', 'AltMin', self.altMin, '', '')
@@ -424,6 +425,11 @@ class ContractType:
         self.write('\n')
         self.write('	}}\n')
         self.write('\n')
+
+    def is_distance_marker(self):
+        if self.distance == 'Polar' or self.distance.startswith('Circum'):
+            return False
+        return True
 
     def _gen_parameters(self):
         self.write('\n')
@@ -643,6 +649,12 @@ class ContractType:
             self.write('	}}\n')
 
     def _gen_parameters_style_distance(self):
+        if self.is_distance_marker():
+            self._gen_parameters_style_distance_marker()
+        else:
+            self._gen_parameters_style_distance_waypoints()
+            
+    def _gen_parameters_style_distance_marker(self):
         self.write('//Contract Behaviour (Distance Marker)\n')
         self.write('BEHAVIOUR\n')
         self.write('{{\n')
@@ -707,6 +719,9 @@ class ContractType:
         self.write('	}}\n')
         self.write('\n')
 
+    def _gen_parameters_style_distance_waypoints(self):
+        self.write('//Contract Behaviour (Waypoints)\n')
+        
     def _gen_parameters_altitude_limits(self, in_seq='true', indent=''):
         if self.altMin == '' and self.altMax == '':
             return
