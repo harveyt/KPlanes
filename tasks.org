@@ -102,6 +102,12 @@
 ** DONE Ensure alts are always rounded to 1km
 ** DONE Ensure distances are always rounded 1km
 ** DONE Change PrettyXXX to use ToString
+** TODO Change return style to field "Return"
+- Runway :: Must land at the KSC runway
+- Helipad :: Must land at the KSC helipads
+- KSC :: Must land near the KSC
+- Anywhere :: Can land anywhere
+- other :: Must land in that biome on HomeWorld (or list of biomes, use ",")
 ** TODO Extract localized data from GAP into loc file
 ** TODO Change speed records to computed Mach values
 - Rather than Mach 1 which is height dependant
