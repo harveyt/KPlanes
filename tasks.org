@@ -13,7 +13,7 @@
 ** DONE Add Makefile build and test system
 ** DONE Add first contract type and fix bugs
 
-* TODO [22/43] Version 0.2.0
+* TODO [23/44] Version 0.2.0
 
 ** DONE Add all GAP milestone contracts
 - Including Heli and Seaplane too
@@ -96,7 +96,7 @@
 ** DONE How to do distance?
 - Use Waypoint Generator to create waypoint with suitable min/max distance from launch
   site.
-** TODO Change distance markers to half distance
+** DONE Change distance markers to half distance
 ** TODO Change loc entries to use @vars not Format
 ** TODO Ensure distances are always rounded 1000m (ie. pretty 10km)
 ** TODO Ensure speeds are always rounded 1m/s (ie. pretty 10m/s)
