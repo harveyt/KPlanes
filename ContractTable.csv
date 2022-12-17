@@ -9,7 +9,7 @@ Start,Wright,7,Troposphere High,Wright-5000m,Flying Higher,*,30,5,3,Altitude,,Tr
 Start,Wright,8,Domestic Distance,,Short Hop,*,10,5,3,Distance,,,,,Domestic,,N,N,N,N,N
 Start,Wright,9,Airspeed Record,Wright-Speed220,Flying Faster,*,12,10,3,Speed,,TroposphereLow,TroposphereHigh,220,,,Y,N,N,N,N
 Start,Wright,10,Continental Distance,,Domestic Distance,*,12,5,3,Distance,,,,,Continental,,Y,N,N,N,N
-Start,Wright,11,Mountaineer,,Domestic Distance,*,15,10,3,Land,Mountain,,,,,,Y,N,N,N,N
+Start,Wright,11,Mountaineer,,Domestic Distance,*,15,10,3,Land,Mountain,1,,,,,Y,N,N,N,N
 Start,Wright,12,Intercontinental Distance,,Continental Distance,*,15,5,3,Distance,,,,,Intercontinental,,Y,N,N,N,N
 Early,KACA,1,Stratosphere Low,SSI-10000m,Troposphere High,*,12,5,3,Altitude,,StratosphereLow,,,,,Y,Y,N,Y,N
 Early,KACA,2,Mach 1,SSI-Mach1,Airspeed Record,*,36,50,10,Speed,,TroposphereLow,TroposphereHigh,Mach1,,,Y,Y,N,Y,N

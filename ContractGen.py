@@ -14,7 +14,6 @@ DEST = os.getenv('DEST')
 DEBUG = False
 REPLACE_AUTOLOC = False
 DIST_TOLERANCE = 500.0 # 500m tolerance for distances, need to be at least X plus this distance for waypoint 
-MOUNTAIN_ALTITUDE = '1000.0' # 1000m is considered a mountain
 MOUNTAIN_BIOME = 'Mountains' # Blank if mountain biome not required
 
 # --------------------------------------------------------------------------------
@@ -307,10 +306,13 @@ class ContractType:
             self._gen_data_range('Alt', 'altitude', 'AltMin', self.altMin, 'AltMax', self.altMax)
         if self.style == 'Speed':
             self._gen_data_value('Speed', self.speed_desc(self.speed), self.speed_value(self.speed), "1.0", "m/s", 'Speed')
+            self._gen_data_range('Speed', 'speed', 'Speed', self.speed, '', '')
         if self.style == 'Distance':
             self._gen_data_value('Distance', self.distance_desc(self.distance), self.distance_value(self.distance), "1000.0", "km", 'Distance')
+            self._gen_data_range('Distance', 'distance', 'Distance', self.distance, '', '')
         if self.style == 'Land' and self.style_param == 'Mountain':
-            self._gen_data_value('AltMin', self.altitude_desc(MOUNTAIN_ALTITUDE), self.altitude_value(MOUNTAIN_ALTITUDE), "1000.0", "km", 'Minimum altitude')
+            self._gen_data_value('AltMin', self.altitude_desc(self.altMin), self.altitude_value(self.altMin), "1000.0", "km", 'Minimum altitude')
+            self._gen_data_range('Alt', 'altitude', 'AltMin', self.altMin, '', '')
         
     def _gen_data_value(self, name, desc, value, scale, units, title):
         if value == '':
@@ -357,27 +359,18 @@ class ContractType:
     def _gen_description(self):
         self.write('//CONTRACT DESCRIPTION\n')
         self.write('\n')
-        locFormatArgs = ', [ "" ] '
-        if self.style == 'Altitude':
-            locFormatArgs = ', [ "@/PrettyAltRange" ] '
-        elif self.style == 'Speed':
-            locFormatArgs = ', [ "@/PrettyAltRange", "@/PrettySpeed" ] '
-        elif self.style == 'Distance':
-            locFormatArgs = ', [ "@/PrettyDistance", "@/DescDistance" ] '
-        elif self.style == 'Land' and self.style == 'Mountain':
-            locFormatArgs = ', [ "@/PrettyAltMin" ] '
         self.write('	name = {}\n', self.name)
-        self.write('	title = Format("{}"{})\n', self.localize('title'), locFormatArgs)
+        self.write('	title = {}\n', self.localize('title'))
         self.write('	group = {}\n', self.group.name)
         self.write('	agent = {}\n', self.agent)
         self.write('\n')
-        self.write('	description = Format("{}"{})\n', self.localize('description'), locFormatArgs)
+        self.write('	description = {}\n', self.localize('description'))
         self.write('\n')
-        self.write('	synopsis = Format("{}"{})\n', self.localize('synopsis'), locFormatArgs)
+        self.write('	synopsis = {}\n', self.localize('synopsis'))
         self.write('\n')
-        self.write('	notes = Format("{}"{})\n', self.localize('notes'), locFormatArgs)
+        self.write('	notes = {}\n', self.localize('notes'))
         self.write('\n')
-        self.write('	completedMessage = Format("{}"{})\n', self.localize('completedMessage'), locFormatArgs)
+        self.write('	completedMessage = {}\n', self.localize('completedMessage'))
         self.write('\n')
         
     def _gen_limits(self):
@@ -684,7 +677,7 @@ class ContractType:
         self.write('	{{\n')
         self.write('		name = VesselParameterGroup\n')
         self.write('		type = VesselParameterGroup\n')
-        self.write('		title = fly to waypoint "Distance Marker" which is @/PrettyDistance@/DescDistance from KSC\n')
+        self.write('		title = fly to waypoint "Distance Marker" which is @/PrettyDistance from KSC\n')
         self.write('\n')
         self.write('		vessel = @/craft\n')
         self.write('\n')
@@ -901,7 +894,7 @@ class ContractType:
             self.write('			targetBody = HomeWorld()\n')
             if MOUNTAIN_BIOME != '':
                 self.write('			biome = {}\n', MOUNTAIN_BIOME)
-            self.write('			minAltitude = {}\n', MOUNTAIN_ALTITUDE)
+            self.write('			minAltitude = @/AltMin\n')
             self.write('			situation = LANDED\n')
             self.write('			maxSpeed = 0.0\n')
             self.write('\n')
