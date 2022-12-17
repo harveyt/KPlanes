@@ -78,6 +78,93 @@ Recommended IVA Dependencies, to fly inside the plane:
 * [MOARdV's Avionics System][url:AvionicsSystems] (or MAS) the successor to RPM.
 * [Reviva][url:Reviva] which is one of my other mods, allows much easier installing/switch IVA mods.
 
+## Speeds
+
+Speeds are measured in m/s and are always the same for any planet. Roughly speaking Mach numbers are
+multiples of 343 m/s, though this will vary depending on pressure, temperature and altitude.
+
+## Altitudes
+
+Altitudes are scaled by the planets FlyingHigh, SpaceLow and SpaceHigh altitudes:
+
+- TroposphereLow : ~14% from sea level to FlyingHigh.
+- TroposphereHigh : ~28% from sea level to FlyingHigh.
+- StratosphereLow : ~40% from sea level to FlyingHigh.
+- StratosphereHigh : ~70% from sea level to FlyingHigh.
+- MesosphereLow : always equals FlyingHigh.
+- MesosphereHigh : ~19% from FlyingHigh to SpaceLow.
+- ThermosphereLow : ~39% from FlyingHigh to SpaceLow.
+- SpaceLow : is where space starts in KSP.
+- SpaceLEO : is roughly how high ISS travels, or about 12% from SpaceLow to SpaceHigh.
+- SpaceHigh : is taken to mean MKO / MEO (Mid-Kerbin or Mid-Earth Orbit).
+
+The computations are algorithms which will work for any planet scale, but here are examples for
+common scales:
+
+For Stock (1x)
+
+- TroposphereLow: 2.50 km
+- TroposphereHigh: 5.00 km
+- StratosphereLow: 7.00 km
+- StratosphereHigh: 12.50 km
+- MesosphereLow, FlyingHigh : 18.00 km
+- MesosphereHigh: 30.00 km
+- ThermosphereLow: 40.00 km
+- SpaceLow : 70.00 km 
+
+For KSRSS (2.7x)
+
+- TroposphereLow: 2.50 km
+- TroposphereHigh: 5.00 km
+- StratosphereLow: 7.00 km
+- StratosphereHigh: 12.50 km
+- MesosphereLow, FlyingHigh : 18.00 km
+- MesosphereHigh: 30.00 km
+- ThermosphereLow: 40.00 km
+- SpaceLow : 80.00 km 
+
+For RSS (Earth):
+
+- TroposphereLow: 5.00 km
+- TroposphereHigh: 10.00 km
+- StratosphereLow: 20.00 km
+- StratosphereHigh: 45.00 km
+- MesosphereLow, FlyingHigh : 50.00 km
+- MesosphereHigh: 70.00 m
+- ThermosphereLow: 85.00 km
+- SpaceLow : 140.00 km 
+
+## Distances
+
+Distance contracts are scaled by the planets circumference:
+
+For Stock (1x):
+
+- Shop Hop : 50.00 km
+- Domestic : 100.00 km
+- Continental : 250.00 km
+- Intercontinental : 750.00 km
+- Polar : ~1,885 km
+- Equatorial : ~3,770 km
+
+For KSRSS (2.7x):
+
+- Shop Hop : 130.00 km
+- Domestic : 250.00 km
+- Continental : 700.00 km
+- Intercontinental : 2,000.00 km
+- Polar : ~5,000 km
+- Equatorial : ~10,0000 km
+
+For RSS (Earth):
+
+- Shop Hop : 530.00 km
+- Domestic : 1,000.00 km
+- Continental : 2,700.00 km
+- Intercontinental : 8,000.00 km
+- Polar : ~20,000 km
+- Equatorial : ~40,000 km
+
 ## Changes
 
 ### 0.1.0 Release - Basic contracts (1st Dec 2022)
