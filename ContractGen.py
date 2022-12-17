@@ -15,6 +15,7 @@ DEBUG = False
 REPLACE_AUTOLOC = False
 DIST_TOLERANCE = 500.0 # 500m tolerance for distances, need to be at least X plus this distance for waypoint 
 MOUNTAIN_BIOME = 'Mountains' # Blank if mountain biome not required
+MISSING_LOC = False
 
 # --------------------------------------------------------------------------------
 
@@ -116,6 +117,14 @@ class ContractType:
 
     def localize(self, field):
         key = self.localization.make_key(self, field)
+        if not self.localization.has(key):
+            global MISSING_LOC            
+            if not MISSING_LOC:
+                sys.stdout.write('--------------------------------------------------------------------------------\n')
+                sys.stdout.write('Missing localizations:\n')
+                sys.stdout.write('\n')
+                MISSING_LOC = True
+            sys.stdout.write('		{} = XXX\n'.format(key))
         if REPLACE_AUTOLOC:
             value = self.localization.get(key)
         else:
@@ -162,8 +171,13 @@ class ContractType:
         return self.desc_from_ident(ident)
     
     def generate(self):
-        if self.group.title != "Start":
+        if self.group.title != "Start" and self.group.title != "Early":
             return
+        if self.group.title == 'Early':
+            # Not done these yet
+            if self.counter == 5 or self.counter == 6 or self.counter == 9 \
+               or self.counter == 10:
+                return
         
         with open(self.output_path, "w") as self.out:
             self._gen_header()
@@ -925,7 +939,10 @@ class ContractType:
         self.write('		{{\n')
         self.write('			name = All\n')
         self.write('			type = All\n')
-        self.write('			title = have an air breathing engine only\n')
+        if self.rocket == 'N':
+            self.write('			title = have air breathing engines only\n')
+        else:
+            self.write('			title = have air breathing engines and/or rockets\n')
         self.write('\n')
         self.write('			PARAMETER\n')
         self.write('			{{\n')
@@ -948,58 +965,59 @@ class ContractType:
         self.write('\n')
         self.write('			}}\n')
         self.write('\n')
-        self.write('			PARAMETER\n')
-        self.write('			{{\n')
-        self.write('				name = PartValidation\n')
-        self.write('				type = PartValidation\n')
-        self.write('				title = not have any liquid rocket engines\n')
-        self.write('\n')
-        self.write('				NONE\n')
-        self.write('				{{\n')
-        self.write('					MODULE\n')
-        self.write('					{{\n')
-        self.write('						EngineType = LiquidFuel\n')
-        self.write('\n')
-        self.write('					}}\n')
-        self.write('\n')
-        self.write('				}}\n')
-        self.write('\n')
-        self.write('				disableOnStateChange = false\n')
-        self.write('				hideChildren = true\n')
-        self.write('\n')
-        self.write('			}}\n')
-        self.write('\n')
-        self.write('\n')
-        self.write('			PARAMETER\n')
-        self.write('			{{\n')
-        self.write('				name = HasResource\n')
-        self.write('				type = HasResource\n')
-        self.write('				title = not have any solid rocket fuel\n')
-        self.write('\n')
-        self.write('				resource = SolidFuel				\n')
-        self.write('				minQuantity = 0.0\n')
-        self.write('				maxQuantity = 0.0\n')
-        self.write('\n')
-        self.write('				disableOnStateChange = false\n')
-        self.write('				hideChildren = true\n')
-        self.write('\n')
-        self.write('			}}\n')
-        self.write('\n')
-        self.write('			PARAMETER\n')
-        self.write('			{{\n')
-        self.write('				name = HasResource\n')
-        self.write('				type = HasResource\n')
-        self.write('				title = not have any oxidizer\n')
-        self.write('\n')
-        self.write('				resource = Oxidizer				\n')
-        self.write('				minQuantity = 0.0\n')
-        self.write('				maxQuantity = 0.0\n')
-        self.write('\n')
-        self.write('				disableOnStateChange = false\n')
-        self.write('				hideChildren = true\n')
-        self.write('\n')
-        self.write('			}}\n')
-        self.write('\n')
+        if self.rocket == 'N':
+            self.write('			PARAMETER\n')
+            self.write('			{{\n')
+            self.write('				name = PartValidation\n')
+            self.write('				type = PartValidation\n')
+            self.write('				title = not have any liquid rocket engines\n')
+            self.write('\n')
+            self.write('				NONE\n')
+            self.write('				{{\n')
+            self.write('					MODULE\n')
+            self.write('					{{\n')
+            self.write('						EngineType = LiquidFuel\n')
+            self.write('\n')
+            self.write('					}}\n')
+            self.write('\n')
+            self.write('				}}\n')
+            self.write('\n')
+            self.write('				disableOnStateChange = false\n')
+            self.write('				hideChildren = true\n')
+            self.write('\n')
+            self.write('			}}\n')
+            self.write('\n')
+            self.write('\n')
+            self.write('			PARAMETER\n')
+            self.write('			{{\n')
+            self.write('				name = HasResource\n')
+            self.write('				type = HasResource\n')
+            self.write('				title = not have any solid rocket fuel\n')
+            self.write('\n')
+            self.write('				resource = SolidFuel\n')
+            self.write('				minQuantity = 0.0\n')
+            self.write('				maxQuantity = 0.0\n')
+            self.write('\n')
+            self.write('				disableOnStateChange = false\n')
+            self.write('				hideChildren = true\n')
+            self.write('\n')
+            self.write('			}}\n')
+            self.write('\n')
+            self.write('			PARAMETER\n')
+            self.write('			{{\n')
+            self.write('				name = HasResource\n')
+            self.write('				type = HasResource\n')
+            self.write('				title = not have any oxidizer\n')
+            self.write('\n')
+            self.write('				resource = Oxidizer\n')
+            self.write('				minQuantity = 0.0\n')
+            self.write('				maxQuantity = 0.0\n')
+            self.write('\n')
+            self.write('				disableOnStateChange = false\n')
+            self.write('				hideChildren = true\n')
+            self.write('\n')
+            self.write('			}}\n')
+            self.write('\n')
         self.write('			disableOnStateChange = false\n')
         self.write('\n')
         self.write('		}}\n')
@@ -1269,6 +1287,9 @@ class Localization:
 
     def add(self, key, value):
         self.entries[key] = value
+
+    def has(self, key):
+        return key in self.entries
         
     def get(self, key):
         if key not in self.entries:
