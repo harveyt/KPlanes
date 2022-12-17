@@ -26,9 +26,9 @@ Early,KACA,12,Around The Poles,,Around The World,**,90,25,20,Distance,,,,,Circum
 Modern,KASA,1,Mesosphere High,SSI-60000m,Mesosphere Low,**,70,25,25,Altitude,,MesosphereLow,,,,,Y,Y,N,N,N
 Modern,KASA,2,Mach 4,SSI-Mach4,Mach 3 Jet,**,100,25,25,Speed,,TroposphereLow,MesosphereLow,Mach4,,,Y,Y,N,N,N
 Modern,KASA,3,Rocket VTOL,,"Jet VTOL,Troposphere High",**,80,25,15,Land,Hovering,,,,,,N,Y,N,N,N
-Modern,KASA,4,Sub-Orbital,,"Mesosphere,Mach 4",**,90,30,20,Altitude,,SpaceLow,,,,,Y,Y,N,N,N
+Modern,KASA,4,Sub-Orbital,,"Mesosphere High,Mach 4",**,90,30,20,Altitude,,SpaceLow,,,,,Y,Y,N,N,N
 Modern,KASA,5,Mach 5,,Mach 4,***,120,35,25,Speed,,TroposphereLow,MesosphereLow,Mach5,,,Y,Y,N,N,N
-Modern,KASA,6,Going Electrical,,"Around The World,Stratospheric High",***,150,40,25,Distance,,,,,Circumference,,N,N,N,N,Y
+Modern,KASA,6,Going Electrical,,"Around The World,Stratosphere High",***,150,40,25,Distance,,,,,Circumference,,N,N,N,N,Y
 Modern,KASA,7,Orbital Shuttle,,"Sub-Orbital,Mach 5",**,200,50,30,Distance,Orbit,SpaceLow,,,,,Y,Y,Y,N,N
 Modern,KASA,8,Orbital Shuttle 1T Payload,,Orbital Shuttle,***,100,30,15,Payload,Orbit,SpaceLEO,,,,1,Y,Y,Y,N,N
 Modern,KASA,9,Orbital Shuttle 10T Payload,,Orbital Shuttle 1T Payload,*,120,40,15,Payload,Orbit,SpaceLEO,,,,10,Y,Y,Y,N,N
