@@ -17,12 +17,12 @@ Early,KACA,3,Stratosphere High,SSI-20000m,Stratosphere Low,*,36,5,5,Altitude,,St
 Early,KACA,4,Mach 2,SSI-Mach2,Mach 1,**,47,25,10,Speed,,TroposphereLow,StratosphereHigh,Mach2,,,Y,Y,N,Y,N
 Early,KACA,5,Stratospheric Jet,,"Stratosphere High,Mach 1",**,50,20,12,Speed,,StratosphereLow,StratosphereHigh,Mach1,,,Y,N,N,N,N
 Early,KACA,6,To The North Pole,,Intercontinental Distance,*,60,25,12,Distance,,,StratosphereHigh,,Polar,,Y,N,N,N,Y
-Early,KACA,7,Mesosphere Low,,Stratosphere High,*,47,10,15,Altitude,,StratosphereHigh,,,,,Y,Y,N,Y,N
+Early,KACA,7,Mesosphere Low,,Stratosphere High,*,47,10,15,Altitude,,MesosphereLow,,,,,Y,Y,N,Y,N
 Early,KACA,8,Mach 3,SSI-Mach3,Mach 2,*,70,25,15,Speed,,TroposphereLow,StratosphereHigh,Mach3,,,Y,Y,N,Y,N
 Early,KACA,9,Around The Poles,,To The North Pole,**,80,25,20,Distance,,,StratosphereHigh,,CircumPolar,,Y,N,N,N,Y
 Early,KACA,10,Around The World,,To The North Pole,**,80,30,5,Distance,,,StratosphereHigh,,CircumEquator,,Y,N,N,N,Y
-Early,KACA,11,Mesosphere High,SSI-35000m,Mesosphere Low,**,70,25,25,Altitude,,MesosphereLow,StratosphereHigh,,,,Y,Y,N,N,N
-Early,KACA,12,Mach 4,SSI-Mach4,Mach 3,**,100,25,25,Speed,,StratosphereLow,MesosphereLow,Mach4,,,Y,Y,N,Y,N
+Early,KACA,11,Mesosphere High,SSI-35000m,Mesosphere Low,**,70,25,25,Altitude,,MesosphereHigh,,,,,Y,Y,N,N,N
+Early,KACA,12,Mach 4,SSI-Mach4,Mach 3,**,100,25,25,Speed,,StratosphereLow,MesosphereHigh,Mach4,,,Y,Y,N,Y,N
 Modern,KASA,1,Thermosphere Low,SSI-60000m,Mesosphere High,**,80,25,15,Altitude,,ThermosphereLow,,,,,Y,Y,N,Y,N
 Modern,KASA,2,Sub-Orbital,,"Mesosphere High,Mach 4",**,90,30,20,Altitude,,SpaceLow,,,,,Y,Y,N,N,N
 Modern,KASA,3,Mach 5,,Mach 4,***,120,35,25,Speed,,StratosphereLow,ThermosphereLow,Mach5,,,Y,Y,N,Y,N
