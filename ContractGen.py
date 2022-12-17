@@ -301,29 +301,22 @@ class ContractType:
         self.write('	}}\n')
         self.write('\n')
         if self.style == 'Altitude' or self.style == 'Speed':
-            self._gen_data_value('AltMin', self.altitude_desc(self.altMin), self.altitude_value(self.altMin), "1000.0", "km", 'Minimum altitude')
-            self._gen_data_value('AltMax', self.altitude_desc(self.altMax), self.altitude_value(self.altMax), "1000.0", "km", 'Maximum altitude')
+            self._gen_data_value('AltMin', self.altitude_desc(self.altMin), self.altitude_value(self.altMin), "#,#,,#", "km", 'Minimum altitude')
+            self._gen_data_value('AltMax', self.altitude_desc(self.altMax), self.altitude_value(self.altMax), "#,#,,#", "km", 'Maximum altitude')
             self._gen_data_range('Alt', 'altitude', 'AltMin', self.altMin, 'AltMax', self.altMax)
         if self.style == 'Speed':
-            self._gen_data_value('Speed', self.speed_desc(self.speed), self.speed_value(self.speed), "1.0", "m/s", 'Speed')
+            self._gen_data_value('Speed', self.speed_desc(self.speed), self.speed_value(self.speed), "#,#", "m/s", 'Speed')
             self._gen_data_range('Speed', 'speed', 'Speed', self.speed, '', '')
         if self.style == 'Distance':
-            self._gen_data_value('Distance', self.distance_desc(self.distance), self.distance_value(self.distance), "1000.0", "km", 'Distance')
+            self._gen_data_value('Distance', self.distance_desc(self.distance), self.distance_value(self.distance), "#,#,,#", "km", 'Distance')
             self._gen_data_range('Distance', 'distance', 'Distance', self.distance, '', '')
         if self.style == 'Land' and self.style_param == 'Mountain':
-            self._gen_data_value('AltMin', self.altitude_desc(self.altMin), self.altitude_value(self.altMin), "1000.0", "km", 'Minimum altitude')
+            self._gen_data_value('AltMin', self.altitude_desc(self.altMin), self.altitude_value(self.altMin), "#,#,,#", "km", 'Minimum altitude')
             self._gen_data_range('Alt', 'altitude', 'AltMin', self.altMin, '', '')
         
-    def _gen_data_value(self, name, desc, value, scale, units, title):
+    def _gen_data_value(self, name, desc, value, fmt, units, title):
         if value == '':
             return
-        self.write('	DATA\n')
-        self.write('	{{\n')
-        self.write('		type = double\n')
-        self.write('		{} = {}\n', name, value)
-        self.write('		Scaled{} = Round(@/{} / {})\n', name, name, scale)
-        self.write('		title = {}\n', title)
-        self.write('	}}\n')
         self.write('\n')
         self.write('	DATA\n')
         self.write('	{{\n')
@@ -335,7 +328,7 @@ class ContractType:
         self.write('	DATA\n')
         self.write('	{{\n')
         self.write('		type = string\n')
-        self.write('		Pretty{} = "@/Scaled{}.Print() {}"\n', name, name, units)
+        self.write('		Pretty{} = @/{}.ToString("{} {}")\n', name, name, fmt, units)
         self.write('		title = {}\n', title)        
         self.write('	}}\n')
         self.write('\n')

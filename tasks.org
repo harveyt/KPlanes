@@ -13,7 +13,7 @@
 ** DONE Add Makefile build and test system
 ** DONE Add first contract type and fix bugs
 
-* TODO [23/44] Version 0.2.0
+* TODO [28/44] Version 0.2.0
 
 ** DONE Add all GAP milestone contracts
 - Including Heli and Seaplane too
@@ -97,12 +97,11 @@
 - Use Waypoint Generator to create waypoint with suitable min/max distance from launch
   site.
 ** DONE Change distance markers to half distance
-** TODO Change loc entries to use @vars not Format
-** TODO Ensure distances are always rounded 1000m (ie. pretty 10km)
-** TODO Ensure speeds are always rounded 1m/s (ie. pretty 10m/s)
-** TODO Ensure alts are always rounded 500m min if less than 10000, 1km greater
-** TODO Change PrettyXXX to use ToString
-- eg. for alt:: d >= 10000 ? ToString("#,#,,.#") + "km" : ToString("#,#") + "m"
+** DONE Change loc entries to use @vars not Format
+** DONE Ensure speeds are always rounded 1m/s
+** DONE Ensure alts are always rounded to 1km
+** DONE Ensure distances are always rounded 1km
+** DONE Change PrettyXXX to use ToString
 ** TODO Extract localized data from GAP into loc file
 ** TODO Change speed records to computed Mach values
 - Rather than Mach 1 which is height dependant
