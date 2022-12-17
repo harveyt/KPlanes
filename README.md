@@ -103,7 +103,7 @@ common scales:
 
 For Stock (1x)
 
-- TroposphereLow: 2.50 km
+- TroposphereLow: 2.00 km
 - TroposphereHigh: 5.00 km
 - StratosphereLow: 7.00 km
 - StratosphereHigh: 12.50 km
@@ -114,7 +114,7 @@ For Stock (1x)
 
 For KSRSS (2.7x)
 
-- TroposphereLow: 2.50 km
+- TroposphereLow: 2.00 km
 - TroposphereHigh: 5.00 km
 - StratosphereLow: 7.00 km
 - StratosphereHigh: 12.50 km
