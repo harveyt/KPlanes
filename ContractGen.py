@@ -362,9 +362,15 @@ class ContractType:
         if minIdent != '' and maxIdent != '':
             self.write('		Pretty{}Range = {} between @/Pretty{}@/Desc{} and @/Pretty{}@/Desc{}\n', name, style, minName, minName, maxName, maxName)
         elif  minIdent != '' and maxIdent == '':
-            self.write('		Pretty{}Range = {} of at least @/Pretty{}@/Desc{}\n', name, style, minName, minName)
+            ranger = "of at least"
+            if style == 'altitude':
+                ranger = "above"
+            self.write('		Pretty{}Range = {} {} @/Pretty{}@/Desc{}\n', name, style, ranger, minName, minName)
         else:
-            self.write('		Pretty{}Range = {} of at most @/Pretty{}@/Desc{}\n', name, style, maxName, maxName)
+            ranger = "of at least"
+            if style == 'altitude':
+                ranger = "below"
+            self.write('		Pretty{}Range = {} {} @/Pretty{}@/Desc{}\n', name, style, ranger, maxName, maxName)
         self.write('		title = Range for {} \n', style)        
         self.write('	}}\n')
         self.write('\n')
@@ -927,6 +933,8 @@ class ContractType:
         if self.altMax != '':
             self.write('			maxAltitude = @/AltMax\n')
         self.write('\n')
+        if failWhenUnmet:
+            self.write('			failWhenUnmet = true\n')
         self.write('			disableOnStateChange = {}\n', in_seq)
         self.write('			hideChildren = true\n')
         self.write('			hidden = true\n')
