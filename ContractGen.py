@@ -827,7 +827,7 @@ class ContractType:
         self.write('	}}\n')
         self.write('\n')
         self.write('//Contract Goals\n')
-        self._gen_parameters_altitude_limits('false', '	')
+        self._gen_parameters_altitude_limits('false', '', True) # Will fail if altitude exceeded, considered cheating
         self.write('	PARAMETER\n')
         self.write('	{{\n')
         self.write('		name = VesselParameterGroup\n')
