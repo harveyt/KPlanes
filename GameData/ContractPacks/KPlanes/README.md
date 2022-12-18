@@ -177,6 +177,12 @@ For RSS (Earth), distances are ten times stock scale, so this is Hard Mode!
 
 ## Changes
 
+### 0.3.0 Release - Start and Early contracts second pass (17th Dec 2022)
+
+- Fixed distance contracts, now seem to work better.
+- Added Polar, Circum-Polar and Round The World distances.
+- Some testing, but still not recommended for general gameplay.
+
 ### 0.2.0 Release - Start and most Early contracts (17th Dec 2022)
 
 - Most of the GAP milestone contracts now present.

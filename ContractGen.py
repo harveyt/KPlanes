@@ -915,7 +915,7 @@ class ContractType:
         self.write('		name = VesselParameterGroup\n')
         self.write('		type = VesselParameterGroup\n')
         if failWhenUnmet:
-            self.write('		title = always flying at an @/PrettyAltRange\n')
+            self.write('		title = if flying, then at an @/PrettyAltRange\n')
         else:
             self.write('		title = fly at an @/PrettyAltRange\n')
         self.write('\n')
@@ -928,6 +928,13 @@ class ContractType:
         self.write('\n')
         self.write('			targetBody = HomeWorld()\n')
         self.write('			situation = FLYING\n')
+        if failWhenUnmet:
+            # For distance, allow other situations so contract does not fail when not flying.
+            # This allows for landing during distance also.
+            self.write('			situation = LANDED\n')
+            self.write('			situation = PRELAUNCH\n')
+            self.write('			situation = SPLASHED\n')
+            self.write('			situation = SUB_ORBITAL\n')
         if self.altMin != '':
             self.write('			minAltitude = @/AltMin\n')
         if self.altMax != '':
