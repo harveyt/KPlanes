@@ -697,7 +697,7 @@ class ContractType:
         self.write('	}}\n')
         self.write('\n')
         self.write('//Contract Goals\n')
-        self._gen_parameters_altitude_limits('false', '	')
+        self._gen_parameters_altitude_limits('false', '', True) # Will fail if altitude exceeded, considered cheating
         self.write('	PARAMETER\n')
         self.write('	{{\n')
         self.write('		name = VesselParameterGroup\n')
@@ -900,7 +900,7 @@ class ContractType:
         self.write('	}}\n')
         self.write('\n')
         
-    def _gen_parameters_altitude_limits(self, in_seq='true', indent=''):
+    def _gen_parameters_altitude_limits(self, in_seq='true', indent='', failWhenUnmet=False):
         if self.altMin == '' and self.altMax == '':
             return
         self.write_indent(indent)
@@ -908,7 +908,10 @@ class ContractType:
         self.write('	{{\n')
         self.write('		name = VesselParameterGroup\n')
         self.write('		type = VesselParameterGroup\n')
-        self.write('		title = fly at an @/PrettyAltRange\n')
+        if failWhenUnmet:
+            self.write('		title = always flying at an @/PrettyAltRange\n')
+        else:
+            self.write('		title = fly at an @/PrettyAltRange\n')
         self.write('\n')
         self.write('		vessel = @/craft\n')
         self.write('\n')
