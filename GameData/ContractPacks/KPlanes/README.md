@@ -177,7 +177,13 @@ For RSS (Earth), distances are ten times stock scale, so this is Hard Mode!
 
 ## Changes
 
-### 0.1.0 Release - Basic contracts (1st Dec 2022)
+### 0.2.0 Release - Start and most Early contracts (17th Dec 2022)
+
+- Most of the GAP milestone contracts now present.
+- Progression should work, and everything should scale to homeworld scale.
+- Only slightly tested, so probably still not recommended for general gameplay.
+
+### 0.1.0 Release - Start contracts (1st Dec 2022)
 
 - Not really functional, but general idea started.
 

@@ -173,11 +173,6 @@ class ContractType:
     def generate(self):
         if self.group.title != "Start" and self.group.title != "Early":
             return
-        if self.group.title == 'Early':
-            # Not done these yet
-            if self.counter == 5 or self.counter == 6 or self.counter == 9 \
-               or self.counter == 10:
-                return
         
         with open(self.output_path, "w") as self.out:
             self._gen_header()
@@ -670,6 +665,50 @@ class ContractType:
             
     def _gen_parameters_style_distance_marker(self):
         self.write('//Contract Behaviour (Distance Marker)\n')
+        # Data for waypoints, depending on what style
+        self.write('	DATA\n')
+        self.write('	{{\n')
+        self.write('		type = double\n')
+        if self.distance == 'Polar':
+            # Marker1 == Half-way
+            marker1Lat = '(90.0 - KSC().Location().Latitude()) / 2.0 + KSC().Location().Latitude()'
+            marker1Lon = 'KSC().Location().Longitude()'
+            # Marker2 == North Pole (could choose South Pole randomly, but we do not)
+            marker2Lat = '90.0'
+            marker2Lon = 'KSC().Location().Longitude()'
+            # Marker3 == same as Marker1, so come back the same way
+            marker3Lat = '@/Marker1Lat'
+            marker3Lon = '@/Marker1Lon'
+        elif self.distance == 'CircumPolar':
+            # Marker1 == North Pole (could choose South Pole randomly, but we do not)
+            marker1Lat = '90.0'
+            marker1Lon = 'KSC().Location().Longitude()'
+            # Marker2 == Opposite side of world to KSC (so you have to go all the way round)
+            marker2Lat = 'KSC().Location().Latitude()'
+            marker2Lon = 'KSC().Location().Longitude() >= 0.0 ? KSC().Location().Longitude() - 180.0 : KSC().Location().Longitude() + 180.0'
+            # Marker3 == South Pole
+            marker3Lat = '-90.0'
+            marker3Lon = 'KSC().Location().Longitude()'
+        else:
+            # Marker1 == -90 west of KSC on equator
+            marker1Lat = '0.0'
+            marker1Lon = 'KSC().Location().Longitude() >= 90.0 ? KSC().Location().Longitude() - 90.0 : KSC().Location().Longitude() + 90.0'
+            # Marker2 == opposite side of world on equator
+            marker2Lat = '0.0'
+            marker2Lon = 'KSC().Location().Longitude() >= 0.0 ? KSC().Location().Longitude() - 180.0 : KSC().Location().Longitude() + 180.0'
+            # Marker3 == +90 east of KSC
+            marker3Lat = '0.0'
+            marker3Lon = 'KSC().Location().Longitude() <= 90.0 ? KSC().Location().Longitude() + 90.0 : KSC().Location().Longitude() - 90.0'
+        self.write('		Marker1Lat = {}\n', marker1Lat)
+        self.write('		Marker1Lon = {}\n', marker1Lon)
+        self.write('		Marker2Lat = {}\n', marker2Lat)
+        self.write('		Marker2Lon = {}\n', marker2Lon)
+        self.write('		Marker3Lat = {}\n', marker3Lat)
+        self.write('		Marker3Lon = {}\n', marker3Lon)
+        self.write('		title = Marker Locations\n')
+        self.write('	}}\n')
+        self.write('\n')
+        # Waypoints and visiting each in order
         self.write('BEHAVIOUR\n')
         self.write('{{\n')
         self.write('    name = WaypointGenerator\n')
@@ -735,6 +774,121 @@ class ContractType:
 
     def _gen_parameters_style_distance_waypoints(self):
         self.write('//Contract Behaviour (Waypoints)\n')
+        self.write('BEHAVIOUR\n')
+        self.write('{{\n')
+        self.write('    name = WaypointGenerator\n')
+        self.write('    type = WaypointGenerator\n')
+        self.write('\n')
+        self.write('    PQS_CITY\n')
+        self.write('    {{\n')
+        self.write('        name = KSC\n')
+        self.write('\n')
+        self.write('        targetBody = HomeWorld()\n')
+        self.write('        hidden = true\n')
+        self.write('        icon = ksc\n')
+        self.write('        pqsCity = KSC\n')
+        self.write('    }}\n')
+        self.write('\n')
+        self.write('	WAYPOINT\n')
+        self.write('	{{\n')
+        self.write('		name = Marker 1\n')
+        self.write('\n')
+        self.write('		targetBody = HomeWorld()\n')
+        self.write('		icon = custom\n')
+        self.write('		altitude = 0.0\n')
+        self.write('		latitude = @/Marker1Lat\n')
+        self.write('		latitude = @/Marker1Lon\n')
+        self.write('	}}\n')
+        self.write('\n')
+        self.write('	WAYPOINT\n')
+        self.write('	{{\n')
+        self.write('		name = Marker 2\n')
+        self.write('		parameter = Marker1Reached\n')
+        self.write('\n')
+        self.write('		targetBody = HomeWorld()\n')
+        self.write('		icon = custom\n')
+        self.write('		altitude = 0.0\n')
+        self.write('		latitude = @/Marker2Lat\n')
+        self.write('		latitude = @/Marker2Lon\n')
+        self.write('	}}\n')
+        self.write('\n')
+        self.write('	WAYPOINT\n')
+        self.write('	{{\n')
+        self.write('		name = Marker 3\n')
+        self.write('		parameter = Marker2Reached\n')
+        self.write('\n')
+        self.write('		targetBody = HomeWorld()\n')
+        self.write('		icon = custom\n')
+        self.write('		altitude = 0.0\n')
+        self.write('		latitude = @/Marker3Lat\n')
+        self.write('		latitude = @/Marker3Lon\n')
+        self.write('	}}\n')
+        self.write('}}\n')
+        self.write('\n')
+        self.write('//Contract Goals\n')
+        self._gen_parameters_altitude_limits('false', '	')
+        self.write('	PARAMETER\n')
+        self.write('	{{\n')
+        self.write('		name = VesselParameterGroup\n')
+        self.write('		type = VesselParameterGroup\n')
+        self.write('		title = fly to Marker 1, 2 and 3 in sequence, then return to KSC\n')
+        self.write('\n')
+        self.write('		vessel = @/craft\n')
+        self.write('\n')
+        self.write('		PARAMETER\n')
+        self.write('		{{\n')
+        self.write('			name = Marker1Reached\n')
+        self.write('			type = VisitWaypoint\n')
+        self.write('\n')
+        self.write('			index = 1\n')
+        self.write('			horizontalDistance = {}\n', DIST_TOLERANCE)
+        self.write('			hideOnCompletion = true\n')
+        self.write('			showMessages = true\n')
+        self.write('\n')
+        self.write('			disableOnStateChange = true\n')
+        self.write('			hideChildren = true\n')
+        self.write('			hidden = true\n')
+        self.write('\n')
+        self.write('		}}\n')
+        self.write('\n')
+        self.write('		PARAMETER\n')
+        self.write('		{{\n')
+        self.write('			name = Marker2Reached\n')
+        self.write('			type = VisitWaypoint\n')
+        self.write('\n')
+        self.write('			index = 2\n')
+        self.write('			horizontalDistance = {}\n', DIST_TOLERANCE)
+        self.write('			hideOnCompletion = true\n')
+        self.write('			showMessages = true\n')
+        self.write('\n')
+        self.write('			disableOnStateChange = true\n')
+        self.write('			hideChildren = true\n')
+        self.write('			hidden = true\n')
+        self.write('\n')
+        self.write('		}}\n')
+        self.write('\n')
+        self.write('		PARAMETER\n')
+        self.write('		{{\n')
+        self.write('			name = Marker3Reached\n')
+        self.write('			type = VisitWaypoint\n')
+        self.write('\n')
+        self.write('			index = 3\n')
+        self.write('			horizontalDistance = {}\n', DIST_TOLERANCE)
+        self.write('			hideOnCompletion = true\n')
+        self.write('			showMessages = true\n')
+        self.write('\n')
+        self.write('			disableOnStateChange = true\n')
+        self.write('			hideChildren = true\n')
+        self.write('			hidden = true\n')
+        self.write('\n')
+        self.write('		}}\n')
+        self.write('\n')
+        self.write('		completeInSequence = true\n')
+        self.write('		disableOnStateChange = true\n')
+        self.write('		hideChildren = true\n')
+        self.write('\n')
+        self.write('	}}\n')
+        self.write('\n')
         
     def _gen_parameters_altitude_limits(self, in_seq='true', indent=''):
         if self.altMin == '' and self.altMax == '':
