@@ -665,50 +665,6 @@ class ContractType:
             
     def _gen_parameters_style_distance_marker(self):
         self.write('//Contract Behaviour (Distance Marker)\n')
-        # Data for waypoints, depending on what style
-        self.write('	DATA\n')
-        self.write('	{{\n')
-        self.write('		type = double\n')
-        if self.distance == 'Polar':
-            # Marker1 == Half-way
-            marker1Lat = '(90.0 - KSC().Location().Latitude()) / 2.0 + KSC().Location().Latitude()'
-            marker1Lon = 'KSC().Location().Longitude()'
-            # Marker2 == North Pole (could choose South Pole randomly, but we do not)
-            marker2Lat = '90.0'
-            marker2Lon = 'KSC().Location().Longitude()'
-            # Marker3 == same as Marker1, so come back the same way
-            marker3Lat = '@/Marker1Lat'
-            marker3Lon = '@/Marker1Lon'
-        elif self.distance == 'CircumPolar':
-            # Marker1 == North Pole (could choose South Pole randomly, but we do not)
-            marker1Lat = '90.0'
-            marker1Lon = 'KSC().Location().Longitude()'
-            # Marker2 == Opposite side of world to KSC (so you have to go all the way round)
-            marker2Lat = 'KSC().Location().Latitude()'
-            marker2Lon = 'KSC().Location().Longitude() >= 0.0 ? KSC().Location().Longitude() - 180.0 : KSC().Location().Longitude() + 180.0'
-            # Marker3 == South Pole
-            marker3Lat = '-90.0'
-            marker3Lon = 'KSC().Location().Longitude()'
-        else:
-            # Marker1 == -90 west of KSC on equator
-            marker1Lat = '0.0'
-            marker1Lon = 'KSC().Location().Longitude() >= 90.0 ? KSC().Location().Longitude() - 90.0 : KSC().Location().Longitude() + 90.0'
-            # Marker2 == opposite side of world on equator
-            marker2Lat = '0.0'
-            marker2Lon = 'KSC().Location().Longitude() >= 0.0 ? KSC().Location().Longitude() - 180.0 : KSC().Location().Longitude() + 180.0'
-            # Marker3 == +90 east of KSC
-            marker3Lat = '0.0'
-            marker3Lon = 'KSC().Location().Longitude() <= 90.0 ? KSC().Location().Longitude() + 90.0 : KSC().Location().Longitude() - 90.0'
-        self.write('		Marker1Lat = {}\n', marker1Lat)
-        self.write('		Marker1Lon = {}\n', marker1Lon)
-        self.write('		Marker2Lat = {}\n', marker2Lat)
-        self.write('		Marker2Lon = {}\n', marker2Lon)
-        self.write('		Marker3Lat = {}\n', marker3Lat)
-        self.write('		Marker3Lon = {}\n', marker3Lon)
-        self.write('		title = Marker Locations\n')
-        self.write('	}}\n')
-        self.write('\n')
-        # Waypoints and visiting each in order
         self.write('	BEHAVIOUR\n')
         self.write('	{{\n')
         self.write('	    name = WaypointGenerator\n')
@@ -774,6 +730,50 @@ class ContractType:
 
     def _gen_parameters_style_distance_waypoints(self):
         self.write('//Contract Behaviour (Waypoints)\n')
+        # Data for waypoints, depending on what style
+        self.write('	DATA\n')
+        self.write('	{{\n')
+        self.write('		type = double\n')
+        if self.distance == 'Polar':
+            # Marker1 == Half-way
+            marker1Lat = '(90.0 - KSC().Location().Latitude()) / 2.0 + KSC().Location().Latitude()'
+            marker1Lon = 'KSC().Location().Longitude()'
+            # Marker2 == North Pole (could choose South Pole randomly, but we do not)
+            marker2Lat = '90.0'
+            marker2Lon = 'KSC().Location().Longitude()'
+            # Marker3 == same as Marker1, so come back the same way
+            marker3Lat = '@/Marker1Lat'
+            marker3Lon = '@/Marker1Lon'
+        elif self.distance == 'CircumPolar':
+            # Marker1 == North Pole (could choose South Pole randomly, but we do not)
+            marker1Lat = '90.0'
+            marker1Lon = 'KSC().Location().Longitude()'
+            # Marker2 == Opposite side of world to KSC (so you have to go all the way round)
+            marker2Lat = 'KSC().Location().Latitude()'
+            marker2Lon = 'KSC().Location().Longitude() >= 0.0 ? KSC().Location().Longitude() - 180.0 : KSC().Location().Longitude() + 180.0'
+            # Marker3 == South Pole
+            marker3Lat = '-90.0'
+            marker3Lon = 'KSC().Location().Longitude()'
+        else:
+            # Marker1 == -90 west of KSC on equator
+            marker1Lat = '0.0'
+            marker1Lon = 'KSC().Location().Longitude() >= 90.0 ? KSC().Location().Longitude() - 90.0 : KSC().Location().Longitude() + 90.0'
+            # Marker2 == opposite side of world on equator
+            marker2Lat = '0.0'
+            marker2Lon = 'KSC().Location().Longitude() >= 0.0 ? KSC().Location().Longitude() - 180.0 : KSC().Location().Longitude() + 180.0'
+            # Marker3 == +90 east of KSC
+            marker3Lat = '0.0'
+            marker3Lon = 'KSC().Location().Longitude() <= 90.0 ? KSC().Location().Longitude() + 90.0 : KSC().Location().Longitude() - 90.0'
+        self.write('		Marker1Lat = {}\n', marker1Lat)
+        self.write('		Marker1Lon = {}\n', marker1Lon)
+        self.write('		Marker2Lat = {}\n', marker2Lat)
+        self.write('		Marker2Lon = {}\n', marker2Lon)
+        self.write('		Marker3Lat = {}\n', marker3Lat)
+        self.write('		Marker3Lon = {}\n', marker3Lon)
+        self.write('		title = Marker Locations\n')
+        self.write('	}}\n')
+        self.write('\n')
+        # Waypoints and visiting each in order
         self.write('	BEHAVIOUR\n')
         self.write('	{{\n')
         self.write('	    name = WaypointGenerator\n')
