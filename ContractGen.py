@@ -13,10 +13,10 @@ ROOT = os.getenv('ROOT')
 DEST = os.getenv('DEST')
 DEBUG = False
 REPLACE_AUTOLOC = False
-DIST_TOLERANCE = 1.0 # 1km tolerance for waypoint distances
+DIST_TOLERANCE = 1.0 # 1km horizontal distance tolerance for waypoints
 MOUNTAIN_BIOME = 'Mountains' # Blank if mountain biome not required
 MISSING_LOC = False
-LONG_OFFSET= 1.0
+LONG_OFFSET= 2.0
 
 # --------------------------------------------------------------------------------
 
@@ -848,6 +848,7 @@ class ContractType:
         self.write('			completedMessage = You reached the Marker 1, head to Marker 2.\n')
         self.write('			showMessages = true\n')
         self.write('\n')
+        self.write('			completeInSequence = true\n')
         self.write('			disableOnStateChange = true\n')
         self.write('			hideChildren = true\n')
         self.write('			hidden = false\n')
@@ -866,6 +867,7 @@ class ContractType:
         self.write('			completedMessage = You reached the Marker 2, head to Marker 3.\n')
         self.write('			showMessages = true\n')
         self.write('\n')
+        self.write('			completeInSequence = true\n')
         self.write('			disableOnStateChange = true\n')
         self.write('			hideChildren = true\n')
         self.write('			hidden = false\n')
@@ -884,6 +886,7 @@ class ContractType:
         self.write('			completedMessage = You reached the Marker 3, head back to KSC.\n')
         self.write('			showMessages = true\n')
         self.write('\n')
+        self.write('			completeInSequence = true\n')
         self.write('			disableOnStateChange = true\n')
         self.write('			hideChildren = true\n')
         self.write('			hidden = false\n')
