@@ -16,6 +16,7 @@ REPLACE_AUTOLOC = False
 DIST_TOLERANCE = 500.0 # 500m tolerance for distances, need to be at least X plus this distance for waypoint 
 MOUNTAIN_BIOME = 'Mountains' # Blank if mountain biome not required
 MISSING_LOC = False
+LONG_OFFSET= 1.0
 
 # --------------------------------------------------------------------------------
 
@@ -737,13 +738,13 @@ class ContractType:
         if self.distance == 'Polar':
             # Marker1 == Half-way
             marker1Lat = '(90.0 - KSC().Location().Latitude()) / 2.0 + KSC().Location().Latitude()'
-            marker1Lon = 'KSC().Location().Longitude()'
+            marker1Lon = 'KSC().Location().Longitude() + {}'.format(LONG_OFFSET)
             # Marker2 == North Pole (could choose South Pole randomly, but we do not)
             marker2Lat = '90.0'
             marker2Lon = 'KSC().Location().Longitude()'
             # Marker3 == same as Marker1, so come back the same way
             marker3Lat = '@/Marker1Lat'
-            marker3Lon = '@/Marker1Lon'
+            marker3Lon = '@/Marker1Lon - {}'.format(LONG_OFFSET)
         elif self.distance == 'CircumPolar':
             # Marker1 == North Pole (could choose South Pole randomly, but we do not)
             marker1Lat = '90.0'
