@@ -13,7 +13,7 @@ ROOT = os.getenv('ROOT')
 DEST = os.getenv('DEST')
 DEBUG = False
 REPLACE_AUTOLOC = False
-DIST_TOLERANCE = 500.0 # 500m tolerance for distances, need to be at least X plus this distance for waypoint 
+DIST_TOLERANCE = 1.0 # 1km tolerance for waypoint distances
 MOUNTAIN_BIOME = 'Mountains' # Blank if mountain biome not required
 MISSING_LOC = False
 LONG_OFFSET= 1.0
@@ -712,6 +712,7 @@ class ContractType:
         self.write('			type = VisitWaypoint\n')
         self.write('\n')
         self.write('			index = 1\n')
+        self.write('			distance = 0.0\n')
         self.write('			horizontalDistance = {}\n', DIST_TOLERANCE)
         self.write('			hideOnCompletion = true\n')
         self.write('			completedMessage = You reached the Distance Marker, head back to the KSC.\n')
@@ -841,6 +842,7 @@ class ContractType:
         self.write('			type = VisitWaypoint\n')
         self.write('\n')
         self.write('			index = 1\n')
+        self.write('			distance = 0.0\n')
         self.write('			horizontalDistance = {}\n', DIST_TOLERANCE)
         self.write('			hideOnCompletion = true\n')
         self.write('			completedMessage = You reached the Marker 1, head to Marker 2.\n')
@@ -858,6 +860,7 @@ class ContractType:
         self.write('			type = VisitWaypoint\n')
         self.write('\n')
         self.write('			index = 2\n')
+        self.write('			distance = 0.0\n')
         self.write('			horizontalDistance = {}\n', DIST_TOLERANCE)
         self.write('			hideOnCompletion = true\n')
         self.write('			completedMessage = You reached the Marker 2, head to Marker 3.\n')
@@ -875,6 +878,7 @@ class ContractType:
         self.write('			type = VisitWaypoint\n')
         self.write('\n')
         self.write('			index = 3\n')
+        self.write('			distance = 0.0\n')
         self.write('			horizontalDistance = {}\n', DIST_TOLERANCE)
         self.write('			hideOnCompletion = true\n')
         self.write('			completedMessage = You reached the Marker 3, head back to KSC.\n')
