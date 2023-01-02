@@ -52,9 +52,9 @@ class ContractType:
         self.counter = int(counter)
         self.suffix = re.sub(r'[- ]', '', name)
         self.data = data
-        self.name = "{}-{:03d}-{}".format(self.group.title, self.counter, self.suffix)
+        self.name = "{}-{}".format(self.group.title, self.suffix)
         self.title = name
-        self.output_path = "{}/Groups/{}/{:03d}-{}.cfg".format(DEST, self.group.title, self.counter, self.suffix)
+        self.output_path = "{}/Groups/{}/{}.cfg".format(DEST, self.group.title, self.suffix)
         self.out = sys.stdout
         self.indent = ''
         self.agent = self.agent_name_from_data(data[1])

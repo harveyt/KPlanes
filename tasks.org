@@ -103,9 +103,9 @@
 ** DONE Ensure alts are always rounded to 1km
 ** DONE Ensure distances are always rounded 1km
 ** DONE Change PrettyXXX to use ToString
-* TODO [1/23] Version 0.4.0
+* TODO [2/26] Version 0.4.0
 ** DONE Extract localized data from GAP into loc file
-** TODO Add some Modern contracts (speed, distance, height)
+** DONE Add some Modern contracts (speed, distance, height)
 ** TODO Remove counter from contract names to ease changes
 ** TODO Add maximum alt for distance contracts
 ** TODO Add DescSpeed with " (Mach N)" text and use in speed contracts
