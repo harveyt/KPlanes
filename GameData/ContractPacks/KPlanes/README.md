@@ -129,8 +129,10 @@ usually 10km higher. Therefore only slightly harder for Modern / Future contract
 - StratosphereHigh: 13 km
 - MesosphereLow, FlyingHigh : 18 km
 - MesosphereHigh: 30 km
-- ThermosphereLow: 40 km
+- ThermosphereLow: 45 km
 - SpaceLow : 80 km 
+- SpaceLEO : 430 km
+- SpaceMEO : 2863 km
 
 For RSS (Earth), the atmosphere is much thicker, so much higher altitudes are needed. Hard mode!
 
@@ -164,7 +166,7 @@ For KSRSS, JSNQ (2.7x), over twice as far, not that much harder.
 - Continental : 700 km
 - Intercontinental : 2,000 km
 - Polar : ~5,000 km
-- Equatorial : ~10,0000 km
+- Equatorial : ~10,000 km
 
 For RSS (Earth), distances are ten times stock scale, so this is Hard Mode!
 

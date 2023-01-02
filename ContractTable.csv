@@ -2,10 +2,10 @@ Group,Agent,Counter,Name,GAP Name,Requires,Prestige,Funds (1000),Rep,Science,Sty
 Start,Wright,1,First Flight,Wright-FirstFlight,,*,10,50,10,Fly,Flying,,,,,,Y,N,N,N,N
 Start,Wright,2,Flying Higher,Wright-2500m,First Flight,*,8,5,3,Altitude,,TroposphereLow,,,,,Y,N,N,N,N
 Start,Wright,3,Flying Faster,Wright-Speed100,First Flight,*,8,5,3,Speed,,,TroposphereHigh,100,,,Y,N,N,N,N
-Start,Wright,4,Seaplane,GAP-Seaplane,"Flying Higher,Flying Faster",*,30,5,5,Land,Splashed,,,,,,Y,N,N,N,Y
-Start,Wright,5,Helicopter,GAP-Helicopter,"Flying Higher,Flying Faster",*,30,10,10,Land,Helipads,,,,,,Y,N,N,N,Y
-Start,Wright,6,Short Hop,,"Flying Higher,Flying Faster",*,8,5,3,Distance,,,TroposphereHigh,,ShortHop,,Y,N,N,N,N
-Start,Wright,7,Troposphere High,Wright-5000m,Flying Higher,*,30,5,3,Altitude,,TroposphereHigh,,,,,Y,N,N,N,N
+Start,Wright,4,Short Hop,,First Flight,*,8,5,3,Distance,,,TroposphereHigh,,ShortHop,,Y,N,N,N,N
+Start,Wright,5,Seaplane,GAP-Seaplane,"Flying Higher,Flying Faster,Short Hop",*,30,5,5,Land,Splashed,,,,,,Y,N,N,N,Y
+Start,Wright,6,Helicopter,GAP-Helicopter,"Flying Higher,Flying Faster,Short Hop",*,30,10,10,Land,Helipads,,,,,,Y,N,N,N,Y
+Start,Wright,7,Troposphere High,Wright-5000m,Flying Higher,*,10,5,3,Altitude,,TroposphereHigh,,,,,Y,N,N,N,N
 Start,Wright,8,Domestic Distance,,Short Hop,*,10,5,3,Distance,,,StratosphereLow,,Domestic,,Y,N,N,N,N
 Start,Wright,9,Airspeed Record,Wright-Speed220,Flying Faster,*,12,10,3,Speed,,TroposphereLow,StratosphereLow,220,,,Y,N,N,N,N
 Start,Wright,10,Continental Distance,,Domestic Distance,*,12,5,3,Distance,,,StratosphereLow,,Continental,,Y,N,N,N,N
@@ -27,23 +27,23 @@ Modern,KASA,1,Thermosphere Low,SSI-60000m,Mesosphere High,**,80,25,15,Altitude,,
 Modern,KASA,2,Sub-Orbital,,"Mesosphere High,Mach 4",**,90,30,20,Altitude,,SpaceLow,,,,,Y,Y,N,N,N
 Modern,KASA,3,Mach 5,,Mach 4,***,120,35,25,Speed,,StratosphereLow,ThermosphereLow,Mach5,,,Y,Y,N,Y,N
 Modern,KASA,4,Going Electrical,,"Around The World,Stratosphere High",***,150,40,25,Distance,,,StratosphereHigh,,CircumEquator,,N,N,N,N,Y
-Modern,KASA,5,Mesosphere Jet,,"Mesosphere Low,Mach 5",**,150,30,25,Speed,,MesosphereLow,MesosphereHigh,Mach5,,,Y,N,N,N,N
-Modern,KASA,6,Mach 10,,Mach 5,**,150,30,25,Speed,,StratosphereHigh,ThermosphereLow,Mach10,,,Y,Y,N,Y,N
-Modern,KASA,7,Orbital Shuttle,,"Sub-Orbital,Mach 5",**,200,50,30,Distance,Orbit,SpaceLow,,,,,Y,Y,Y,N,N
-Modern,KASA,8,Orbital Shuttle 1T Payload,,Orbital Shuttle,***,100,30,15,Payload,Orbit,SpaceLEO,,,,1,Y,Y,Y,N,N
-Modern,KASA,9,Orbital Shuttle 10T Payload,,Orbital Shuttle 1T Payload,*,120,40,15,Payload,Orbit,SpaceLEO,,,,10,Y,Y,Y,N,N
-Modern,KASA,10,Orbital Shuttle 30T Payload,,Orbital Shuttle 10T Payload,**,140,60,15,Distance,Orbit,SpaceLEO,,,,30,Y,Y,Y,N,N
-Modern,SSI,11,Sub-Orbital SSTO,,Orbital Shuttle 30T Payload,***,220,60,35,Altitude,,SpaceLow,,,,,Y,Y,N,N,N
-Modern,SSI,12,Orbital SSTO,,Sub-Orbital SSTO,**,250,50,15,Distance,Orbit,SpaceLow,,,,,Y,Y,N,N,N
-Future,KASA,1,Orbital SSTO 1T Payload,,Orbital SSTO,***,100,40,15,Payload,Orbit,SpaceLEO,,,,1,Y,Y,N,N,N
-Future,KASA,2,Orbital SSTO 10T Payload,,Orbital SSTO 1T Payload,*,120,50,15,Payload,Orbit,SpaceLEO,,,,10,Y,Y,N,N,N
-Future,SSI,3,Orbital SSTO 30T Payload,,Orbital SSTO 10T Payload,**,140,60,15,Payload,Orbit,SpaceLEO,,,,30,Y,Y,N,N,N
-Future,SSI,4,Orbital GEO SSTO 15T Payload,,Orbital SSTO 30T Payload,***,150,70,40,Payload,Orbit,SpaceGEO,,,,15,Y,Y,N,N,N
-Future,KASA,5,Lunar Orbit SSTO,,Orbital GEO SSTO 15T Payload,***,300,80,20,Distance,Orbit Mun,,,,,,Y,Y,N,N,N
-Future,KASA,6,Lunar Orbit SSTO 1T Payload,,Lunar Orbit SSTO,***,150,60,20,Payload,Orbit Mun,,,,,1,Y,Y,N,N,N
-Future,SSI,7,Lunar Orbit SSTO 10T Payload,,Lunar Orbit SSTO 1T Payload,*,200,70,20,Payload,Orbit Mun,,,,,10,Y,Y,N,N,N
-Future,KASA,8,Lunar Land SSTO,,Lunar Orbit SSTO 10T Payload,**,500,90,50,Distance,Landed Mun,,,,,,Y,Y,N,N,N
-Future,KASA,9,Lunar Land SSTO 1T Payload,,Lunar Land SSTO,***,300,70,25,Payload,Landed Mun,1,,,,1,Y,Y,N,N,N
-Future,KASA,10,Lunar Land SSTO 10T Payload,,Lunar Land SSTO 1T Payload,*,300,80,25,Payload,Landed Mun,10,,,,10,Y,Y,N,N,N
-Future,SSI,11,Lunar Land SSTO 30T Payload,,Lunar Land SSTO 10T Payload,**,400,90,25,Payload,Landed Mun,30,,,,30,Y,Y,N,N,N
-Future,SSI,12,Lunar Land SSTO 50T Payload,,Lunar Land SSTO 30T Payload,***,500,100,25,Payload,Landed Mun,50,,,,50,Y,Y,N,N,N
+Modern,KASA,5,Mesosphere Jet,,"Mesosphere Low,Mach 5",**,200,30,25,Speed,,MesosphereLow,MesosphereHigh,Mach5,,,Y,N,N,N,N
+Modern,KASA,6,Mach 10,,Mach 5,**,250,30,25,Speed,,StratosphereHigh,ThermosphereLow,Mach10,,,Y,Y,N,Y,N
+Modern,KASA,7,Orbital Shuttle,,"Sub-Orbital,Mach 5",**,300,50,30,Distance,Orbit,SpaceLow,,,,,Y,Y,Y,N,N
+Modern,KASA,8,Orbital Shuttle 1T Payload,,Orbital Shuttle,***,350,30,15,Payload,Orbit,SpaceLEO,,,,1,Y,Y,Y,N,N
+Modern,KASA,9,Orbital Shuttle 10T Payload,,Orbital Shuttle 1T Payload,*,500,40,15,Payload,Orbit,SpaceLEO,,,,10,Y,Y,Y,N,N
+Modern,KASA,10,Orbital Shuttle 30T Payload,,Orbital Shuttle 10T Payload,**,750,60,15,Distance,Orbit,SpaceLEO,,,,30,Y,Y,Y,N,N
+Modern,SSI,11,Sub-Orbital SSTO,,Orbital Shuttle 30T Payload,***,350,60,35,Altitude,,SpaceLow,,,,,Y,Y,N,N,N
+Modern,SSI,12,Orbital SSTO,,Sub-Orbital SSTO,**,450,50,15,Distance,Orbit,SpaceLow,,,,,Y,Y,N,N,N
+Future,KASA,1,Orbital SSTO 1T Payload,,Orbital SSTO,***,750,40,15,Payload,Orbit,SpaceLEO,,,,1,Y,Y,N,N,N
+Future,KASA,2,Orbital SSTO 10T Payload,,Orbital SSTO 1T Payload,*,1000,50,15,Payload,Orbit,SpaceLEO,,,,10,Y,Y,N,N,N
+Future,SSI,3,Orbital SSTO 30T Payload,,Orbital SSTO 10T Payload,**,1500,60,15,Payload,Orbit,SpaceLEO,,,,30,Y,Y,N,N,N
+Future,SSI,4,Orbital GEO SSTO 15T Payload,,Orbital SSTO 30T Payload,***,1500,70,40,Payload,Orbit,SpaceGEO,,,,15,Y,Y,N,N,N
+Future,KASA,5,Lunar Orbit SSTO,,Orbital GEO SSTO 15T Payload,***,1000,80,20,Distance,Orbit Mun,,,,,,Y,Y,N,N,N
+Future,KASA,6,Lunar Orbit SSTO 1T Payload,,Lunar Orbit SSTO,***,1500,60,20,Payload,Orbit Mun,,,,,1,Y,Y,N,N,N
+Future,SSI,7,Lunar Orbit SSTO 10T Payload,,Lunar Orbit SSTO 1T Payload,*,2000,70,20,Payload,Orbit Mun,,,,,10,Y,Y,N,N,N
+Future,KASA,8,Lunar Land SSTO,,Lunar Orbit SSTO 10T Payload,**,2500,90,50,Distance,Landed Mun,,,,,,Y,Y,N,N,N
+Future,KASA,9,Lunar Land SSTO 1T Payload,,Lunar Land SSTO,***,3000,70,25,Payload,Landed Mun,,,,,1,Y,Y,N,N,N
+Future,KASA,10,Lunar Land SSTO 10T Payload,,Lunar Land SSTO 1T Payload,*,4000,80,25,Payload,Landed Mun,,,,,10,Y,Y,N,N,N
+Future,SSI,11,Lunar Land SSTO 30T Payload,,Lunar Land SSTO 10T Payload,**,6000,90,25,Payload,Landed Mun,,,,,30,Y,Y,N,N,N
+Future,SSI,12,Lunar Land SSTO 50T Payload,,Lunar Land SSTO 30T Payload,***,10000,100,25,Payload,Landed Mun,,,,,50,Y,Y,N,N,N

@@ -39,9 +39,13 @@ test: build
 	rm -rf $(TEST_GAME)/$(RELPATH)/Groups/Modern
 	rm -rf $(TEST_GAME)/$(RELPATH)/Groups/Future
 
-build: $(BUILDABLES) contracts
+build: $(BUILDABLES) contracts clean
 
 contracts:
+	mkdir -p $(DEST)/Groups/Start
+	mkdir -p $(DEST)/Groups/Early
+	mkdir -p $(DEST)/Groups/Modern
+	mkdir -p $(DEST)/Groups/Future
 	ROOT=$(ROOT) DEST=$(DEST) ./ContractGen.py
 
 diffs:
@@ -51,6 +55,7 @@ clean:
 	find GameData -name '*~' -print | xargs rm -f
 
 clobber: clean
+	rm -rf $(DEST)/Groups
 	rm -f $(BUILDABLES)
 
 $(README): $(ROOT)/README.md
