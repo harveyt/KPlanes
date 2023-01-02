@@ -36,7 +36,6 @@ test: build
 	rm -rf $(TEST_GAME)/$(RELPATH)
 	cp -a $(DEST) $(TEST_GAME)/`dirname $(RELPATH)`
 	find $(TEST_GAME)/$(RELPATH) -name '*~' -print | xargs rm -f
-	rm -rf $(TEST_GAME)/$(RELPATH)/Groups/Modern
 	rm -rf $(TEST_GAME)/$(RELPATH)/Groups/Future
 
 build: $(BUILDABLES) contracts clean

@@ -13,7 +13,7 @@
 ** DONE Add Makefile build and test system
 ** DONE Add first contract type and fix bugs
 
-* TODO [28/44] Version 0.2.0
+* DONE [20/20] Version 0.2.0
 
 ** DONE Add all GAP milestone contracts
 - Including Heli and Seaplane too
@@ -89,6 +89,7 @@
 - Update FlyingFaster
 ** DONE Enable land style contract
 - Update Heli and Seaplane equivalent
+* DONE [8/8] Version 0.3.0
 ** DONE Add basic GAP contracts
 - Ensure requirements are valid GAP contracts:
   - Set "enabled" to true if generated
@@ -102,14 +103,18 @@
 ** DONE Ensure alts are always rounded to 1km
 ** DONE Ensure distances are always rounded 1km
 ** DONE Change PrettyXXX to use ToString
+* TODO [1/23] Version 0.4.0
+** DONE Extract localized data from GAP into loc file
+** TODO Add some Modern contracts (speed, distance, height)
+** TODO Remove counter from contract names to ease changes
 ** TODO Add maximum alt for distance contracts
+** TODO Add DescSpeed with " (Mach N)" text and use in speed contracts
 ** TODO Change return style to field "Return"
 - Runway :: Must land at the KSC runway
 - Helipad :: Must land at the KSC helipads
 - KSC :: Must land near the KSC
 - Anywhere :: Can land anywhere
 - other :: Must land in that biome on HomeWorld (or list of biomes, use ",")
-** TODO Extract localized data from GAP into loc file
 ** TODO Change speed records to computed Mach values
 - Rather than Mach 1 which is height dependant
 - Possibly have Mach 1, Mach 3 and Mach 5 as targets but very fixed for altitude
@@ -128,6 +133,10 @@
 - For around the world :: place waypoint 90 W, 270 W on equator then return to
   KSC
 - Possibly calculate great circle with start point and 90 W?
+** TODO Support Jet style correctly, check contracts match.
+** TODO Support Rocket Plane style correctly, check contracts match.
+** TODO Support Stage style correctly, check contracts match.
+** TODO Support LandAtKSC style correctly, check contracts match.
 ** TODO Ensure craft do not misuse staging
 - Allow staging for some contracts.
 ** TODO Ensure craft do not misuse parachutes
@@ -143,6 +152,7 @@
   - Above a certain height
   - Remaining craft is then validated again
 - Player must also land other aircraft
+** TODO Support Airlaunch style correctly, check contracts match.
 ** TODO How to do payload delivery?
 - Allow one staging event
 - Must occur above a certain height

@@ -173,7 +173,11 @@ class ContractType:
     
     def generate(self):
         if self.group.title != "Start" and self.group.title != "Early":
-            return
+            if self.group.title == "Modern":
+                if self.counter == 4 or self.counter > 6:
+                    return
+            else:
+                return
         
         with open(self.output_path, "w") as self.out:
             self._gen_header()
