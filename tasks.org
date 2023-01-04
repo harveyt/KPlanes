@@ -107,6 +107,44 @@
 ** DONE Extract localized data from GAP into loc file
 ** DONE Add some Modern contracts (speed, distance, height)
 ** DONE Remove counter from contract names to ease changes
+** TODO Prototype staging detection
+- Before stage:
+  - Remember list of all vessels "OtherVesselList"
+    - Exclude curent vessel
+  - Remember parts in current vessel "PartList"
+- Stage:
+  - VesselParameterGroup
+    - NoStaging
+    - ReachState (min alt for staging say)
+    - Not NoStaging "StageParam"
+- Behavour
+  - Expression
+    - When "StageParam" completes
+    - RemovedParts = PartList.ExcludeList(Vessel.Parts)
+      - This contains parts that have just be undocked/staged away
+    - NewVesselList = AllVessels.ExcludeList(OtherVessel)
+      - This will contain vessel just undocked, but might contain others
+    - StagedVessel = NewVesselList.Where(v => v.Parts same-as RemovedParts)
+      - This should result in one vessel (if not must be exact duplicate, can we
+        find newest? Do not think so)
+
+      - Compare parts for same:
+
+        A == B iff A.Where(a => B.Contains(a) && B.Where(b => A.Contains(b))
+        
+        
+        
+** TODO How to do payload delivery?
+- Allow one staging event
+- Must occur above a certain height
+- Primary craft is validated
+- Secondary craft can be made of anything, but must exceed payload mass
+- Player must land primary
+- Must create a new vessel with only parts from launcher
+  - Behaviour and expressions with parameter completion to record on launch
+  - Behaviour and expressions to check after orbit, when no staging fails (allowed)
+- New vessel remains in orbit
+- Launcher returns
 ** TODO Add maximum alt for distance contracts
 ** TODO Add DescSpeed with " (Mach N)" text and use in speed contracts
 ** TODO Change return style to field "Return"
@@ -174,17 +212,6 @@
   - Remaining craft is then validated again
 - Player must also land other aircraft
 ** TODO Support Airlaunch style correctly, check contracts match.
-** TODO How to do payload delivery?
-- Allow one staging event
-- Must occur above a certain height
-- Primary craft is validated
-- Secondary craft can be made of anything, but must exceed payload mass
-- Player must land primary
-- Must create a new vessel with only parts from launcher
-  - Behaviour and expressions with parameter completion to record on launch
-  - Behaviour and expressions to check after orbit, when no staging fails (allowed)
-- New vessel remains in orbit
-- Launcher returns
 ** TODO Add support for "realistic" agents and naming
 - NACA and NASA
 - Changes to descriptions
