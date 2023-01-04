@@ -140,11 +140,14 @@
 ** TODO Add parachute/escape style contracts
 - To encourage safey!
 - Start, just after first flight: Parachute from a plane and survive.
+  - Requires: Unlock of right facility.
   - Min height 1km.
   - Parachute can open at any height.
 - Start, after Trop High: Skydive from a plane
   - Min height 5km.
   - Parachute can open at any height.
+- Start: Jump from plane without parachute.
+  - Trick is to dive/land on water.
 - Early, after 220km speed: Eject from a high speed plane
 - Early, after Stratosphere High: HALO jump from a plane (min height Strat High)
   - Parachute must open below 1km.
