@@ -37,6 +37,7 @@ test: build
 	cp -a $(DEST) $(TEST_GAME)/`dirname $(RELPATH)`
 	find $(TEST_GAME)/$(RELPATH) -name '*~' -print | xargs rm -f
 	rm -rf $(TEST_GAME)/$(RELPATH)/Groups/Future
+	cp $(ROOT)/StagePrototype.cfg $(TEST_GAME)/$(RELPATH)
 
 build: $(BUILDABLES) contracts clean
 
